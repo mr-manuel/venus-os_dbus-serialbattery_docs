@@ -108,17 +108,11 @@ You can add both to your system and in the newer Venus OS firmwares you can sele
 
 > Please also read [Should I set the Smartshunt or the BMS as the Battery Monitor?](../faq/index.md#should-i-set-the-smartshunt-or-the-bms-as-the-battery-monitor)
 
-Yes it can, but there are certain limitations.
-
-### Venus OS `< v3.00`
-
-Select another or `No battery monitor` in the remote console under `Settings -> System setup -> Battery monitor` and disable `DVCC` in the remote console under `Settings -> DVCC`.
-
-The `DVCC` has to be disabled since Venus OS selects the first BMS available in Venus OS `< v3.00`. Pay attention, that in this case also other BMS cannot control the charger (CVL, CCL, DCL). Please consider to upgrade to the latest Venus OS version in this case.
-
-### Venus OS `>= v3.00`
-
 Select another or `No battery monitor` in the remote console under `Settings -> System setup -> Battery monitor` and another or `No BMS control` in the remote console under `Settings -> DVCC -> Controlling BMS`.
+
+## How can I monitor single cell voltages locally?
+
+To track all cell voltages and/or other data locally you could use Node-RED, InfluxDB and Grafana. This allows you to have offline statistics. See [Track individual cell voltages](https://github.com/Louisvdw/dbus-serialbattery/discussions/495).
 
 ## Why no SoC is displayed in the overview page?
 Navigate to `Settings -> System Setup` and check that under `Battery monitor` your BMS or battery aggregator is selected.

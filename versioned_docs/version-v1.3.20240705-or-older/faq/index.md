@@ -120,6 +120,10 @@ The `DVCC` has to be disabled since Venus OS selects the first BMS available in 
 
 Select another or `No battery monitor` in the remote console under `Settings -> System setup -> Battery monitor` and another or `No BMS control` in the remote console under `Settings -> DVCC -> Controlling BMS`.
 
+## How can I monitor single cell voltages locally?
+
+To track all cell voltages and/or other data locally you could use Node-RED, InfluxDB and Grafana. This allows you to have offline statistics. See [Track individual cell voltages](https://github.com/Louisvdw/dbus-serialbattery/discussions/495).
+
 ## Why no SoC is displayed in the overview page?
 Navigate to `Settings -> System Setup` and check that under `Battery monitor` your BMS or battery aggregator is selected.
 
