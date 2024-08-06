@@ -46,7 +46,7 @@ const config = {
                     // Please change this to your repo.
                     // Remove this to remove the "edit this page" links.
                     editUrl: ({ docPath }) => {
-                        return `https://holocron.so/github/pr/mr-manuel/venus-os_dbus-serialbattery_docs/docusaurus/editor/docs/${docPath}`
+                        return `https://holocron.so/github/pr/mr-manuel/venus-os_dbus-serialbattery_docs/master/editor/docs/${docPath}`
                     },
                     sidebarCollapsible: false,
                     versions: {
