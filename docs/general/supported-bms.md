@@ -26,6 +26,11 @@ Disabled by default since driver version `v1.0.0` as it causes other issues. Mor
 ### &bull; [Daly BMS](https://dalybms.com/) 🥉 <small>Third most used BMS</small>
 ![Daly app](../screenshots/bms-daly.jpg)
 
+### &bull; [Daren BMS](https://www-szdrgk-com.translate.goog/?_x_tr_sch=http&_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp)
+DR-JC03, DR48100JC-03-V2, using the DR-1363 protocol. Tested with multiple packs on one RS485 USB-adapter.
+
+More informations about the BMS and its protocol can be found [here](https://github.com/cpttinkering/daren-485/).
+
 ### &bull; [ECS](https://ecs-online.org) GreenMeter with LiPro
 
 ### &bull; [EG4](https://eg4electronics.com) LiFePOWER
