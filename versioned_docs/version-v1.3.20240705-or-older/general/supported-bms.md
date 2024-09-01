@@ -18,6 +18,9 @@ This are the three most used BMS with this driver.
 
 🥉 Daly BMS (14% of all systems)
 
+The Daly BMS is not recommended, if you have to buy a new BMS, since it has a bad communication implementation and
+sometimes it happens that the driver is not able to fetch data for a multiple cycles.
+
 ## Currently supported
 
 ### &bull; [ANT BMS](https://antbms.vip)
@@ -29,6 +32,9 @@ Disabled by default since driver version `v1.0.0` as it causes other issues. Mor
 ### &bull; [ECS](https://ecs-online.org) GreenMeter with LiPro
 
 ### &bull; [EG4](https://eg4electronics.com) LiFePOWER
+
+For EG4 LiFePower batteries, you need to set your DIP switch pins to 1 for the battery connected to the CerboGX.
+
 Works also for:
 #### |- [Revov](https://revov.co.za/)
 #### |- [Tian Power](https://www.tian-power.com)
