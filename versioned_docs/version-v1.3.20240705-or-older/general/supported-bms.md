@@ -33,8 +33,6 @@ Disabled by default since driver version `v1.0.0` as it causes other issues. Mor
 
 ### &bull; [EG4](https://eg4electronics.com) LiFePOWER
 
-For EG4 LiFePower batteries, you need to set your DIP switch pins to 1 for the battery connected to the CerboGX.
-
 Works also for:
 #### |- [Revov](https://revov.co.za/)
 #### |- [Tian Power](https://www.tian-power.com)

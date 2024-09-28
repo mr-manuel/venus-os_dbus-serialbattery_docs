@@ -259,11 +259,12 @@ Some Daly BMS send the current as inverted value. This can be corrected by setti
 
 Most unstable communications arise due to:
 
-* Cabeling: Check your cables again and make sure that all solder points are making good connection.
-* Missing shielded cable: If the connection gets unstable on greater battery currents and your serial cable is near or along the battery cable, then try to use a shielded cable.
-* Damaged/Defective serial adapters: Try another serial adapter.
-* Cheap USB Hubs: Make sure you are using a qualitative USB Hub with enough power.
-* Raspberry Pi: Do not use a charger for powering the Raspberry Pi. Instead buy a power supply with enough power.
+* **Cabling:** Check that your serial cables are not too short (< 30 cm). Sometimes this also creates problems.
+* **Cabling:** Check your cables again and make sure that all solder points are making good connection.
+* **Cheap USB Hubs:** Make sure you are using a qualitative USB Hub with enough power.
+* **Damaged/Defective serial adapters:** Try another serial adapter.
+* **Missing shielded cable:** If your serial cable is near or along the battery power cable, then try to use a shielded cable or move the cable.
+* **Raspberry Pi:** Do not use a charger for powering the Raspberry Pi. Instead buy a power supply with enough power.
 
 ## How to troubleshoot high CPU load?
 

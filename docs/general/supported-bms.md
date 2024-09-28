@@ -42,8 +42,6 @@ More informations about the BMS and its protocol can be found [here](https://git
 
 ### &bull; [EG4](https://eg4electronics.com) LiFePOWER
 
-For EG4 LiFePower batteries, you need to set your DIP switch pins to 1 for the battery connected to the CerboGX.
-
 Works also for:
 
 #### |- [Revov](https://revov.co.za/)
