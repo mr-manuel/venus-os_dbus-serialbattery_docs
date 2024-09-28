@@ -5,6 +5,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 const organizationName = "mr-manuel";
 const projectName = "venus-os_dbus-serialbattery_docs";
+const projectNameCode = "venus-os_dbus-serialbattery";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -51,7 +52,7 @@ const config = {
                     sidebarCollapsible: false,
                     versions: {
                         current: {
-                            label: 'v1.4.x-dev 🌜',
+                            label: 'v1.5.x-dev 🌜',
                             //path: 'docs',
                             banner: 'none',  // none, unreleased, unmaintained
                             //badge: true,  // true, false
@@ -101,22 +102,22 @@ const config = {
                     },
                     {
                         label: 'Changelog',
-                        href: `https://github.com/${organizationName}/${projectName}/blob/master/CHANGELOG.md`,
+                        href: `https://github.com/${organizationName}/${projectNameCode}/blob/master/CHANGELOG.md`,
                         position: 'left',
                     },
                     {
                         label: 'GitHub',
-                        href: `https://github.com/${organizationName}/${projectName}`,
+                        href: `https://github.com/${organizationName}/${projectNameCode}`,
                         position: 'left',
                     },
                     {
                         label: 'GitHub Issues',
-                        href: `https://github.com/${organizationName}/${projectName}/issues?q=is%3Aissue`,
+                        href: `https://github.com/${organizationName}/${projectNameCode}/issues?q=is%3Aissue`,
                         position: 'left',
                     },
                     {
                         label: 'GitHub Discussions',
-                        href: `https://github.com/${organizationName}/${projectName}/discussions?discussions_q=`,
+                        href: `https://github.com/${organizationName}/${projectNameCode}/discussions?discussions_q=`,
                         position: 'left',
                     },
                     {
@@ -138,15 +139,15 @@ const config = {
                     title: 'Community',
                     items: [{
                             label: 'GitHub',
-                            href: `https://github.com/${organizationName}/${projectName}`,
+                            href: `https://github.com/${organizationName}/${projectNameCode}`,
                         },
                         {
                             label: 'GitHub Issues',
-                            href: `https://github.com/${organizationName}/${projectName}/issues?q=is%3Aissue`,
+                            href: `https://github.com/${organizationName}/${projectNameCode}/issues?q=is%3Aissue`,
                         },
                         {
                             label: 'GitHub Discussions',
-                            href: `https://github.com/${organizationName}/${projectName}/discussions?discussions_q=`,
+                            href: `https://github.com/${organizationName}/${projectNameCode}/discussions?discussions_q=`,
                         },
                     ],
                 }, ],
