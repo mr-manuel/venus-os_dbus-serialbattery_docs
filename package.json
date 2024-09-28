@@ -17,8 +17,8 @@
   },
   "dependencies": {
     "@algolia/client-search": "^4.24.0",
-    "@docusaurus/core": "^3.4.0",
-    "@docusaurus/preset-classic": "^3.4.0",
+    "@docusaurus/core": "^3.5.2",
+    "@docusaurus/preset-classic": "^3.5.2",
     "@mdx-js/react": "^3.0.0",
     "@types/react": "^18.3.3",
     "clsx": "^2.1.1",
@@ -44,15 +44,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "resolutions": {
-    "**/braces": "^3.0.3",
-    "**/express": "^4.19.2",
-    "**/follow-redirects": "^1.15.6",
-    "**/glob": "^10.4.2",
-    "**/rimraf": "^4.4.1",
-    "**/webpack-dev-middleware": "^7.2.1",
-    "**/ws": "^8.17.1"
   },
   "engines": {
     "node": ">=20.0"
