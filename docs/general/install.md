@@ -59,7 +59,7 @@ The important steps:
 Use Daly's Windows application `BMS Tools` to set the board number (currently not found on Daly's public site).
 Using the mobile app `SMART BMS` to set the board number will not correctly set it.
 
-Set a different board number for each BMS in the `BMS Tools` software and then specify the MODBUS addresses in the `config.ini` at the `MODBUS_ADDRESSES` parameter.
+Set a different board number for each BMS in the [`BMS Tools` software](https://www.dalybms.com/download-pc-software/) and then specify the MODBUS addresses in the `config.ini` at the `MODBUS_ADDRESSES` parameter.
 
 | Board number | MODBUS address |
 | ---:         | ---:           |
