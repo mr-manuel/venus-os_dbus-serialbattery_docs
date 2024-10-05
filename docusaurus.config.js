@@ -47,7 +47,7 @@ const config = {
                     // Please change this to your repo.
                     // Remove this to remove the "edit this page" links.
                     editUrl: ({ docPath }) => {
-                        return `https://holocron.so/github/pr/mr-manuel/venus-os_dbus-serialbattery_docs/master/editor/docs/${docPath}`
+                        return `https://holocron.so/github/pr/${organizationName}/${projectName}/master/editor/docs/${docPath}`
                     },
                     sidebarCollapsible: false,
                     versions: {
@@ -159,10 +159,15 @@ const config = {
             },
         }),
 
-    scripts: [{
-        src: `/${projectName}/matomo.js`,
-        async: true
-    }],
+    scripts: [
+        {
+            src: `/${projectName}/matomo.js`,
+            async: true
+        },{
+            src: `//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit`,
+            async: true
+        }
+    ],
 };
 
 module.exports = config;
