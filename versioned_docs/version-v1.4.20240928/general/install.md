@@ -52,9 +52,7 @@ The important steps:
  * You need to correctly set your battery capacity to match the cells you are using. Your SoC calculation in your BMS will be wrong otherwise. If you use `120Ah` cells then your battery capacity will be `120Ah` etc.
  * You need to correctly set your min/max cell protection voltages. These are voltages when your BMS will disconnect to protect your cells like `2.85V` and `3.65V`. Your driver limits should be between these and NOT the same.
 
-### EG4 LiFePower
-
-For EG4 LiFePower batteries, you need to set your DIP switch pins to 1 for the battery connected to the CerboGX.
+For BMS specific settings check the [How to connect and prepare the battery/BMS](./connect.md) page.
 
 ## Settings for your GX device
 

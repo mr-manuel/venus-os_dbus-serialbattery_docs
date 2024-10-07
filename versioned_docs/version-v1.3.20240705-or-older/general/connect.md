@@ -1,15 +1,19 @@
 ---
 id: connect
-title: How to connect the BMS
+title: How to connect and prepare the battery/BMS
 sidebar_position: 4
 # Display h2 to h4 headings
 toc_min_heading_level: 2
 toc_max_heading_level: 4
 ---
 
-# How to connect the BMS
+# How to connect and prepare the battery/BMS
 
 Since for some BMS the port labeling is a mess and not reflecting the real situation here are some useful links.
+
+## EG4 LiFePower
+
+For EG4 LiFePower batteries, you need to set your DIP switch pins to 1 for the battery connected to the Cerbo GX.
 
 ## JKBMS
 

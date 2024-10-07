@@ -52,37 +52,7 @@ The important steps:
  * You need to correctly set your battery capacity to match the cells you are using. Your SoC calculation in your BMS will be wrong otherwise. If you use `120Ah` cells then your battery capacity will be `120Ah` etc.
  * You need to correctly set your min/max cell protection voltages. These are voltages when your BMS will disconnect to protect your cells like `2.85V` and `3.65V`. Your driver limits should be between these and NOT the same.
 
-### Daly BMS
-
-**Only if you want to connect multiple Daly BMS to the same RS485 adapter**
-
-Use Daly's Windows application `BMS Tools` to set the board number (currently not found on Daly's public site).
-Using the mobile app `SMART BMS` to set the board number will not correctly set it.
-
-Set a different board number for each BMS in the [`BMS Tools` software](https://www.dalybms.com/download-pc-software/) and then specify the MODBUS addresses in the `config.ini` at the `MODBUS_ADDRESSES` parameter.
-
-| Board number | MODBUS address |
-| ---:         | ---:           |
-| `0`          | `0x40`         |
-| `1`          | `0x41`         |
-| `2`          | `0x42`         |
-| `3`          | `0x43`         |
-| `4`          | `0x44`         |
-| `5`          | `0x45`         |
-| `6`          | `0x46`         |
-| `7`          | `0x47`         |
-| `8`          | `0x48`         |
-| `9`          | `0x49`         |
-| `10`         | `0x4a`         |
-| `11`         | `0x4b`         |
-| `12`         | `0x4c`         |
-| `13`         | `0x4d`         |
-| `14`         | `0x4e`         |
-| `15`         | `0x4f`         |
-
-### EG4 LiFePower
-
-For EG4 LiFePower batteries, you need to set your DIP switch pins to 1 for the battery connected to the CerboGX.
+For BMS specific settings check the [How to connect and prepare the battery/BMS](./connect.md) page.
 
 ## Settings for your GX device
 
