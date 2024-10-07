@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "docusaurus start",
+    "start": "npm run serve",
     "prebuild": "node prebuild.js",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
