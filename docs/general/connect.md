@@ -41,6 +41,10 @@ For example, if you are using three batteries the parameter would be `MODBUS_ADD
 | `14`         | `0x4e`         |
 | `15`         | `0x4f`         |
 
+## Daren 485
+
+See [daren-485](https://github.com/cpttinkering/daren-485) on GitHub.
+
 ## EG4 LiFePower
 
 Set your DIP switch pins to 1 for the battery connected to the Cerbo GX.

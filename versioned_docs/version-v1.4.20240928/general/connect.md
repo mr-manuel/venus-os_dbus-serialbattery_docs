@@ -11,6 +11,10 @@ toc_max_heading_level: 4
 
 Since for some BMS the port labeling is a mess and not reflecting the real situation here are some useful links.
 
+## Daren 485
+
+See [daren-485](https://github.com/cpttinkering/daren-485) on GitHub.
+
 ## EG4 LiFePower
 
 For EG4 LiFePower batteries, you need to set your DIP switch pins to 1 for the battery connected to the Cerbo GX.
