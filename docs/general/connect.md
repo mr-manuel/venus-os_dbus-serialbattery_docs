@@ -57,23 +57,23 @@ For example, if you are using three batteries (battery 1 dip switches: `1: ON, r
 
 | Dip switch position | MODBUS address |
 | :---:               | :---:          |
-| `1 2 3 4 5 6`       |                |
-| `_ _ _ _ _ _`       | `0x00`         |
-| `‾ _ _ _ _ _`       | `0x01`         |
-| `_ ‾ _ _ _ _`       | `0x02`         |
-| `‾ ‾ _ _ _ _`       | `0x03`         |
-| `_ _ ‾ _ _ _`       | `0x04`         |
-| `‾ _ ‾ _ _ _`       | `0x05`         |
-| `_ ‾ ‾ _ _ _`       | `0x06`         |
-| `‾ ‾ ‾ _ _ _`       | `0x07`         |
-| `_ _ _ ‾ _ _`       | `0x08`         |
-| `‾ _ _ ‾ _ _`       | `0x09`         |
-| `_ ‾ _ ‾ _ _`       | `0x0A`         |
-| `‾ ‾ _ ‾ _ _`       | `0x0B`         |
-| `_ _ ‾ ‾ _ _`       | `0x0C`         |
-| `‾ _ ‾ ‾ _ _`       | `0x0D`         |
-| `_ ‾ ‾ ‾ _ _`       | `0x0E`         |
-| `‾ ‾ ‾ ‾ _ _`       | `0x0F`         |
+| `1 2 3 4`           |                |
+| `_ _ _ _`           | `0x00`         |
+| `‾ _ _ _`           | `0x01`         |
+| `_ ‾ _ _`           | `0x02`         |
+| `‾ ‾ _ _`           | `0x03`         |
+| `_ _ ‾ _`           | `0x04`         |
+| `‾ _ ‾ _`           | `0x05`         |
+| `_ ‾ ‾ _`           | `0x06`         |
+| `‾ ‾ ‾ _`           | `0x07`         |
+| `_ _ _ ‾`           | `0x08`         |
+| `‾ _ _ ‾`           | `0x09`         |
+| `_ ‾ _ ‾`           | `0x0A`         |
+| `‾ ‾ _ ‾`           | `0x0B`         |
+| `_ _ ‾ ‾`           | `0x0C`         |
+| `‾ _ ‾ ‾`           | `0x0D`         |
+| `_ ‾ ‾ ‾`           | `0x0E`         |
+| `‾ ‾ ‾ ‾`           | `0x0F`         |
 
 See also [EG Lifepower (Narada battery that uses Tianpower BMS) - Multi battery setup problems](https://github.com/Louisvdw/dbus-serialbattery/issues/1104).
 
