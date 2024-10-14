@@ -47,6 +47,12 @@ See [daren-485](https://github.com/cpttinkering/daren-485) on GitHub.
 
 ## EG4 LiFePower
 
+Also valid for:
+
+### |- Revov
+
+### |- TianPower
+
 Set your DIP switch pins to 1 for the battery connected to the Cerbo GX.
 
 > 🌼🔗 Only if you want to connect multiple Renogy BMS to the same RS485 adapter 👇

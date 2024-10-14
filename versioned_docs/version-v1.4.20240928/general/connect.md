@@ -17,6 +17,12 @@ See [daren-485](https://github.com/cpttinkering/daren-485) on GitHub.
 
 ## EG4 LiFePower
 
+Also valid for:
+
+### |- Revov
+
+### |- TianPower
+
 For EG4 LiFePower batteries, you need to set your DIP switch pins to 1 for the battery connected to the Cerbo GX.
 
 ## JKBMS
