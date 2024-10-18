@@ -11,6 +11,14 @@ toc_max_heading_level: 4
 
 Since for some BMS the port labeling is a mess and not reflecting the real situation here are some useful links.
 
+## Daly BMS
+
+Connect your BMS via the PC software ([BmsMonitor](https://www.dalybms.com/download-pc-software/)) and set the `Sleep time(S)` to `65535` to prevent the BMS from going to sleep.
+
+If you are using multiple batteries you also have to make sure, that the `Battery code` is different on every battery.
+
+![VenusOS](../screenshots/daly-bms_bms-monitor-screenshot-parameter-settings.png)
+
 ## Daren 485
 
 See [daren-485](https://github.com/cpttinkering/daren-485) on GitHub.

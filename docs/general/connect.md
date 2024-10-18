@@ -13,9 +13,15 @@ Since for some BMS the port labeling is a mess and not reflecting the real situa
 
 ## Daly BMS
 
+Connect your BMS via the PC software ([BmsMonitor](https://www.dalybms.com/download-pc-software/)) and set the `Sleep time(S)` to `65535` to prevent the BMS from going to sleep.
+
+If you are using multiple batteries you also have to make sure, that the `Battery code` is different on every battery.
+
+![VenusOS](../screenshots/daly-bms_bms-monitor-screenshot-parameter-settings.png)
+
 > 🌼🔗 Only if you want to connect multiple Daly BMS to the same RS485 adapter 👇
 
-1. Use Daly's [`BMS Tools`](https://www.dalybms.com/download-pc-software/) software (only for Windows) to set the board number.
+1. Use Daly's [BmsMonitor](https://www.dalybms.com/download-pc-software/) software (only for Windows) to set the board number.
 Using the mobile app `SMART BMS` to set the board number will not correctly set it.
 
 2. Set a different board number for each BMS in the `BMS Tools` software and then specify the MODBUS addresses in the `config.ini` at the `MODBUS_ADDRESSES` parameter.
