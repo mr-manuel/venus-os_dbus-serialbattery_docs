@@ -14,6 +14,30 @@ toc_max_heading_level: 4
 
 Since for some BMS the port labeling is a mess and not reflecting the real situation here are some useful instructions and links.
 
+## How to correctly daisy chain
+
+RS485 is a differential balanced line over twisted pair, capable of spanning up to a few hundred meters. Be aware of voltage drops due to cable resistance and sensor power consumption.
+
+Connect the wires in a point-to-point (daisy chain) configuration:
+
+- **Avoid star or ring networks** to prevent signal reflections.
+- The main cable runs from the master (USB to RS485 adapter) to all BMS and contains three wires:
+  - **A (DATA-)**
+  - **B (DATA+)**
+  - **GND (common)** for proper reference
+
+The main cable should be shielded. Ideally, the shield is separate from the 0 Volt line (GND), but they can be combined if the shield is free of voltage fluctuations.
+
+Use a termination resistor (120-130 Ω) between A (DATA-) and B (DATA+) if the line is longer than 10 meters.
+
+![Daisy chain wiring](../screenshots/daisy-chain-rs485-1.png)
+
+![Daisy chain wiring](../screenshots/daisy-chain-rs485-2.png)
+
+![Correctly daisy chain](../screenshots/correctly-daisy-chain.png)
+
+See also [this page](https://know.innon.com/howtowire-non-optoisolated).
+
 ## Daly BMS
 
 Connect your BMS via the PC software ([BmsMonitor](https://www.dalybms.com/download-pc-software/)) and set the `Sleep time(S)` to `65535` to prevent the BMS from going to sleep.
