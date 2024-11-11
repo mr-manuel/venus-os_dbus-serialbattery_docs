@@ -17,8 +17,8 @@
   },
   "dependencies": {
     "@algolia/client-search": "^4.24.0",
-    "@docusaurus/core": "^3.5.2",
-    "@docusaurus/preset-classic": "^3.5.2",
+    "@docusaurus/core": "^3.6.1",
+    "@docusaurus/preset-classic": "^3.6.1",
     "@mdx-js/react": "^3.0.0",
     "@types/react": "^18.3.3",
     "clsx": "^2.1.1",
