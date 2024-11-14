@@ -70,7 +70,7 @@ Disabled by default as it requires additional manual steps to install.
 So far only tested on version `16E`.
 
 ### &bull; [Seplos v3](https://www.seplos.com)
-Working on the Seplos v3 BMS which uses different (modbus) protocol than the earlier Seplos models.
+Works for the Seplos v3 BMS which uses different (Modbus) protocol than the earlier Seplos models.
 
 ### &bull; [Sinowealth](https://en.sinowealth.com)
 Disabled by default since driver version `v0.14.0` as it causes other issues. See [How to enable a disabled BMS](../general/install.md#how-to-enable-a-disabled-bms) to enable the BMS.

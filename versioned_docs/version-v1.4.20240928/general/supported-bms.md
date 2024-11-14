@@ -92,7 +92,7 @@ So far only tested on version `16E`.
 
 ### &bull; [Seplos v3](https://www.seplos.com)
 
-Working on the Seplos v3 BMS which uses different (modbus) protocol than the earlier Seplos models.
+Works for the Seplos v3 BMS which uses different (Modbus) protocol than the earlier Seplos models.
 
 ### &bull; [Sinowealth](https://en.sinowealth.com)
 
