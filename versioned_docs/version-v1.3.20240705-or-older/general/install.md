@@ -22,6 +22,8 @@ toc_max_heading_level: 4
 
 ## Compatibility Matrix
 
+The latest three stable versions of Venus OS are supported. It may also work on older and newer beta versions, but this is not guaranteed.
+
 | &darr; Venus OS version \ Driver version &rarr;  | v0.12.0  | v0.13.0  | v0.14.x              | v1.x.x   |
 | ---                                              | :---:    | :---:    | :---:                | :---:    |
 | v2.80 - v2.84                                    | ok       | ok       | untested             | untested |

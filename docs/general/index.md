@@ -30,7 +30,7 @@ https://discord.gg/YXzFB8rSgx
 
 ## Requirements
 
-* GX device or Raspberry Pi running Venus OS version `v2.80` or later.
+* GX device or Raspberry Pi with Venus OS. The latest three stable versions of Venus OS are supported. It may also work on older and newer beta versions, but this is not guaranteed.
 
 ## Screenshots
 
