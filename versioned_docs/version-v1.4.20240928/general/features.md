@@ -166,7 +166,7 @@ Some BMS drivers support also BMS from other manifacturers. Check the [Supported
 | Charge current control management (CCCM)                                                                                | Yes   | Yes   | Yes      | Yes                | Yes           | Yes    | Yes           | Yes           | Yes              | No             | Yes     | Yes                | Yes    | Yes    | Yes       | Yes                       |
 | Set battery parameters (DVCC)                                                                                           | Calc  | Calc  | Yes      | Yes                | Calc          | Yes    | Calc          | Yes           | Calc             | No             | Calc    | Yes                | Calc   | Calc   | Calc      | Calc                      |
 | Bluetooth connection <sup>(3)</sup> <img src="/venus-os_dbus-serialbattery_docs/img/bluetooth.svg" className="h-1em" /> | No    | No    | No       | No                 | No            | No     | No            | No            | Yes              | No             | Yes     | No                 | No     | No     | No        | No                        |
-| CAN connection <sup>(3)</sup>                                                                                           | No    | Yes   | No       | No                 | No            | No     | No            | No            | Yes              | No             | No      | No                 | No     | No     | No        | No                        |
+| CAN connection                                                                                                          | No    | Yes   | No       | No                 | No            | No     | No            | No            | Yes              | No             | No      | No                 | No     | No     | No        | No                        |
 | SOC reset via driver on BMS                                                                                             | No    | Yes   | No       | No                 | No            | No     | No            | No            | BLE              | No             | Yes     | No                 | No     | No     | No        | No                        |
 | Disable charging via driver on BMS                                                                                      | No    | Yes   | No       | No                 | No            | No     | No            | No            | No               | No             | Yes     | No                 | No     | No     | No        | No                        |
 | Disable discharging via driver on BMS                                                                                   | No    | Yes   | No       | No                 | No            | No     | No            | No            | No               | No             | Yes     | No                 | No     | No     | No        | No                        |
@@ -186,6 +186,6 @@ Some BMS drivers support also BMS from other manifacturers. Check the [Supported
 
 (2) No cells yet.
 
-(3) The Bluetooth and CAN connections are still not stable on some systems. If you want to have a stable connection use the serial connection.
+(3) The connection is still not stable on some systems. If you want to have a stable connection use the serial connection.
 
 (4) Only on models from 2023
