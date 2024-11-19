@@ -14,7 +14,9 @@ toc_max_heading_level: 4
 
 Since for some BMS the port labeling is a mess and not reflecting the real situation here are some useful instructions and links.
 
-## How to correctly daisy chain
+## How to correctly daisy chain via RS485/Modbus
+
+> Refer to the [feature comparison](./features.md#bms-feature-comparison) to see which BMS models support this feature.
 
 RS485 is a differential balanced line over twisted pair, capable of spanning up to a few hundred meters. Be aware of voltage drops due to cable resistance and sensor power consumption.
 
@@ -37,6 +39,36 @@ Use a termination resistor (120-130 Ω) between A (DATA-) and B (DATA+) if the l
 ![Correctly daisy chain](../screenshots/correctly-daisy-chain.png)
 
 See also [this page](https://know.innon.com/howtowire-non-optoisolated).
+
+## How to correctly connect via CAN
+
+> Refer to the [feature comparison](./features.md#bms-feature-comparison) to see which BMS models support this feature.
+
+First, you need to create the correct cable.
+
+### Victron Side
+
+Refer to the [VE.Can to CAN-bus BMS cables manual](https://www.victronenergy.com/live/battery_compatibility:can-bus_bms-cable#pin-out) for instructions.
+
+⚠️ Remember to use a 120 Ω resistor between CAN-H and CAN-L, or use a [VE.Can RJ45 Terminator](https://www.victronenergy.com/accessories/ve-can-rj45-terminator) to terminate the line on one end. Otherwise, it won't work.
+
+| Function | Victron VE.Can Side | RJ45 Pinout T-568A | RJ45 Pinout T-568B |
+| ---      | ---                 | ---                | ---                |
+| GND      | Pin 3               | White/Orange       | White/Green        |
+| CAN-H    | Pin 7               | White/Brown        | White/Brown        |
+| CAN-L    | Pin 8               | Brown              | Brown              |
+
+![RJ45 Pinout T568A](../screenshots/RJ45-Pinout-T568A.jpg) ![RJ45 Pinout T568B](../screenshots/RJ45-Pinout-T568B.jpg)
+
+### BMS Side
+
+Check your BMS manual for the correct pinout. If you don't find any, you could try to measure the voltages.
+
+| Function | Voltage to GND |
+| ---      | ---:           |
+| GND      | 0 V            |
+| CAN-H    | +3 V           |
+| CAN-L    | +2 V           |
 
 ## Daly BMS
 
@@ -122,23 +154,23 @@ See also [Is anyone using the new style JK inverter BMS with dbus-serialbattery 
 
   For example, if you are using three batteries the parameter would be `MODBUS_ADDRESSES = 0x30, 0x31, 0x32`.
 
-| Battery count | MODBUS address |
-| :---:         | :---:          |
-| `1`           | `0x30`         |
-| `2`           | `0x31`         |
-| `3`           | `0x32`         |
-| `4`           | `0x33`         |
-| `5`           | `0x34`         |
-| `6`           | `0x35`         |
-| `7`           | `0x36`         |
-| `8`           | `0x37`         |
-| `9`           | `0x38`         |
-| `10`          | `0x39`         |
-| `11`          | `0x3a`         |
-| `12`          | `0x3b`         |
-| `13`          | `0x3c`         |
-| `14`          | `0x3d`         |
-| `15`          | `0x3e`         |
-| `16`          | `0x3f`         |
+  | Battery count | MODBUS address |
+  | :---:         | :---:          |
+  | `1`           | `0x30`         |
+  | `2`           | `0x31`         |
+  | `3`           | `0x32`         |
+  | `4`           | `0x33`         |
+  | `5`           | `0x34`         |
+  | `6`           | `0x35`         |
+  | `7`           | `0x36`         |
+  | `8`           | `0x37`         |
+  | `9`           | `0x38`         |
+  | `10`          | `0x39`         |
+  | `11`          | `0x3a`         |
+  | `12`          | `0x3b`         |
+  | `13`          | `0x3c`         |
+  | `14`          | `0x3d`         |
+  | `15`          | `0x3e`         |
+  | `16`          | `0x3f`         |
 
 See also [Renogy - Multi battery setup documentation](https://github.com/Louisvdw/dbus-serialbattery/issues/1099).
