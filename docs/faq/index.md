@@ -154,7 +154,7 @@ You get most of the power from the cells between `3.1V - 3.45V` and you will hav
 
 The limits are based on percentages of `MAX_BATTERY_CHARGE_CURRENT` and `MAX_BATTERY_DISCHARGE_CURRENT` values, so there is no need for additional modifications. Additionaly you see in the remote console/GUI under `SerialBattery` &rarr; `Parameters` why it's limited.
 
-![VenusOS](../screenshots/venus-os_013.png)
+![VenusOS](../screenshots/venus-os_guiv2_013.png)
 
 ## Why is the displayed charging/discharging current limit (CCL/DCL) not applied?
 Navigate to `Settings -> DVCC`, check that `DVCC` is enabled and that under `Controlling BMS` your BMS or battery aggregator is selected. On this page normally only `DVCC` should be enabled.
@@ -169,7 +169,7 @@ CVCM_ENABLE = True
 
 Go to the remote console/GUI under SerialBattery -> Parameters and go to the bottom. Here you see the requirements which are met/not met to do the switch. The advanced pages are available since `v1.3.20240527dev`.
 
-![VenusOS](../screenshots/venus-os_dbus-serialbattery_parameters.gif)
+![VenusOS](../screenshots/venus-os_guiv2_dbus-serialbattery_parameters.gif)
 
 ## Does the driver work for `3.7V` based cells also?
 

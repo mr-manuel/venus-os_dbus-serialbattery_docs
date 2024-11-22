@@ -8,7 +8,7 @@ sidebar_position: 1
 # dbus-serialbattery
 This driver is for Venus OS devices (any GX device sold by Victron or a Raspberry Pi running the Venus OS image).
 
-The driver will communicate with a Battery Management System (BMS) that support serial (RS232, RS485 or TTL UART), Bluetooth and CAN communication (see [BMS feature comparison](./general/features#bms-feature-comparison) for details). The data is then published to the Venus OS system (dbus). The main purpose is to act as a Battery Monitor in your GX and supply State of Charge (SoC) and other values to the inverter/charger.
+The driver interfaces with a Battery Management System (BMS) that supports serial (RS232, RS485, or TTL UART), Bluetooth, and CAN communication (see [BMS feature comparison](./general/features#bms-feature-comparison) for details). The data is then published to the Venus OS system (dbus). Its primary function is to serve as a `Battery monitor` and `Controlling BMS` in your GX device, enabling the monitoring of key values and smooth control of battery charge/discharge.
 
 ## History
 The first version of this driver was released by [Louisvdw](https://github.com/Louisvdw/dbus-serialbattery) in September 2020.
@@ -36,19 +36,21 @@ https://discord.gg/YXzFB8rSgx
 
 ### Venus OS
 
-![VenusOS](../screenshots/venus-os_001.png)
-![VenusOS](../screenshots/venus-os_002.png)
-![VenusOS](../screenshots/venus-os_003.png)
-![VenusOS](../screenshots/venus-os_004.png)
-![VenusOS](../screenshots/venus-os_005.png)
-![VenusOS](../screenshots/venus-os_006.png)
-![VenusOS](../screenshots/venus-os_007.png)
-![VenusOS](../screenshots/venus-os_008.png)
-![VenusOS](../screenshots/venus-os_009.png)
-![VenusOS](../screenshots/venus-os_010.png)
-![VenusOS](../screenshots/venus-os_011.png)
-![VenusOS](../screenshots/venus-os_012.png)
-![VenusOS](../screenshots/venus-os_013.png)
+![VenusOS](../screenshots/venus-os_guiv2_001a.png)
+![VenusOS](../screenshots/venus-os_guiv2_001b.png)
+![VenusOS](../screenshots/venus-os_guiv2_001c.png)
+![VenusOS](../screenshots/venus-os_guiv2_002.png)
+![VenusOS](../screenshots/venus-os_guiv2_003.png)
+![VenusOS](../screenshots/venus-os_guiv2_004.png)
+![VenusOS](../screenshots/venus-os_guiv2_005.png)
+![VenusOS](../screenshots/venus-os_guiv2_006.png)
+![VenusOS](../screenshots/venus-os_guiv2_007.png)
+![VenusOS](../screenshots/venus-os_guiv2_008.png)
+![VenusOS](../screenshots/venus-os_guiv2_009.png)
+![VenusOS](../screenshots/venus-os_guiv2_010.png)
+![VenusOS](../screenshots/venus-os_guiv2_011.png)
+![VenusOS](../screenshots/venus-os_guiv2_012.png)
+![VenusOS](../screenshots/venus-os_guiv2_013.png)
 
 ### VRM Portal
 

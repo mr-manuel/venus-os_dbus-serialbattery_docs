@@ -41,18 +41,6 @@ The driver can handle batteries from 3 to 32 cells. It will act as Battery Monit
   * CVL (battery max) automatically adjusted by `cell count` \* `3.45V`
   * Battery min automatically adjusted by `cell count` \* `3.1V`
 
-### Screenshots
-
-![VenusOS](../screenshots/venus-os_003.png)
-![VenusOS](../screenshots/venus-os_005.png)
-![VenusOS](../screenshots/venus-os_006.png)
-![VenusOS](../screenshots/venus-os_007.png)
-![VenusOS](../screenshots/venus-os_008.png)
-![VenusOS](../screenshots/venus-os_009.png)
-![VenusOS](../screenshots/venus-os_010.png)
-![VenusOS](../screenshots/venus-os_013.png)
-
-
 ## Charge current control management
 CCCM limits the current when the battery is close to full or close to empty.
 When your battery is full, the reduced charge current will give the balancers in your BMS time to work.
