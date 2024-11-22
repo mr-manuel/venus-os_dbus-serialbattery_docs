@@ -58,7 +58,7 @@ Refer to the [VE.Can to CAN-bus BMS cables manual](https://www.victronenergy.com
 | CAN-H    | Pin 7               | White/Brown        | White/Brown        |
 | CAN-L    | Pin 8               | Brown              | Brown              |
 
-![RJ45 Pinout T568A](../screenshots/RJ45-Pinout-T568A.jpg) ![RJ45 Pinout T568B](../screenshots/RJ45-Pinout-T568B.jpg)
+![RJ45 Pinout T568A](../screenshots/rj45-cable-pinout-t568a.jpg) ![RJ45 Pinout T568B](../screenshots/rj45-cable-pinout-t568b.jpg)
 
 ### BMS Side
 

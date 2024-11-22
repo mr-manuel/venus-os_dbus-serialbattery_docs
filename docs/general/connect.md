@@ -14,9 +14,25 @@ toc_max_heading_level: 4
 
 Since for some BMS the port labeling is a mess and not reflecting the real situation here are some useful instructions and links.
 
-## How to correctly daisy chain via RS485/Modbus
+## UART/TTL (no daisy chain possible)
 
-> Refer to the [feature comparison](./features.md#bms-feature-comparison) to see which BMS models support this feature.
+UART (Universal Asynchronous Receiver-Transmitter) is a serial communication protocol used for communication between devices. TTL (Transistor-Transistor Logic) refers to the voltage levels used in UART communication.
+
+Ensure the voltage levels (5 V or 3.3 V) of your BMS are supported by the USB to UART/TTL adapter. Use an isolated adapter and power it correctly. Most BMS provide battery power `VCC+` on the `+` pole of the UART/TTL connector. Measure it before connecting. You may need a DC to DC converter to match the voltage your isolated adapter needs.
+
+Connect the wires in a point-to-point configuration. The main cable runs from the master (USB to UART adapter) to the BMS and contains three wires:
+- **TX (Transmit)**
+- **RX (Receive)**
+- **GND (common)** for proper reference
+
+The main cable should be shielded to prevent interference. Ensure that the TX of the master is connected to the RX of the BMS and the RX of the master is connected to the TX of the BMS.
+
+![Cabeling UART/TTL](../screenshots/cabeling-uart-ttl.png)
+
+
+## RS485/Modbus (daisy chain possible)
+
+> Refer to the [feature comparison](./features.md#bms-feature-comparison) to see which BMS models support daisy chaining.
 
 RS485 is a differential balanced line over twisted pair, capable of spanning up to a few hundred meters. Be aware of voltage drops due to cable resistance and sensor power consumption.
 
@@ -32,17 +48,17 @@ The main cable should be shielded. Ideally, the shield is separate from the 0 Vo
 
 Use a termination resistor (120-130 Ω) between A (DATA-) and B (DATA+) if the line is longer than 10 meters.
 
-![Daisy chain wiring](../screenshots/daisy-chain-rs485-1.png)
+![Daisy chain wiring RS485/Modbus](../screenshots/daisy-chain-rs485-1.png)
 
-![Daisy chain wiring](../screenshots/daisy-chain-rs485-2.png)
+![Daisy chain wiring RS485/Modbus](../screenshots/daisy-chain-rs485-2.png)
 
-![Correctly daisy chain](../screenshots/correctly-daisy-chain.png)
+![Correctly daisy chain RS485/Modbus](../screenshots/correctly-daisy-chain-rs485.png)
 
 See also [this page](https://know.innon.com/howtowire-non-optoisolated).
 
-## How to correctly connect via CAN
+## CAN (daisy chain possible)
 
-> Refer to the [feature comparison](./features.md#bms-feature-comparison) to see which BMS models support this feature.
+> Refer to the [feature comparison](./features.md#bms-feature-comparison) to see which BMS models support daisy chaining.
 
 First, you need to create the correct cable.
 
@@ -50,25 +66,31 @@ First, you need to create the correct cable.
 
 Refer to the [VE.Can to CAN-bus BMS cables manual](https://www.victronenergy.com/live/battery_compatibility:can-bus_bms-cable#pin-out) for instructions.
 
-⚠️ Remember to use a 120 Ω resistor between CAN-H and CAN-L, or use a [VE.Can RJ45 Terminator](https://www.victronenergy.com/accessories/ve-can-rj45-terminator) to terminate the line on one end. Otherwise, it won't work.
+⚠️ Remember to use a 120 Ω resistor between CAN-H and CAN-L, or use a [VE.Can RJ45 Terminator](https://www.victronenergy.com/accessories/ve-can-rj45-terminator) to terminate the line. Otherwise, it won't work. In some cases, you may also need to terminate the other end of the line.
 
 | Function | Victron VE.Can Side | RJ45 Pinout T-568A | RJ45 Pinout T-568B |
-| ---      | ---                 | ---                | ---                |
+| -------- | ------------------- | ------------------ | ------------------ |
 | GND      | Pin 3               | White/Orange       | White/Green        |
 | CAN-H    | Pin 7               | White/Brown        | White/Brown        |
 | CAN-L    | Pin 8               | Brown              | Brown              |
 
-![RJ45 Pinout T568A](../screenshots/RJ45-Pinout-T568A.jpg) ![RJ45 Pinout T568B](../screenshots/RJ45-Pinout-T568B.jpg)
+![RJ45 Pinout T568A](../screenshots/rj45-cable-pinout-t568a.jpg) ![RJ45 Pinout T568B](../screenshots/rj45-cable-pinout-t568b.jpg)
 
 ### BMS Side
 
 Check your BMS manual for the correct pinout. If you don't find any, you could try to measure the voltages.
 
 | Function | Voltage to GND |
-| ---      | ---:           |
+| -------- | -------------: |
 | GND      | 0 V            |
 | CAN-H    | +3 V           |
 | CAN-L    | +2 V           |
+
+### Daisy chain
+
+![Correctly daisy chain CAN](../screenshots/correctly-daisy-chain-can.png)
+
+See also [this page](https://www.lp-research.com/how-to-design-an-efficient-high-speed-can-bus-network-with-lpms-ig1/).
 
 ## Daly BMS
 
