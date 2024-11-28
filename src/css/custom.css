@@ -47,9 +47,12 @@ blockquote {
   background-color: #fff4f4;
 }
 
-.h-1em,
 .table-of-contents li a img {
   height: .9em !important;
+}
+
+.task-list-item {
+  padding-bottom: 1em;
 }
 
 @media (max-width: 996px) {
