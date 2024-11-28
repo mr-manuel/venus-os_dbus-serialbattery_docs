@@ -175,6 +175,7 @@ Place a `venus-data.tar.gz` file in the folder `/var/volatile/tmp/` by copying/u
 
 * Daly BMS &rarr; Check [Why is the battery current inverted?](../faq/index.md#why-is-the-battery-current-inverted) and [Daly Lost Connection because of standby](https://github.com/Louisvdw/dbus-serialbattery/issues/731#issuecomment-1613580083)
 * ECS BMS &rarr; Check [#254 ECS BMS (comment)](https://github.com/Louisvdw/dbus-serialbattery/issues/254#issuecomment-1275924313)
+* Felicity BMS &rarr; Need to set BATTERY_CAPACITY
 * MNB BMS &rarr; Check [MNB BMS setup](https://github.com/Louisvdw/dbus-serialbattery/issues/590)
 
 Since driver version `>= v1.0.0` you can also get an overview of the BMS specific settings be checking the end of the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/etc/dbus-serialbattery/config.default.ini).
