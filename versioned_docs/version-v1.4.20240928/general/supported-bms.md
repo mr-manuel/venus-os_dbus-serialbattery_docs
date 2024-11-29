@@ -13,9 +13,9 @@ toc_max_heading_level: 4
 
 This are the three most used BMS with this driver.
 
-🥇 JKBMS (51% of all systems)
+🥇 JKBMS (64% of all systems)
 
-🥈 Jiabaida JDB BMS (20% of all systems)
+🥈 Jiabaida JDB BMS (16% of all systems)
 
 🥉 Daly BMS (14% of all systems)
 
@@ -58,8 +58,6 @@ Communication to the Heltec SmartBMS (which is a rebranded YYBMS) via Modbus/RS4
 
 ### &bull; [Jiabaida JDB BMS](https://dgjbd.en.alibaba.com/) 🥈  <small>Second most used BMS</small>
 
-Bluetooth connection supported <img src="/venus-os_dbus-serialbattery_docs/img/bluetooth.svg" className="h-1em" />
-
 Works also for:
 
 #### |- [LLT Power](https://www.lithiumbatterypcb.com/product-instructionev-battery-pcb-boardev-battery-pcb-board/ev-battery-pcb-board/smart-bms-of-power-battery/)
@@ -71,8 +69,6 @@ Works also for:
 #### |- Other BMS that use the Xiaoxiang phone app
 
 ### &bull; [JKBMS](https://www.jkbms.com) 🥇 <small>Most used BMS</small>
-
-Bluetooth connection supported <img src="/venus-os_dbus-serialbattery_docs/img/bluetooth.svg" className="h-1em" />
 
 Works also for:
 
@@ -116,15 +112,15 @@ Fork the repository and use the [`battery_template.py`](https://github.com/mr-ma
 
 Here is a short checklist that should help you:
 
+- [ ] 🚨 Make sure the GitHub Actions run fine in your repository. In order to make the GitHub Actions run please select in your repository settings under `Actions` -> `General` -> `Actions permissions` the option `Allow all actions and reusable workflows`. Check also in your repository settings under `Actions` -> `General` -> `Workflow permissions` if `Read and write permissions` are selected. After this changes you have to make a new commit, if you don't see any Actions run. This will check your code for Flake8 and Black Lint errors. [Here](https://py-vscode.readthedocs.io/en/latest/files/linting.html) is a short instruction on how to set up Flake8 and Black Lint checks in VS Code. This will save you a lot of time.
 - [ ] Add your battery class and battery class import in alphabetical order in the [`etc/dbus-serialbattery/dbus-serialbattery.py`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/etc/dbus-serialbattery/dbus-serialbattery.py)
-  - [ ] Add your BMS to the [BMS feature comparison](../general/features#bms-feature-comparison) page by editing [`docs/general/features.md`](https://github.com/mr-manuel/venus-os_dbus-serialbattery_docs/blob/master/docs/general/features.md)
-  - [ ] Add your BMS to the [Supported BMS](../general/supported-bms) page by editing [`docs/general/supported-bms.md`](https://github.com/mr-manuel/venus-os_dbus-serialbattery_docs/blob/master/docs/general/supported-bms.md)
-  - [ ] Do not import wildcards `*`
-  - [ ] If available populate `self.max_battery_charge_current` and `self.max_battery_discharge_current` with values read from the BMS
-  - [ ] If available populate `self.unique_identifier` with a unique value to distinguish the BMS in a multiple battery setup
-  - [ ] If your BMS don't run with the default settings add installation notes to the [How to install, update, disable, enable and uninstall](../general/install.md#bms-specific-settings) [`docs/general/install.md`](https://github.com/mr-manuel/venus-os_dbus-serialbattery_docs/blob/master/docs/general/install.md)
-  - [ ] If your BMS needs custom settings that the user should be able to change, add it below the `; --------- BMS specific settings ---------` section in the [`etc/dbus-serialbattery/config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/etc/dbus-serialbattery/config.default.ini)
-  - [ ] Make sure the GitHub Actions run fine in your repository. In order to make the GitHub Actions run please select in your repository settings under `Actions` -> `General` -> `Actions permissions` the option `Allow all actions and reusable workflows`. Check also in your repository settings under `Actions` -> `General` -> `Workflow permissions` if `Read and write permissions` are selected. After this changes you have to make a new commit, if you don't see any Actions run. This will check your code for Flake8 and Black Lint errors. [Here](https://py-vscode.readthedocs.io/en/latest/files/linting.html) is a short instruction on how to set up Flake8 and Black Lint checks in VS Code. This will save you a lot of time.
+- [ ] Add your BMS to the [BMS feature comparison](../general/features#bms-feature-comparison) page by editing [`docs/general/features.md`](https://github.com/mr-manuel/venus-os_dbus-serialbattery_docs/blob/master/docs/general/features.md)
+- [ ] Add your BMS to the [Supported BMS](../general/supported-bms) page by editing [`docs/general/supported-bms.md`](https://github.com/mr-manuel/venus-os_dbus-serialbattery_docs/blob/master/docs/general/supported-bms.md)
+- [ ] Do not import wildcards `*`
+- [ ] If available populate `self.max_battery_charge_current` and `self.max_battery_discharge_current` with values read from the BMS
+- [ ] If available populate `self.unique_identifier` with a unique value to distinguish the BMS in a multiple battery setup
+- [ ] If your BMS don't run with the default settings add installation notes to the [How to install, update, disable, enable and uninstall](../general/install.md#bms-specific-settings) [`docs/general/install.md`](https://github.com/mr-manuel/venus-os_dbus-serialbattery_docs/blob/master/docs/general/install.md)
+- [ ] If your BMS needs custom settings that the user should be able to change, add it below the `; --------- BMS specific settings ---------` section in the [`etc/dbus-serialbattery/config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/etc/dbus-serialbattery/config.default.ini)
 
 ### Request by opening a discussion
 

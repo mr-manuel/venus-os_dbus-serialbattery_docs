@@ -45,7 +45,6 @@ Communication to the Heltec SmartBMS (which is a rebranded YYBMS) via Modbus/RS4
 ### &bull; [HLPdata](https://www.hlpdata.se) BMS4S
 
 ### &bull; [Jiabaida JDB BMS](https://dgjbd.en.alibaba.com/) 🥈  <small>Second most used BMS</small>
-Bluetooth connection supported <img src="/venus-os_dbus-serialbattery_docs/img/bluetooth.svg" className="h-1em" />
 
 Works also for:
 #### |- [LLT Power](https://www.lithiumbatterypcb.com/product-instructionev-battery-pcb-boardev-battery-pcb-board/ev-battery-pcb-board/smart-bms-of-power-battery/)
@@ -54,7 +53,6 @@ Works also for:
 #### |- Other BMS that use the Xiaoxiang phone app
 
 ### &bull; [JKBMS](https://www.jkbms.com) 🥇 <small>Most used BMS</small>
-Bluetooth connection supported <img src="/venus-os_dbus-serialbattery_docs/img/bluetooth.svg" className="h-1em" />
 
 Works also for:
 #### |- [Heltec BMS](https://heltec-bms.com)
