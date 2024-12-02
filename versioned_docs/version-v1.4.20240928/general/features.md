@@ -138,7 +138,7 @@ other systems (like the MultiPlus or Solar Charger) trigger a high voltage warni
 
 See the `SOC reset voltage` section in the
 
-[`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/etc/dbus-serialbattery/config.default.ini) for more informations.
+[`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/v1.4.20240928/etc/dbus-serialbattery/config.default.ini) for more informations.
 
 This has nothing to do with the `SOC calculation based on coloumb-counting` or `SOC reset via driver on BMS`.
 
@@ -152,7 +152,7 @@ It's also possible to create a map to correct wrong current measurements.
 
 See the `SOC calculation` section in the
 
-[`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/etc/dbus-serialbattery/config.default.ini) for more informations.
+[`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/v1.4.20240928/etc/dbus-serialbattery/config.default.ini) for more informations.
 
 This has nothing to do with the `SOC reset voltage` or `SOC reset via driver on BMS`.
 

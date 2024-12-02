@@ -52,7 +52,7 @@ const config = {
                     sidebarCollapsible: false,
                     versions: {
                         current: {
-                            label: 'v1.5.x-dev 🌜',
+                            label: 'v2.0.x-dev 🌜',
                             //path: 'docs',
                             banner: 'none',  // none, unreleased, unmaintained
                             //badge: true,  // true, false

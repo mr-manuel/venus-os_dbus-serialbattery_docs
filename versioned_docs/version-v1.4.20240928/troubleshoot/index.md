@@ -16,7 +16,7 @@ toc_max_heading_level: 4
 
 * If the logs aren't providing enough information, change the logging level from `INFO` to `DEBUG` in the config file. Learn how to edit the `config.ini` [here](../general/install.md#how-to-edit-the-configini).
 
-* Review the [CHANGELOG](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/CHANGELOG.md) for any breaking changes and necessary configuration updates.
+* Review the [CHANGELOG](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/v1.4.20240928/CHANGELOG.md) for any breaking changes and necessary configuration updates.
 
 
 ## How the driver works
