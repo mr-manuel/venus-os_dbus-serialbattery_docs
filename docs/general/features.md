@@ -6,169 +6,199 @@ sidebar_position: 2
 
 # Features
 
-The driver can handle batteries from 3 to 32 cells. It will act as Battery Monitor inside Venus OS and update the following values:
+The driver supports batteries with 3 to 32 cells.
 
-* Voltage
-* Current
-* Power
-* SoC (State of Charge)
-* Battery temperature
-* Mosfet temperature
-* Consumed Ah
-* Time-to-go
+## Modes
 
-* Min/max cell voltages
-* Min/max temperature (depending on BMS)
-* Installed capacity
-* Available capacity
+In Venus OS, you can use both features, one, or none.
 
-* Cell details (depending on BMS)
-  * Min
-  * Max
-  * Diff
-  * Cell voltage 1 - 32
+- **Battery Monitor**
+    - Displays battery settings on the brief and overview page.
+    - Select the connected battery/BMS under `Settings -> System setup`.
+- **Controlling BMS**
+    - Controls charger and inverter parameters based on battery values for smooth battery regulation.
+    - Select the connected battery/BMS under `Settings -> DVCC`.
 
-* Raise alarms from the BMS
+## Provided Data
 
-* History of charge cycles
+All listed data below depend on each [BMS capabilities](#bms-feature-comparison).
 
-* Charge current control management (CCCM)
+### Basic Data
 
-* Set battery parameters (DVCC)
-  * Charge Voltage Limit (CVL)
-  * Charge Current Limit (CCL)
-  * Discharge Current Limit (DCL)
-  * CVL (battery max) automatically adjusted by `cell count` \* `3.45V`
-  * Battery min automatically adjusted by `cell count` \* `3.1V`
+- Voltage
+- Current
+- Power
+- State of Charge (SoC)
+- Battery temperatures
+- MOSFET temperature
+- Capacity (installed, used, available)
+- Min/max cell voltage
+- Min/max temperature
+- Balancing state
+- Allow to charge/discharge/balance state
 
-## Charge current control management
-CCCM limits the current when the battery is close to full or close to empty.
-When your battery is full, the reduced charge current will give the balancers in your BMS time to work.
-When your battery is close to empty the reduced dicharge current will limit that a sudden large load will pull your battery cells below their protection values.
+### Cell Data
 
-### Limitation modes
-The limits can be applied in Step or Linear mode.
-* **Step** use hard boundaries that will apply recognisable step values and use less processing power (DEFAULT)
-* **Linear** will give a gradual change from one limit range to the next
+- Min/Max/Diff
+- Cell count
+- Cell voltages (1 - 32)
+- Balancing cells (1 - 32)
 
-### CCCM attributes
-You can set CCCM limits for 3 attributes which can be enabled / disabled and adjusted by settings in `config.ini`.
-The smallest limit from all enabled will apply.
+### Alarms from BMS
 
-### Cell voltage
-* `CCCM_CV_ENABLE = True/False`
-* `DCCM_CV_ENABLE = True/False`
+- Low/High voltage alarm
+- Low/High cell voltage
+- Low SoC
+- Cell imbalance
+- High charge current
+- High discharge current
+- Low/High charge temperature
+- Low/High temperature
+- High internal temperature
+- BMS cable fault
 
-CCCM limits the charge/discharge current depending on the highest/lowest cell voltages
+### Additional Data
 
-* between `3.50V - 3.55V` &rarr; `2A` charge
-* between `3.45V - 3.50V` &rarr; `30A` charge
-* between `3.30V - 3.45V` &rarr; `60A`
+- Charge cycle history
 
-* `3.30V - 3.10V` &rarr; max charge and max discharge (`60A`)
+### Features/Data provided by the Driver
 
-* between `2.90V - 3.10V` &rarr; `30A` discharge
-* between `2.8V - 2.9V` &rarr; `5A `discharge
-* below `<= 2.70V` &rarr; `0A` discharge
+- Set battery parameters (`DVCC`)
+    - Charge Voltage Limit (`CVL`)
+    - Charge Current Limit (`CCL`)
+    - Discharge Current Limit (`DCL`)
+- Current average (last 5 minutes)
+- SoC reset voltage: Temporarily apply higher voltage to reset BMS SoC to 100% (optional)
+- SoC calculation: Calculate SoC based on coloumb-counting in the driver and apply current correction if needed (optional)
+- SoC reset via driver on BMS: Reset BMS SoC to 100% when battery switches to float (optional, not available for all)
+- Choose BMS disconnect behavior
+- Linear/step calculation of `CVL`, `CCL`, and `DCL`
+- Use external current sensor, e.g., SmartShunt (optional)
+- Set `CVL` based on cell voltage to prevent overvoltage of a single cell (optional)
+- Set `CCL` and `DCL` based on cell voltage to reduce cell stress (optional)
+- Set `CCL` and `DCL` based on temperature to reduce cell stress (optional)
+- Set `CCL` and `DCL` based on SoC to reduce cell stress (optional)
+- Time-to-go
+- Time to custom SoC (multiple points can be specified)
 
-### Temperature
+For more details and other options, check the [`config.sample.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/etc/dbus-serialbattery/config.default.ini).
 
-* `CCCM_T_ENABLE = True/False`
-* `DCCM_T_ENABLE = True/False`
+### SoC reset voltage
 
-CCCM limits the charge/discharge current depending on the highest/lowest temperature sensor values
-* Charging will be `0A` if below `0°C` or above `55°C`
-* Discharging will be `0A` if below `-20°C` or above `55°C`
+Some BMS need a higher voltage to trigger a reset to 100% SOC. `SOC_RESET_VOLTAGE` allows you to trigger this voltage once in a while. The driver will supress high voltage warnings from the driver
 
-### SoC (State of Charge) from the BMS
-* `CCCM_SOC_ENABLE = True/False`
-* `DCCM_SOC_ENABLE = True/False`
+when it switches to this voltage. It might be that other systems (like the MultiPlus or Solar Charger) trigger a high voltage warning in this case when not properly configured.
 
-CCCM limits the charge/discharge current depending on the SoC
+See the `SOC reset voltage` section in the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/etc/dbus-serialbattery/config.default.ini) for more informations.
 
-* between `99% - 100%` &rarr; `5A` charge
-* between `95% - 98%` &rarr; 1/4 max charge
-* between `91% - 95%` &rarr; 1/2 max charge
+This has nothing to do with the `SOC calculation` or `SOC reset via driver on BMS`.
 
-* `30% - 91%` &rarr; max charge and max discharge
+## SoC calculation
 
-* between `20% - 30%` &rarr; 1/2 max discharge
-* between `10% - 20%` &rarr; 1/4 max discharge
-* below `<= 10%` &rarr; `5A`
+Many BMS have problems to manage a SOC reset properly. To workaround this you can enable the SOC calculation of the driver.This ignores the SOC of the BMS and calculates it
 
-![VenusOS values](../screenshots/vrm-charge-limits.png)
+based on coloumb-counting (count the current flowing in and out).
+
+It's also possible to create a map to correct wrong current measurements.
+
+See the `SOC calculation` section in the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/etc/dbus-serialbattery/config.default.ini) for more informations.
+
+This has nothing to do with the `SOC reset voltage` or `SOC reset via driver on BMS`.
+
+## SoC reset via driver on BMS
+
+Some BMS do not reset the SoC automatically, when the battery is full. This option allows the driver to reset the SoC of the BMS, when it swtiches the `CVL` from absorption to float.
+
+See `AUTO_RESET_SOC` in the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/etc/dbus-serialbattery/config.default.ini) for more informations.
+
+This has nothing to do with the `SOC calculation` or `SOC reset voltage`.
+
+## Limitation modes
+
+The `CVL`, `CCL` and `DCL` limits can be applied in Step or Linear mode.
+
+- **Step** use hard boundaries that will apply recognisable step values and use less processing power (DEFAULT)
+- **Linear** will give a gradual change from one limit range to the next
 
 ## Charge voltage control management
 
 ### Cell voltage penalty
+
 If the cell voltage reaches a specific value, then subtract a penalty from the CVL.
+
 Detailed info can be found here: [CCL/DCL depending on cell-voltage does not turn off charging completely, still overvoltage alarm](https://github.com/Louisvdw/dbus-serialbattery/issues/297#issuecomment-1327142635)
 
 ### Float voltage emulation
+
 If the `MAX_CELL_VOLTAGE` \* `cell count` is reached for `MAX_VOLTAGE_TIME_SEC` then the CVL changes to `FLOAT_CELL_VOLTAGE` \* `cell count`. Max voltage could be reached again if the SoC gets under `SOC_LEVEL_TO_RESET_VOLTAGE_LIMIT`.
 
-### SOC reset voltage
-Some BMS need a higher voltage to trigger a reset to 100% SOC. `SOC_RESET_VOLTAGE` allows you to trigger this voltage once
-in a while. The driver will supress high voltage warnings from the driver when it switches to this voltage. It might be that
-other systems (like the MultiPlus or Solar Charger) trigger a high voltage warning in this case when not properly configured.
+## Charge current control management
 
-See the `SOC reset voltage` section in the
-[`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/etc/dbus-serialbattery/config.default.ini) for more informations.
+CCCM limits the current when the battery is close to full or close to empty.
 
-This has nothing to do with the `SOC calculation based on coloumb-counting` or `SOC reset via driver on BMS`.
+When your battery is full, the reduced charge current will give the balancers in your BMS time to work.
 
+When your battery is close to empty the reduced dicharge current will limit that a sudden large load will pull your battery cells below their protection values.
 
-## SOC calculation based on coloumb-counting
-Many BMS have problems to manage a SOC reset properly. To workaround this you can enable the SOC calculation of the driver.
-This ignores the SOC of the BMS and calculates it based on coloumb-counting (count the current flowing in and out).
-It's also possible to create a map to correct wrong current measurements.
+### CCCM attributes
 
-See the `SOC calculation` section in the
-[`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/etc/dbus-serialbattery/config.default.ini) for more informations.
+You can set CCCM limits for 3 attributes which can be enabled / disabled and adjusted by settings in the `config.ini`.
 
-This has nothing to do with the `SOC reset voltage` or `SOC reset via driver on BMS`.
+The smallest limit from all enabled will apply.
+
+Check the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/etc/dbus-serialbattery/config.default.ini) for more informations.
+
+### Cell voltage
+
+- `CCCM_CV_ENABLE = True/False`
+- `DCCM_CV_ENABLE = True/False`
+
+CCCM limits the charge/discharge current depending on the highest/lowest cell voltages.
+
+### Temperature
+
+- `CCCM_T_ENABLE = True/False`
+- `DCCM_T_ENABLE = True/False`
+
+CCCM limits the charge/discharge current depending on the highest/lowest temperature sensor values.
+
+### SoC (State of Charge) from the BMS
+
+- `CCCM_SOC_ENABLE = True/False`
+- `DCCM_SOC_ENABLE = True/False`
+
+CCCM limits the charge/discharge current depending on the SoC.
 
 ## BMS feature comparison
 
 Some BMS drivers support also BMS from other manifacturers. Check the [Supported BMS](./supported-bms.md) page for more info.
 
-| Feature                                                                                                                 | ANT   | Daly  | Daren485 | ECS                | EG4 LiFePOWER | EG4 LL | Heltec Modbus | HLPdata BMS4S | JKBMS            | JKBMS PB Model | JBD     | MNB <sup>(1)</sup> | Renogy | Seplos | Seplos v3 | Sinowealth <sup>(1)</sup> |
-| ---:                                                                                                                    | :---: | :---: | :---:    | :---:              | :---:         | :---:  | :---:         | :---:         | :---:            | :---:          | :---:   | :---:              | :---:  | :---:  | :---:     | :---:                     |
-| Voltage                                                                                                                 | Yes   | Yes   | Yes      | Yes                | Yes           | Yes    | Yes           | Yes           | Yes              | Yes            | Yes     | Yes                | Yes    | Yes    | Yes       | Yes                       |
-| Current                                                                                                                 | Yes   | Yes   | Yes      | Yes                | Yes           | Yes    | Yes           | Yes           | Yes              | Yes            | Yes     | Yes                | Yes    | Yes    | Yes       | Yes                       |
-| Power                                                                                                                   | Yes   | Yes   | Yes      | Yes                | Yes           | Yes    | Yes           | Yes           | Yes              | Yes            | Yes     | Yes                | Yes    | Yes    | Yes       | Yes                       |
-| State Of Charge                                                                                                         | Yes   | Yes   | Yes      | Yes                | Yes           | Yes    | Yes           | Yes           | Yes              | Yes            | Yes     | Yes                | Yes    | Yes    | Yes       | Yes                       |
-| Battery temperature                                                                                                     | Yes   | Yes   | Yes      | Yes                | Yes           | Yes    | Yes           | Yes           | Yes              | Yes            | Yes     | Yes                | Yes    | Yes    | Yes       | Yes                       |
-| MOSFET temperature                                                                                                      | No    | No    | Yes      | No                 | No            | No     | Yes           | No            | Yes              | Yes            | Yes     | No                 | No     | No     | Yes       | No                        |
-| Consumed Ah                                                                                                             | Yes   | Yes   | Yes      | Yes                | Yes           | Yes    | No            | Yes           | Yes              | Yes            | Yes     | Yes                | Yes    | Yes    | Yes       | Yes                       |
-| Time-to-go                                                                                                              | Calc  | Calc  | Calc     | Calc               | Calc          | Calc   | Calc          | Calc          | Calc             | Calc           | Calc    | Calc               | Calc   | Calc   | Calc      | Calc                      |
-| Min/max cell voltages                                                                                                   | Yes   | Yes   | Yes      | No                 | Yes           | No     | Yes           | Yes           | Yes              | Yes            | Yes     | No                 | Yes    | Yes    | Yes       | Yes                       |
-| Min/max temperature                                                                                                     | Yes   | Yes   | Yes      | Yes                | Yes           | Yes    | No            | Yes           | Yes              | Yes            | Yes     | Yes                | Yes    | Yes    | Yes       | Yes                       |
-| Installed capacity                                                                                                      | Yes   | Yes   | Yes      | Yes                | Yes           | Yes    | Yes           | Yes           | Yes              | Yes            | Yes     | Yes                | Yes    | Yes    | Yes       | Yes                       |
-| Available capacity                                                                                                      | Yes   | Yes   | Yes      | Yes                | Yes           | Yes    | No            | Yes           | Yes              | Yes            | Yes     | Yes                | Yes    | Yes    | Yes       | Yes                       |
-| Cell details                                                                                                            | No    | Yes   | Yes      | Yes                | Yes           | Yes    | Yes           | Yes           | Yes              | Yes            | Yes     | No                 | Yes    | Yes    | Yes       | ?                         |
-| Balancing status                                                                                                        | Yes   | No    | No       | Yes                | Yes           | No     | Yes           | No            | Yes              | Yes            | No      | No                 | No     | No     | Yes       | ?                         |
-| Raise alarms from the BMS                                                                                               | Yes   | Yes   | Yes      | Yes <sup>(2)</sup> | Yes           | Yes    | Yes           | Yes           | Yes              | Yes            | Yes     | Yes                | Yes    | Yes    | Yes       | ?                         |
-| History of charge cycles                                                                                                | Yes   | Yes   | Yes      | No                 | Yes           | No     | No            | No            | Yes              | Yes            | Yes     | No                 | Yes    | Yes    | Yes       | Yes                       |
-| Get CCL/DCL from the BMS                                                                                                | No    | No    | Yes      | No                 | No            | No     | Yes           | No            | Yes              | No             | No      | No                 | No     | No     | Yes       | No                        |
-| Charge current control management (CCCM)                                                                                | Yes   | Yes   | Yes      | Yes                | Yes           | Yes    | Yes           | Yes           | Yes              | No             | Yes     | Yes                | Yes    | Yes    | Yes       | Yes                       |
-| Set battery parameters (DVCC)                                                                                           | Calc  | Calc  | Yes      | Yes                | Calc          | Yes    | Calc          | Yes           | Calc             | No             | Calc    | Yes                | Calc   | Calc   | Calc      | Calc                      |
-| Bluetooth connection <sup>(3)</sup> <img src="/venus-os_dbus-serialbattery_docs/img/bluetooth.svg" className="h-1em" /> | No    | No    | No       | No                 | No            | No     | No            | No            | Yes              | No             | Yes     | No                 | No     | No     | No        | No                        |
-| CAN connection                                                                                                          | No    | Yes   | No       | No                 | No            | No     | No            | No            | Yes              | No             | No      | No                 | No     | No     | No        | No                        |
-| SOC reset via driver on BMS                                                                                             | No    | Yes   | No       | No                 | No            | No     | No            | No            | BLE              | No             | Yes     | No                 | No     | No     | No        | No                        |
-| Disable charging via driver on BMS                                                                                      | No    | Yes   | No       | No                 | No            | No     | No            | No            | No               | No             | Yes     | No                 | No     | No     | No        | No                        |
-| Disable discharging via driver on BMS                                                                                   | No    | Yes   | No       | No                 | No            | No     | No            | No            | No               | No             | Yes     | No                 | No     | No     | No        | No                        |
-| Disable balancing via driver on BMS                                                                                     | No    | Yes   | No       | No                 | No            | No     | No            | No            | No               | No             | Yes     | No                 | No     | No     | No        | No                        |
-| Daisy chain BMS to one USB adapter                                                                                      | u.k.  | Yes   | Yes      | u.k.               | Yes           | Yes    | Yes           | u.k.          | Yes <sup>4</sup> | Yes            | u.d.    | u.k.               | Yes    | u.k.   | u.k.      | u.k.                      |
-
-
-`Calc` means that the value is calculated by the driver.
-
-`u.d.` means under development.
-
-`u.k.` means unknown.
-
-`?` means that it's unknown, if the value is fetched. It has to be verified. If you know this, please update this page.
+| Feature                               | ANT | Daly | Daly CAN | Daren485 | ECS                | EG4 LiFePOWER | EG4 LL | Heltec Modbus | HLPdata BMS4S | JKBMS            | JKBMS BLE <sup>(3)</sup> | JKBMS CAN | JKBMS CAN V2 <sup>(5)</sup> | JKBMS PB Model | LLT/JBD | LLT/JBD BLE <sup>(3)</sup> | MNB <sup>(1)</sup> | Renogy | Seplos | Seplos v3 | Sinowealth <sup>(1)</sup> |
+| ------------------------------------: | :-: | :--: | :------: | :------: | :----------------: | :-----------: | :----: | :-----------: | :-----------: | :--------------: | :----------------------: | :-------: | :-------------------------: | :------------: | :-----: | :------------------------: | :----------------: | :----: | :----: | :-------: | :-----------------------: |
+| Voltage                               | Yes | Yes  | Yes      | Yes      | Yes                | Yes           | Yes    | Yes           | Yes           | Yes              | Yes                      | Yes       | Yes                         | Yes            | Yes     | Yes                        | Yes                | Yes    | Yes    | Yes       | Yes                       |
+| Current                               | Yes | Yes  | Yes      | Yes      | Yes                | Yes           | Yes    | Yes           | Yes           | Yes              | Yes                      | Yes       | Yes                         | Yes            | Yes     | Yes                        | Yes                | Yes    | Yes    | Yes       | Yes                       |
+| Power                                 | Yes | Yes  | Yes      | Yes      | Yes                | Yes           | Yes    | Yes           | Yes           | Yes              | Yes                      | Yes       | Yes                         | Yes            | Yes     | Yes                        | Yes                | Yes    | Yes    | Yes       | Yes                       |
+| State of Charge                       | Yes | Yes  | Yes      | Yes      | Yes                | Yes           | Yes    | Yes           | Yes           | Yes              | Yes                      | Yes       | Yes                         | Yes            | Yes     | Yes                        | Yes                | Yes    | Yes    | Yes       | Yes                       |
+| Battery temperature                   | Yes | Yes  | Yes      | Yes      | Yes                | Yes           | Yes    | Yes           | Yes           | Yes              | Yes                      | Yes       | Yes                         | Yes            | Yes     | Yes                        | Yes                | Yes    | Yes    | Yes       | Yes                       |
+| MOSFET temperature                    | No  | No   | No       | Yes      | No                 | No            | No     | Yes           | No            | Yes              | Yes                      | Yes       | Yes                         | Yes            | Yes     | Yes                        | No                 | No     | No     | Yes       | No                        |
+| Capacity installed                    | Yes | Yes  | Yes      | Yes      | Yes                | Yes           | Yes    | Yes           | Yes           | Yes              | Yes                      | Yes       | Yes                         | Yes            | Yes     | Yes                        | Yes                | Yes    | Yes    | Yes       | Yes                       |
+| Capacity available                    | Yes | Yes  | Yes      | Yes      | Yes                | Yes           | Yes    | No            | Yes           | Yes              | Yes                      | Yes       | Yes                         | Yes            | Yes     | Yes                        | Yes                | Yes    | Yes    | Yes       | Yes                       |
+| Capacity consumed                     | Yes | Yes  | Yes      | Yes      | Yes                | Yes           | Yes    | No            | Yes           | Yes              | Yes                      | Yes       | Yes                         | Yes            | Yes     | Yes                        | Yes                | Yes    | Yes    | Yes       | Yes                       |
+| Min/max cell voltages                 | Yes | Yes  | Yes      | Yes      | No                 | Yes           | No     | Yes           | Yes           | Yes              | Yes                      | Yes       | Yes                         | Yes            | Yes     | Yes                        | No                 | Yes    | Yes    | Yes       | Yes                       |
+| Min/max temperature                   | Yes | Yes  | Yes      | Yes      | Yes                | Yes           | Yes    | No            | Yes           | Yes              | Yes                      | Yes       | Yes                         | Yes            | Yes     | Yes                        | Yes                | Yes    | Yes    | Yes       | Yes                       |
+| Balancing status                      | Yes | No   | No       | No       | Yes                | Yes           | No     | Yes           | No            | Yes              | Yes                      | Yes       | Yes                         | Yes            | No      | No                         | No                 | No     | No     | Yes       | No                        |
+| Allow to charge state                 | Yes | Yes  | Yes      | Yes      | Yes                | No            | No     | Yes           | Yes           | Yes              | Yes                      | Yes       | Yes                         | Yes            | Yes     | Yes                        | Yes                | No     | Yes    | Yes       | Yes                       |
+| Allow to discharge state              | Yes | Yes  | Yes      | Yes      | Yes                | No            | No     | Yes           | Yes           | Yes              | Yes                      | Yes       | Yes                         | Yes            | Yes     | Yes                        | Yes                | No     | Yes    | Yes       | Yes                       |
+| Allow to balance state                | No  | No   | No       | No       | No                 | No            | No     | No            | No            | Yes              | Yes                      | Yes       | Yes                         | Yes            | Yes     | Yes                        | No                 | No     | No     | Yes       | No                        |
+| Single cell details                   | No  | Yes  | No       | Yes      | Yes                | Yes           | Yes    | Yes           | Yes           | Yes              | Yes                      | No        | Yes                         | Yes            | Yes     | Yes                        | No                 | Yes    | Yes    | Yes       | Yes                       |
+| Raise alarms from the BMS             | Yes | Yes  | Yes      | Yes      | Yes <sup>(2)</sup> | Yes           | Yes    | Yes           | Yes           | Yes              | Yes                      | Yes       | Yes                         | Yes            | Yes     | Yes                        | Yes                | Yes    | Yes    | Yes       | Yes                       |
+| Daisy chain BMS with one cable        | No  | Yes  | No       | Yes      | No                 | Yes           | Yes    | Yes           | No            | Yes <sup>4</sup> | Yes <sup>4</sup>         | No        | Yes <sup>6</sup>            | Yes            | Not yet | Not yet                    | No                 | Yes    | No     | No        | No                        |
+| History of charge cycles              | Yes | Yes  | Yes      | Yes      | No                 | Yes           | No     | No            | No            | Yes              | Yes                      | Yes       | Yes                         | Yes            | Yes     | Yes                        | No                 | Yes    | Yes    | Yes       | Yes                       |
+| Get CCL/DCL from the BMS              | No  | No   | No       | Yes      | No                 | No            | No     | Yes           | No            | Yes              | Yes                      | Yes       | Yes                         | No             | No      | No                         | No                 | No     | No     | Yes       | No                        |
+| SOC reset via driver on BMS           | No  | Yes  | No       | No       | No                 | No            | Yes    | No            | No            | No               | Yes                      | No        | No                          | No             | Yes     | Yes                        | No                 | No     | No     | No        | No                        |
+| Disable charging via driver on BMS    | No  | Yes  | Yes      | No       | No                 | No            | No     | No            | No            | No               | No                       | No        | No                          | No             | Yes     | Yes                        | No                 | No     | No     | No        | No                        |
+| Disable discharging via driver on BMS | No  | Yes  | Yes      | No       | No                 | No            | No     | No            | No            | No               | No                       | No        | No                          | No             | Yes     | Yes                        | No                 | No     | No     | No        | No                        |
+| Disable balancing via driver on BMS   | No  | Yes  | Yes      | No       | No                 | No            | No     | No            | No            | No               | No                       | No        | No                          | No             | Yes     | Yes                        | No                 | No     | No     | No        | No                        |
 
 (1) Disabled by default. They can be enabled by uncommenting in `dbus-serialbattery.py`.
 
@@ -176,4 +206,8 @@ Some BMS drivers support also BMS from other manifacturers. Check the [Supported
 
 (3) The connection is still not stable on some systems. If you want to have a stable connection use the serial connection.
 
-(4) Only on models from 2023
+(4) Available only on models released in 2023 and later, where you can set the `Device Addr.`.
+
+(5) Works with JKBMS and JK Inverter BMS. Available only on models with CAN module and released in 2023 and later.
+
+(6) Currently, this feature is only available for the JK Inverter BMS, which has physical dip switches to change the address. This is a JKBMS firmware limitation.
