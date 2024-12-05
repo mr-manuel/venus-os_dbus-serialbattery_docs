@@ -16,7 +16,7 @@ The `config.ini` is a file where you can specify your own configuration changes.
 
 The `config.default.ini` is a file where all possible configuration settings are stored with their default values. Every setting is also well documented in order to understand what the setting does. This file is overwritten every time you update the driver.
 
-Click [here](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/etc/dbus-serialbattery/config.default.ini) to see the `config.default.ini`.
+Click [here](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/dbus-serialbattery/config.default.ini) to see the `config.default.ini`.
 
 ## How to edit the `config.ini`
 
@@ -285,7 +285,7 @@ You can remove the GUI changes or update your GX firmware to solve this.
 Execute the command below to restore the GUI.
 
 ```bash
-bash /data/etc/dbus-serialbattery/restore-gui.sh
+bash /data/apps/dbus-serialbattery/restore-gui.sh
 ```
 
 ### Update to the latest firmware
@@ -314,10 +314,10 @@ It seems that the Victron GX device has a limit of maximum 8 USB to serial adapt
 This indicates, that the line endlings were changed during the upload from `LF` to `CRLF`. Run this commands to repair the files:
 
 ```bash
-sed -i 's/\r//' /data/etc/dbus-serialbattery/*.sh
-sed -i 's/\r//' /data/etc/dbus-serialbattery/*.py
-sed -i 's/\r//' /data/etc/dbus-serialbattery/service/run
-sed -i 's/\r//' /data/etc/dbus-serialbattery/service/log/run
+sed -i 's/\r//' /data/apps/dbus-serialbattery/*.sh
+sed -i 's/\r//' /data/apps/dbus-serialbattery/*.py
+sed -i 's/\r//' /data/apps/dbus-serialbattery/service/run
+sed -i 's/\r//' /data/apps/dbus-serialbattery/service/log/run
 ```
 
 Now reboot the device. If this doesn't help, then download/unpack and reinstall the driver again.

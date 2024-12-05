@@ -99,7 +99,7 @@ In [VRM](https://vrm.victronenergy.com/) look under the device list for your ins
 1. Run these commands to start the installer.
 
   ```bash
-  wget -O /tmp/install.sh https://raw.githubusercontent.com/mr-manuel/venus-os_dbus-serialbattery/master/etc/dbus-serialbattery/install.sh
+  wget -O /tmp/install.sh https://raw.githubusercontent.com/mr-manuel/venus-os_dbus-serialbattery/refs/tags/v1.3.20240705/etc/dbus-serialbattery/install.sh
 
   bash /tmp/install.sh
   ```

@@ -21,7 +21,7 @@ toc_max_heading_level: 4
 
 ## How the driver works
 
-1. During installation (`execution of reinstall-local.sh`) the installer script creates a configuration file (`/data/conf/serial-starter.d/dbus-serialbattery.conf`) for the `serial starter`.
+1. During installation (`execution of enable.sh`) the enabling script creates a configuration file (`/data/conf/serial-starter.d/dbus-serialbattery.conf`) for the `serial starter`.
     This allows the `serial starter` to create services for `dbus-serialbattery`, if a new serial adapter is connected. The `serial starter` service (`/service/serial-starter`) then creates a
     service (`/service/dbus-serialbattery.*`) for each found serial port.
 
