@@ -79,7 +79,7 @@ In [VRM](https://vrm.victronenergy.com/) look under the device list for your ins
 
 1. Download and copy the [latest release](https://github.com/mr-manuel/venus-os_dbus-serialbattery/releases) `venus-data.tar.gz` to the root of a USB flash drive that is in FAT32 format (a SD card is also an option for GX devices, but not for Raspberry Pi).
 
-1. OPTIONAL (`>= v1.0.0`): Create a `config.ini` file in the root of your USB flash drive with your custom settings. Put `[DEFAULT]` in the first line of the file and add all the values you want to change below. You only have to insert the values you want to change, all other values are fetched from the `config.default.ini`. In the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/etc/dbus-serialbattery/config.default.ini) you find all possible settings that you can copy over and change.
+1. OPTIONAL: Create a `config.ini` file in the root of your USB flash drive with your custom settings. Put `[DEFAULT]` in the first line of the file and add all the values you want to change below. You only have to insert the values you want to change, all other values are fetched from the `config.default.ini`. In the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/dbus-serialbattery/config.default.ini) you find all possible settings that you can copy over and change.
 
    > If you put a `config.ini` in the root of the USB flash drive, then an existing `config.ini` will be overwritten.
 
@@ -99,7 +99,7 @@ In [VRM](https://vrm.victronenergy.com/) look under the device list for your ins
 1. Run these commands to start the installer.
 
   ```bash
-  wget -O /tmp/install.sh https://raw.githubusercontent.com/mr-manuel/venus-os_dbus-serialbattery/master/etc/dbus-serialbattery/install.sh
+  wget -O /tmp/install.sh https://raw.githubusercontent.com/mr-manuel/venus-os_dbus-serialbattery/master/dbus-serialbattery/install.sh
 
   bash /tmp/install.sh
   ```
@@ -177,7 +177,7 @@ Place a `venus-data.tar.gz` file in the folder `/var/volatile/tmp/` by copying/u
 * ECS BMS &rarr; Check [#254 ECS BMS (comment)](https://github.com/Louisvdw/dbus-serialbattery/issues/254#issuecomment-1275924313)
 * MNB BMS &rarr; Check [MNB BMS setup](https://github.com/Louisvdw/dbus-serialbattery/issues/590)
 
-Since driver version `>= v1.0.0` you can also get an overview of the BMS specific settings be checking the end of the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/etc/dbus-serialbattery/config.default.ini).
+You can also get an overview of the BMS specific settings by checking the end of the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/dbus-serialbattery/config.default.ini).
 
 
 ### Get BMS MAC address
@@ -254,11 +254,11 @@ If you use the cell voltage limits, temperature limits and/or SoC limits you als
 
 ## Settings location/path
 
-💡 After updating the settings, reboot the device or run `/data/etc/dbus-serialbattery/reinstall-local.sh` to apply the changes.
+💡 After updating the settings, run `/data/apps/dbus-serialbattery/restart.sh` or reboot the device to apply the changes.
 
-Copy the values you want to change from `/data/etc/dbus-serialbattery/config.default.ini` and insert them in the `/data/etc/dbus-serialbattery/config.ini`.
+Copy the values you want to change from `/data/apps/dbus-serialbattery/config.default.ini` and insert them in the `/data/apps/dbus-serialbattery/config.ini`.
 
-All available options can also be found [here](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/etc/dbus-serialbattery/config.default.ini).
+All available options can also be found [here](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/dbus-serialbattery/config.default.ini).
 
 ## How to edit the `config.ini`
 
@@ -272,7 +272,7 @@ There are two ways to edit the files. You can edit them:
 Log into your GX device/Raspberry Pi using SSH and run this command. Replace `FILE_NAME` with the file name you want to edit, e.g. `config.ini`.
 
 ```bash
-nano /data/etc/dbus-serialbattery/FILE_NAME
+nano /data/apps/dbus-serialbattery/FILE_NAME
 ```
 
 You can use the arrow keys to scroll down and edit the values you need.
@@ -283,7 +283,7 @@ Use `Ctrl + O` (O like Oskar) to save and `Ctrl + X` to exit the editor.
 
 You can edit the file in a plain text editor on you PC like Notepad (Windows) or TextEdit (macOS). Then you need a program that can do SFTP like [FileZilla](https://filezilla-project.org/download.php?show_all=1) (Windows/macOS/Linux), [WinSCP](https://winscp.net/eng/downloads.php) (Windows) or [Cyberduck](https://cyberduck.io/download/) (macOS).
 
-Connect to your GX using the same login as with SSH and copy your edited file over the existing one at `/data/etc/dbus-serialbattery/config.ini`.
+Connect to your GX using the same login as with SSH and copy your edited file over the existing one at `/data/apps/dbus-serialbattery/config.ini`.
 
 ⚠️ Sometimes it happens, that the line endings get changed from `LF` to `CRLF` with this method. Check the [FAQ --> `$'\r': command not found` or `syntax error: unexpected end of file`](../faq/index.md#r-command-not-found-or-syntax-error-unexpected-end-of-file) to solve.
 
@@ -301,30 +301,22 @@ Add your BMS to the setting `BMS_TYPE` in the `config.ini`. This way you don't h
 You can disable the driver so that it will not be run by the GX device. To do that run the following command in SSH.
 
 ```bash
-bash /data/etc/dbus-serialbattery/disable.sh
+bash /data/apps/dbus-serialbattery/disable.sh
 ```
 
 You also need to configure your MPPTs to run in `Stand alone mode` again. Follow the Victron guide for [Err 67 - BMS Connection lost](https://www.victronenergy.com/live/mppt-error-codes#err_67_-_bms_connection_lost).
 
 ## Enable the driver
-To enable the driver again you can run the installer.
+To enable the driver run:
 
 ```bash
-bash /data/etc/dbus-serialbattery/reinstall-local.sh
+bash /data/apps/dbus-serialbattery/enable.sh
 ```
 
 ## Uninstall/remove the driver
 
-To uninstall the driver run the uninstall script.
+To uninstall the driver run:
 
 ```bash
-bash /data/etc/dbus-serialbattery/uninstall.sh
-```
-
-**Remove**
-
-If you want to remove also the install files of the driver run this after you run the uninstall script/commands:
-
-```bash
-rm -rf /data/etc/dbus-serialbattery
+bash /data/apps/dbus-serialbattery/uninstall.sh
 ```

@@ -16,7 +16,7 @@ The `config.ini` is a file where you can specify your own configuration changes.
 
 The `config.default.ini` is a file where all possible configuration settings are stored with their default values. Every setting is also well documented in order to understand what the setting does. This file is overwritten every time you update the driver.
 
-Click [here](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/etc/dbus-serialbattery/config.default.ini) to see the `config.default.ini`.
+Click [here](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/v1.5.20241202/etc/dbus-serialbattery/config.default.ini) to see the `config.default.ini`.
 
 ## How to edit the `config.ini`
 

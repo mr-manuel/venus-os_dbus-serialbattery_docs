@@ -81,7 +81,7 @@ All listed data below depend on each [BMS capabilities](#bms-feature-comparison)
 - Time-to-go
 - Time to custom SoC (multiple points can be specified)
 
-For more details and other options, check the [`config.sample.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/etc/dbus-serialbattery/config.default.ini).
+For more details and other options, check the [`config.sample.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/v1.5.20241202/etc/dbus-serialbattery/config.default.ini).
 
 ### SoC reset voltage
 
@@ -89,7 +89,7 @@ Some BMS need a higher voltage to trigger a reset to 100% SOC. `SOC_RESET_VOLTAG
 
 when it switches to this voltage. It might be that other systems (like the MultiPlus or Solar Charger) trigger a high voltage warning in this case when not properly configured.
 
-See the `SOC reset voltage` section in the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/etc/dbus-serialbattery/config.default.ini) for more informations.
+See the `SOC reset voltage` section in the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/v1.5.20241202/etc/dbus-serialbattery/config.default.ini) for more informations.
 
 This has nothing to do with the `SOC calculation` or `SOC reset via driver on BMS`.
 
@@ -101,7 +101,7 @@ based on coloumb-counting (count the current flowing in and out).
 
 It's also possible to create a map to correct wrong current measurements.
 
-See the `SOC calculation` section in the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/etc/dbus-serialbattery/config.default.ini) for more informations.
+See the `SOC calculation` section in the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/v1.5.20241202/etc/dbus-serialbattery/config.default.ini) for more informations.
 
 This has nothing to do with the `SOC reset voltage` or `SOC reset via driver on BMS`.
 
@@ -109,7 +109,7 @@ This has nothing to do with the `SOC reset voltage` or `SOC reset via driver on 
 
 Some BMS do not reset the SoC automatically, when the battery is full. This option allows the driver to reset the SoC of the BMS, when it swtiches the `CVL` from absorption to float.
 
-See `AUTO_RESET_SOC` in the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/etc/dbus-serialbattery/config.default.ini) for more informations.
+See `AUTO_RESET_SOC` in the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/v1.5.20241202/etc/dbus-serialbattery/config.default.ini) for more informations.
 
 This has nothing to do with the `SOC calculation` or `SOC reset voltage`.
 
@@ -146,7 +146,7 @@ You can set CCCM limits for 3 attributes which can be enabled / disabled and adj
 
 The smallest limit from all enabled will apply.
 
-Check the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/etc/dbus-serialbattery/config.default.ini) for more informations.
+Check the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/v1.5.20241202/etc/dbus-serialbattery/config.default.ini) for more informations.
 
 ### Cell voltage
 
