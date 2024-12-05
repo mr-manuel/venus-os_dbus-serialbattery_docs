@@ -50,6 +50,8 @@ Works also for:
 
 ### &bull; [EG4](https://eg4electronics.com/) LL
 
+### &bull; [Litime BMS](https://www.litime.com)
+
 ### &bull; [Heltec Modbus SmartBMS](https://heltec-bms.com) / [YanYang BMS](http://en.yybms.com)
 
 Communication to the Heltec SmartBMS (which is a rebranded YYBMS) via Modbus/RS485.
