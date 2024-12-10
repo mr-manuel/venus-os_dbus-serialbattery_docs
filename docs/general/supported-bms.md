@@ -50,6 +50,8 @@ Works also for:
 
 ### &bull; [EG4](https://eg4electronics.com/) LL
 
+### &bull; [Felicity Solar](https://www.felicitysolar.com/)
+
 ### &bull; [Litime BMS](https://www.litime.com)
 
 ### &bull; [Heltec Modbus SmartBMS](https://heltec-bms.com) / [YanYang BMS](http://en.yybms.com)
