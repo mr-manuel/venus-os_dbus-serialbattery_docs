@@ -20,7 +20,7 @@ Since for some BMS the port labeling is a mess and not reflecting the real situa
 
 RS485 is a differential balanced line over twisted pair, capable of spanning up to a few hundred meters. Be aware of voltage drops due to cable resistance and sensor power consumption.
 
-Connect the wires in a point-to-point (daisy chain) configuration:
+Connect the wires in a device-to-device (daisy chain) configuration:
 
 - **Avoid star or ring networks** to prevent signal reflections.
 - The main cable runs from the master (USB to RS485 adapter) to all BMS and contains three wires:

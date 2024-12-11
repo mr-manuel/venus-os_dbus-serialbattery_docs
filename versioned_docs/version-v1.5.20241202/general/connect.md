@@ -20,7 +20,7 @@ UART (Universal Asynchronous Receiver-Transmitter) is a serial communication pro
 
 Ensure the voltage levels (5 V or 3.3 V) of your BMS are supported by the USB to UART/TTL adapter. Use an isolated adapter and power it correctly. Most BMS provide battery power `VCC+` on the `+` pole of the UART/TTL connector. Measure it before connecting. You may need a DC to DC converter to match the voltage your isolated adapter needs.
 
-Connect the wires in a point-to-point configuration. The main cable runs from the master (USB to UART adapter) to the BMS and contains three wires:
+Connect the wires in a device-to-device configuration. The main cable runs from the master (USB to UART adapter) to the BMS and contains three wires:
 - **TX (Transmit)**
 - **RX (Receive)**
 - **GND (common)** for proper reference
@@ -36,7 +36,7 @@ The main cable should be shielded to prevent interference. Ensure that the TX of
 
 RS485 is a differential balanced line over twisted pair, capable of spanning up to a few hundred meters. Be aware of voltage drops due to cable resistance and sensor power consumption.
 
-Connect the wires in a point-to-point (daisy chain) configuration:
+Connect the wires in a device-to-device (daisy chain) configuration:
 
 - **Avoid star or ring networks** to prevent signal reflections.
 - The main cable runs from the master (USB to RS485 adapter) to all BMS and contains three wires:
