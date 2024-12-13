@@ -84,6 +84,8 @@ Works also for:
 
 Disabled by default as it requires additional manual steps to install.
 
+### &bull; [Pace BMS](http://www.pacebms.com)
+
 ### &bull; [Renogy BMS](https://www.renogy.com)
 
 ### &bull; [Seplos](https://www.seplos.com)
