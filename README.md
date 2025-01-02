@@ -45,7 +45,7 @@ but with `yarn` not everything seems to work.
 This command creates a new version of the documentation. This allows to match the documentation always to the current version of the driver.
 
 ```bash
-yarn docusaurus docs:version v1.5.20241202
+yarn docusaurus docs:version v1.5.20241215
 ```
 
 For more informations see https://docusaurus.io/docs/versioning.
