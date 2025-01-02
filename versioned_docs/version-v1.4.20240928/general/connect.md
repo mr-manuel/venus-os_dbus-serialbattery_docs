@@ -166,11 +166,11 @@ See also [Is anyone using the new style JK inverter BMS with dbus-serialbattery 
   | `8`           | `0x37`         |
   | `9`           | `0x38`         |
   | `10`          | `0x39`         |
-  | `11`          | `0x3a`         |
-  | `12`          | `0x3b`         |
-  | `13`          | `0x3c`         |
-  | `14`          | `0x3d`         |
-  | `15`          | `0x3e`         |
-  | `16`          | `0x3f`         |
+  | `11`          | `0x3A`         |
+  | `12`          | `0x3B`         |
+  | `13`          | `0x3C`         |
+  | `14`          | `0x3D`         |
+  | `15`          | `0x3E`         |
+  | `16`          | `0x3F`         |
 
 See also [Renogy - Multi battery setup documentation](https://github.com/Louisvdw/dbus-serialbattery/issues/1099).

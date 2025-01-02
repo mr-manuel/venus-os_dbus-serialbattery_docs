@@ -21,14 +21,14 @@ UART (Universal Asynchronous Receiver-Transmitter) is a serial communication pro
 Ensure the voltage levels (5 V or 3.3 V) of your BMS are supported by the USB to UART/TTL adapter. Use an isolated adapter and power it correctly. Most BMS provide battery power `VCC+` on the `+` pole of the UART/TTL connector. Measure it before connecting. You may need a DC to DC converter to match the voltage your isolated adapter needs.
 
 Connect the wires in a device-to-device configuration. The main cable runs from the master (USB to UART adapter) to the BMS and contains three wires:
-- **TX (Transmit)**
-- **RX (Receive)**
-- **GND (common)** for proper reference
+
+-   **TX (Transmit)**
+-   **RX (Receive)**
+-   **GND (common)** for proper reference
 
 The main cable should be shielded to prevent interference. Ensure that the TX of the master is connected to the RX of the BMS and the RX of the master is connected to the TX of the BMS.
 
 ![Cabeling UART/TTL](../screenshots/cabeling-uart-ttl.png)
-
 
 ## RS485/Modbus (daisy chain possible)
 
@@ -38,11 +38,11 @@ RS485 is a differential balanced line over twisted pair, capable of spanning up 
 
 Connect the wires in a device-to-device (daisy chain) configuration:
 
-- **Avoid star or ring networks** to prevent signal reflections.
-- The main cable runs from the master (USB to RS485 adapter) to all BMS and contains three wires:
-  - **A (DATA-)**
-  - **B (DATA+)**
-  - **GND (common)** for proper reference
+-   **Avoid star or ring networks** to prevent signal reflections.
+-   The main cable runs from the master (USB to RS485 adapter) to all BMS and contains three wires:
+    -   **A (DATA-)**
+    -   **B (DATA+)**
+    -   **GND (common)** for proper reference
 
 The main cable should be shielded. Ideally, the shield is separate from the 0 Volt line (GND), but they can be combined if the shield is free of voltage fluctuations.
 
@@ -82,9 +82,9 @@ Check your BMS manual for the correct pinout. If you don't find any, you could t
 
 | Function | Voltage to GND |
 | -------- | -------------: |
-| GND      | 0 V            |
-| CAN-H    | +3 V           |
-| CAN-L    | +2 V           |
+| GND      |            0 V |
+| CAN-H    |           +3 V |
+| CAN-L    |           +2 V |
 
 ### Daisy chain
 
@@ -103,30 +103,30 @@ If you are using multiple batteries you also have to make sure, that the `Batter
 > 🌼🔗 Only if you want to connect multiple Daly BMS to the same RS485 adapter 👇
 
 1. Use Daly's [BmsMonitor](https://www.dalybms.com/download-pc-software/) software (only for Windows) to set the board number.
-  Using the mobile app `SMART BMS` to set the board number will not correctly set it.
+   Using the mobile app `SMART BMS` to set the board number will not correctly set it.
 
 2. Set a different board number for each BMS in the `BMS Tools` software and then specify the MODBUS addresses in the `config.ini` at the `MODBUS_ADDRESSES` parameter.
 
-  For example, if you are using three batteries the parameter would be `MODBUS_ADDRESSES = 0x40, 0x41, 0x42`.
+For example, if you are using three batteries the parameter would be `MODBUS_ADDRESSES = 0x40, 0x41, 0x42`.
 
-  | Board number | MODBUS address |
-  | :---:        | :---:          |
-  | `0`          | `0x40`         |
-  | `1`          | `0x41`         |
-  | `2`          | `0x42`         |
-  | `3`          | `0x43`         |
-  | `4`          | `0x44`         |
-  | `5`          | `0x45`         |
-  | `6`          | `0x46`         |
-  | `7`          | `0x47`         |
-  | `8`          | `0x48`         |
-  | `9`          | `0x49`         |
-  | `10`         | `0x4a`         |
-  | `11`         | `0x4b`         |
-  | `12`         | `0x4c`         |
-  | `13`         | `0x4d`         |
-  | `14`         | `0x4e`         |
-  | `15`         | `0x4f`         |
+| Board number | MODBUS address | CAN address |
+| :----------: | :------------: | ----------- |
+|     `1`      |     `0x40`     | `0x01`      |
+|     `2`      |     `0x41`     | `0x02`      |
+|     `3`      |     `0x42`     | `0x03`      |
+|     `4`      |     `0x43`     | `0x04`      |
+|     `5`      |     `0x44`     | `0x05`      |
+|     `6`      |     `0x45`     | `0x06`      |
+|     `7`      |     `0x46`     | `0x07`      |
+|     `8`      |     `0x47`     | `0x08`      |
+|     `9`      |     `0x48`     | `0x09`      |
+|     `10`     |     `0x49`     | `0x0A`      |
+|     `11`     |     `0x4A`     | `0x0B`      |
+|     `12`     |     `0x4B`     | `0x0C`      |
+|     `13`     |     `0x4C`     | `0x0D`      |
+|     `14`     |     `0x4D`     | `0x0E`      |
+|     `15`     |     `0x4E`     | `0x0F`      |
+|     `16`     |     `0x4F`     | `0x10`      |
 
 ## Daren 485
 
@@ -149,24 +149,24 @@ Set different battery addresses for each battery using the dip switches and then
 For example, if you are using three batteries (battery 1 dip switches: `1: ON, rest off`, battery 2 dip switches: `1: OFF, 2: ON, rest off`, battery 3 dip switches: `1: ON, 2: ON, rest off`) the parameter would be `MODBUS_ADDRESSES = 0x01, 0x02, 0x03`.
 
 | Dip switch position | MODBUS address |
-| :---:               | :---:          |
-| `1 2 3 4`           |                |
-| `_ _ _ _`           | `0x00`         |
-| `‾ _ _ _`           | `0x01`         |
-| `_ ‾ _ _`           | `0x02`         |
-| `‾ ‾ _ _`           | `0x03`         |
-| `_ _ ‾ _`           | `0x04`         |
-| `‾ _ ‾ _`           | `0x05`         |
-| `_ ‾ ‾ _`           | `0x06`         |
-| `‾ ‾ ‾ _`           | `0x07`         |
-| `_ _ _ ‾`           | `0x08`         |
-| `‾ _ _ ‾`           | `0x09`         |
-| `_ ‾ _ ‾`           | `0x0A`         |
-| `‾ ‾ _ ‾`           | `0x0B`         |
-| `_ _ ‾ ‾`           | `0x0C`         |
-| `‾ _ ‾ ‾`           | `0x0D`         |
-| `_ ‾ ‾ ‾`           | `0x0E`         |
-| `‾ ‾ ‾ ‾`           | `0x0F`         |
+| :-----------------: | :------------: |
+|      `1 2 3 4`      |                |
+|      `_ _ _ _`      |     `0x00`     |
+|      `‾ _ _ _`      |     `0x01`     |
+|      `_ ‾ _ _`      |     `0x02`     |
+|      `‾ ‾ _ _`      |     `0x03`     |
+|      `_ _ ‾ _`      |     `0x04`     |
+|      `‾ _ ‾ _`      |     `0x05`     |
+|      `_ ‾ ‾ _`      |     `0x06`     |
+|      `‾ ‾ ‾ _`      |     `0x07`     |
+|      `_ _ _ ‾`      |     `0x08`     |
+|      `‾ _ _ ‾`      |     `0x09`     |
+|      `_ ‾ _ ‾`      |     `0x0A`     |
+|      `‾ ‾ _ ‾`      |     `0x0B`     |
+|      `_ _ ‾ ‾`      |     `0x0C`     |
+|      `‾ _ ‾ ‾`      |     `0x0D`     |
+|      `_ ‾ ‾ ‾`      |     `0x0E`     |
+|      `‾ ‾ ‾ ‾`      |     `0x0F`     |
 
 See also [EG Lifepower (Narada battery that uses Tianpower BMS) - Multi battery setup problems](https://github.com/Louisvdw/dbus-serialbattery/issues/1104).
 
@@ -185,30 +185,30 @@ See also [JK BMS JK-B2A8S20P RS-485 port / connector](https://github.com/Louisvd
 > 🌼🔗 Only if you want to connect multiple JKBMS PB BMS to the same RS485 adapter 👇
 
 1. Give each battery a unique address using the jumper on the front. Do not use `_ _ _ _`, which corresponds to address `0x00`,
-  as it sets the BMS into master mode, disabling RS485 communication. Then specify the MODBUS addresses in the `config.ini` at
-  the `MODBUS_ADDRESSES` parameter.
+   as it sets the BMS into master mode, disabling RS485 communication. Then specify the MODBUS addresses in the `config.ini` at
+   the `MODBUS_ADDRESSES` parameter.
 
-  For example, if you are using three batteries (battery 1 dip switches: `1: ON, rest off`, battery 2 dip switches: `1: OFF, 2: ON, rest off`, battery 3 dip switches: `1: ON, 2: ON, rest off`) the parameter would be `MODBUS_ADDRESSES = 0x01, 0x02, 0x03`.
+For example, if you are using three batteries (battery 1 dip switches: `1: ON, rest off`, battery 2 dip switches: `1: OFF, 2: ON, rest off`, battery 3 dip switches: `1: ON, 2: ON, rest off`) the parameter would be `MODBUS_ADDRESSES = 0x01, 0x02, 0x03`.
 
-  | Dip switch position | MODBUS address |
-  | :---:               | :---:          |
-  | `1 2 3 4`           |                |
-  | `_ _ _ _`           | `0x00`         |
-  | `‾ _ _ _`           | `0x01`         |
-  | `_ ‾ _ _`           | `0x02`         |
-  | `‾ ‾ _ _`           | `0x03`         |
-  | `_ _ ‾ _`           | `0x04`         |
-  | `‾ _ ‾ _`           | `0x05`         |
-  | `_ ‾ ‾ _`           | `0x06`         |
-  | `‾ ‾ ‾ _`           | `0x07`         |
-  | `_ _ _ ‾`           | `0x08`         |
-  | `‾ _ _ ‾`           | `0x09`         |
-  | `_ ‾ _ ‾`           | `0x0A`         |
-  | `‾ ‾ _ ‾`           | `0x0B`         |
-  | `_ _ ‾ ‾`           | `0x0C`         |
-  | `‾ _ ‾ ‾`           | `0x0D`         |
-  | `_ ‾ ‾ ‾`           | `0x0E`         |
-  | `‾ ‾ ‾ ‾`           | `0x0F`         |
+| Dip switch position | MODBUS address |
+| :-----------------: | :------------: |
+|      `1 2 3 4`      |                |
+|      `_ _ _ _`      |     `0x00`     |
+|      `‾ _ _ _`      |     `0x01`     |
+|      `_ ‾ _ _`      |     `0x02`     |
+|      `‾ ‾ _ _`      |     `0x03`     |
+|      `_ _ ‾ _`      |     `0x04`     |
+|      `‾ _ ‾ _`      |     `0x05`     |
+|      `_ ‾ ‾ _`      |     `0x06`     |
+|      `‾ ‾ ‾ _`      |     `0x07`     |
+|      `_ _ _ ‾`      |     `0x08`     |
+|      `‾ _ _ ‾`      |     `0x09`     |
+|      `_ ‾ _ ‾`      |     `0x0A`     |
+|      `‾ ‾ _ ‾`      |     `0x0B`     |
+|      `_ _ ‾ ‾`      |     `0x0C`     |
+|      `‾ _ ‾ ‾`      |     `0x0D`     |
+|      `_ ‾ ‾ ‾`      |     `0x0E`     |
+|      `‾ ‾ ‾ ‾`      |     `0x0F`     |
 
 2. Use a ethernet/CAT cable to connect all batteries via the RS485-2 ports. Both RS485-2 ports can be used.
 
@@ -230,25 +230,25 @@ See also [Is anyone using the new style JK inverter BMS with dbus-serialbattery 
 
 3. Specify the MODBUS addresses in the `config.ini` at the `MODBUS_ADDRESSES` parameter.
 
-  For example, if you are using three batteries the parameter would be `MODBUS_ADDRESSES = 0x30, 0x31, 0x32`.
+For example, if you are using three batteries the parameter would be `MODBUS_ADDRESSES = 0x30, 0x31, 0x32`.
 
-  | Battery count | MODBUS address |
-  | :---:         | :---:          |
-  | `1`           | `0x30`         |
-  | `2`           | `0x31`         |
-  | `3`           | `0x32`         |
-  | `4`           | `0x33`         |
-  | `5`           | `0x34`         |
-  | `6`           | `0x35`         |
-  | `7`           | `0x36`         |
-  | `8`           | `0x37`         |
-  | `9`           | `0x38`         |
-  | `10`          | `0x39`         |
-  | `11`          | `0x3a`         |
-  | `12`          | `0x3b`         |
-  | `13`          | `0x3c`         |
-  | `14`          | `0x3d`         |
-  | `15`          | `0x3e`         |
-  | `16`          | `0x3f`         |
+| Battery count | MODBUS address |
+| :-----------: | :------------: |
+|      `1`      |     `0x30`     |
+|      `2`      |     `0x31`     |
+|      `3`      |     `0x32`     |
+|      `4`      |     `0x33`     |
+|      `5`      |     `0x34`     |
+|      `6`      |     `0x35`     |
+|      `7`      |     `0x36`     |
+|      `8`      |     `0x37`     |
+|      `9`      |     `0x38`     |
+|     `10`      |     `0x39`     |
+|     `11`      |     `0x3A`     |
+|     `12`      |     `0x3B`     |
+|     `13`      |     `0x3C`     |
+|     `14`      |     `0x3D`     |
+|     `15`      |     `0x3E`     |
+|     `16`      |     `0x3F`     |
 
 See also [Renogy - Multi battery setup documentation](https://github.com/Louisvdw/dbus-serialbattery/issues/1099).
