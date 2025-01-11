@@ -171,6 +171,8 @@ CCCM limits the charge/discharge current depending on the SoC.
 
 ## BMS feature comparison
 
+All drivers are UART/TTL or RS485, except those with BLE or CAN in the name. BLE stands for Bluetooth connection, and CAN stands for CAN bus connection.
+
 Some BMS drivers support also BMS from other manifacturers. Check the [Supported BMS](./supported-bms.md) page for more info.
 
 | Feature                               | ANT | Daly | Daly CAN | Daren485 | ECS                | EG4 LiFePOWER | EG4 LL | Felicity Solar | Heltec Modbus | HLPdata BMS4S | JKBMS            | JKBMS BLE <sup>(3)</sup> | JKBMS CAN | JKBMS CAN V2 <sup>(5)</sup> | JKBMS PB Model | LiTime BMS | LLT/JBD | LLT/JBD BLE <sup>(3)</sup> | MNB <sup>(1)</sup> | Pace BMS | Renogy | Seplos | Seplos v3 | Sinowealth <sup>(1)</sup> |
@@ -204,7 +206,7 @@ Some BMS drivers support also BMS from other manifacturers. Check the [Supported
 
 (2) No cells yet.
 
-(3) The connection is still not stable on some systems. If you want to have a stable connection use the serial connection.
+(3) The BLE connection is still not stable on some systems. For a stable connection, use the serial connection. It may work for you, but it's not guaranteed.
 
 (4) Available only on models released in 2023 and later, where you can set the `Device Addr.`.
 

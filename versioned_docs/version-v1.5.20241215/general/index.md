@@ -32,6 +32,15 @@ https://discord.gg/YXzFB8rSgx
 
 * GX device or Raspberry Pi with Venus OS. The latest three stable versions of Venus OS are supported. It may also work on older and newer beta versions, but this is not guaranteed.
 
+### Optional
+
+Depending on how you want to connect your battery, you may need one of these adapters. Normally, one adapter per BMS is needed, unless you daisy chain. Find more information on the [How to connect and prepare the battery/BMS](./connect.md) page.
+
+* USB to UART/TTL adapter (recommended chipsets: FT230X, FT4232H or CH340)
+* USB to RS485 adapter (recommended chipsets: FT230X, FT4232H or CH340)
+* USB to CAN adapter
+* CAN HAT for Raspberry Pi
+
 ## Screenshots
 
 ### Venus OS
