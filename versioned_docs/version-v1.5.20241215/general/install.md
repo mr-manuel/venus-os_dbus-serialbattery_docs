@@ -34,16 +34,18 @@ The latest three stable versions of Venus OS are supported. It may also work on 
 
 ## Default hard limits
 
-The driver currently implement some hard limits. Make sure your device is set up correctly and can handle these limits before you install.
+The driver uses some configurable hard limits. Ensure your BMS and cells can handle these limits before installation:
 
- * `50A` charge
- * `60A` discharge
- * `2.9V` min cell voltage
- * `3.45V` max cell voltage
+* `50A` charge
+* `60A` discharge
+* `2.9V` min cell voltage
+* `3.45V` max cell voltage
 
-The cell voltages is used along with the cell count to set the battery voltage (e.g. for 16 cells your battery min voltage will be `3.1 * 16 = 49.6V` and max coltage `3.45 * 16 = 55.2V`)
+These default settings are for LFP (Lithium Iron Phosphate) batteries. If you are using a different cell chemistry, you must update the limits accordingly.
 
-This limits can be changed in the settings. See [How to change the default limits](#how-to-change-the-default-limits) and [Settings location/path](#settings-locationpath).
+The cell voltages are used along with the cell count to set the battery voltage (e.g., for 16 cells, your battery min voltage will be `2.9 V * 16 = 46.4 V` and max voltage will be `3.45 V * 16 = 55.2 V`).
+
+These limits can be changed in the config file. If you change the cell voltages, also update the cell voltage current limitation (`CELL_VOLTAGES_WHILE_CHARGING` and `CELL_VOLTAGES_WHILE_DISCHARGING`). See [How to change the default limits](#how-to-change-the-default-limits) and [Settings location/path](#settings-locationpath).
 
 ## Settings for your BMS/battery
 
