@@ -127,6 +127,8 @@ Here is a short checklist that should help you:
 - [ ] If available populate `self.unique_identifier` with a unique value to distinguish the BMS in a multiple battery setup
 - [ ] If your BMS don't run with the default settings add installation notes to the [How to install, update, disable, enable and uninstall](../general/install.md#bms-specific-settings) [`docs/general/install.md`](https://github.com/mr-manuel/venus-os_dbus-serialbattery_docs/blob/master/docs/general/install.md)
 - [ ] If your BMS needs custom settings that the user should be able to change, add it below the `; --------- BMS specific settings ---------` section in the [`etc/dbus-serialbattery/config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/dbus-serialbattery/config.default.ini)
+- [ ] Add the new BMS to the available BMS list under `; --------- Additional settings ---------` in the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/dbus-serialbattery/config.default.ini)
+- [ ] Add an entry to the [CHANGELOG.md](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/CHANGELOG.md)
 
 ### Request by opening a discussion
 
