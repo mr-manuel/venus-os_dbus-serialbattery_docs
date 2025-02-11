@@ -80,6 +80,10 @@ Works also for:
 
 ### &bull; [JKBMS](https://www.jkbms.com) PB Model (also know as JK Inverter BMS)
 
+### &bull; Kilovault The BMS used in Kilovault HLX+ batteries.  
+
+These were popular and imported by AltEStore, but Kilovault is out of business.  OEM was [Topband](https://topband.com/)
+
 ### &bull; MNB spi BMS
 
 Disabled by default as it requires additional manual steps to install.
