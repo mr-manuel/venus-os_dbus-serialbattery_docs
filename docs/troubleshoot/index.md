@@ -27,13 +27,13 @@ toc_max_heading_level: 4
 
     Additionally during installation a service (`/service/dbus-blebattery.*`) for each Bluetooth BMS and (`/service/dbus-canbattery.*`) for each CAN BMS is created.
 
-2. Each created service in `/service/dbus-serialbattery.*`, `/service/dbus-blebattery.*` or `/service/dbus-canbattery.*` runs `/opt/victronenergy/dbus-serialbattery/start-serialbattery.sh *`.
+2. Each created service in `/service/dbus-serialbattery.*`, `/service/dbus-blebattery.*` or `/service/dbus-canbattery.*` runs `/data/apps/dbus-serialbattery/start-serialbattery.sh *`.
 
-   * For `dbus-serialbattery` the `*` stands for the serial port, e.g. the service `/service/dbus-serialbattery.ttyUSB0` runs `/opt/victronenergy/dbus-serialbattery/start-serialbattery.sh ttyUSB0`.
+   * For `dbus-serialbattery` the `*` stands for the serial port, e.g. the service `/service/dbus-serialbattery.ttyUSB0` runs `/data/apps/dbus-serialbattery/start-serialbattery.sh ttyUSB0`.
 
-   * For `dbus-blebattery` the `*` stands for an incremental number, e.g. the service `/service/dbus-blebattery.0` runs `/opt/victronenergy/dbus-serialbattery/dbus-serialbattery.py Jkbms_Ble C8:47:8C:00:00:00`, where the BMS type `Jkbms_Ble` and the BMS Bluetooth MAC address `C8:47:8C:00:00:00` is fetched from the config file during installation.
+   * For `dbus-blebattery` the `*` stands for an incremental number, e.g. the service `/service/dbus-blebattery.0` runs `/data/apps/dbus-serialbattery/dbus-serialbattery.py Jkbms_Ble C8:47:8C:00:00:00`, where the BMS type `Jkbms_Ble` and the BMS Bluetooth MAC address `C8:47:8C:00:00:00` is fetched from the config file during installation.
 
-   * For `dbus-canbattery` the `*` stands for the can port, e.g. the service `/service/dbus-canbattery.can0` runs `/opt/victronenergy/dbus-serialbattery/start-serialbattery.sh can0`, where the CAN port `can0` is fetched from the config file during installation.
+   * For `dbus-canbattery` the `*` stands for the can port, e.g. the service `/service/dbus-canbattery.can0` runs `/data/apps/dbus-serialbattery/start-serialbattery.sh can0`, where the CAN port `can0` is fetched from the config file during installation.
 
 
 
@@ -45,47 +45,19 @@ toc_max_heading_level: 4
 
 Check the log files on your GX device/Raspberry Pi. Connect to your Venus OS device using a SSH client like [Putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) or bash.
 
+The logfiles have a different location depending on the used connection:
+
+* [Serial BMS connection](#serial-bms-connection)
+* [Bluetooth BMS connection](#bluetooth-bms-connection)
+* [CAN BMS connection](#can-bms-connection)
+
 
 ### Serial BMS connection
 
-> There are two log files that are relevant for the serial connection. Please check both.
+> There are TWO log files that are relevant for the serial connection. Please check both.
 
-1. `/data/log/serial-starter/current`
-2. `/data/log/dbus-serialbattery.ttyUSB*/current` or `/data/log/dbus-serialbattery.ttyAMA0/current`
-
-#### `/data/log/serial-starter/current`
-
-Serial starter will show, if the driver was started against a USB port.
-
-**Execute**
-
-💡 The `tail` command with the parameter `-F` does not quit automatically, since it waits for new log entries.
-You can exit by pressing `CTRL + C`.
-
-```bash
-tail -F -n 100 /data/log/serial-starter/current | grep dbus-serialbattery | tai64nlocal
-```
-
-**Output**
-```bash
-...
-INFO: Create daemontools service dbus-serialbattery.ttyUSB0
-INFO: Start service dbus-serialbattery.ttyUSB0 once
-...
-```
-
-✅ This indicates, that the driver was successfully started against the `USB0` port.
-
-❌ If there is no `dbus-serialbattery.tty*` entry check with `lsusb`, if your USB to serial converter is recognized from Venus OS.
-
-Here are some partial `lsusb` outputs which show a few different adapters. If you have attached only one adapter you will see only one similar entry as below:
-
-`Bus 001 Device 002: ID 0403:6015 Future Technology Devices International, Ltd Bridge(I2C/SPI/UART/FIFO)`
-`Bus 001 Device 003: ID 0403:6001 Future Technology Devices International, Ltd FT232 Serial (UART) IC`
-`Bus 001 Device 004: ID 0403:6015 Future Technology Devices International, Ltd Bridge(I2C/SPI/UART/FIFO)`
-`Bus 001 Device 005: ID 0403:6011 Future Technology Devices International, Ltd FT4232H Quad HS USB-UART/FIFO IC`
-`Bus 002 Device 002: ID 1a86:7523 QinHeng Electronics HL-340 USB-Serial adapter`
-
+1. `/data/log/dbus-serialbattery.ttyUSB*/current` or `/data/log/dbus-serialbattery.ttyAMA0/current`
+2. `/data/log/serial-starter/current` (you need to check that only if the above log does not exist, is empty or outdated)
 
 #### `/data/log/dbus-serialbattery.ttyUSB*/current` or `/data/log/dbus-serialbattery.ttyAMA0/current`
 Where `*` is the number of your USB port (e.g. `ttyUSB0`, `ttyUSB1`, `ttyUSB2`, ...) or `ttyAMA0`, if you are using a Raspberry Pi hat.
@@ -121,6 +93,40 @@ INFO:SerialBattery:Serial Number/Unique Identifier: UNIQUE_IDENTIFIER
 ```bash
 ERROR:SerialBattery:ERROR >>> No battery connection at /dev/ttyUSB0
 ```
+
+#### `/data/log/serial-starter/current`
+
+Serial starter will show, if the driver was started against a USB port.
+
+**Execute**
+
+💡 The `tail` command with the parameter `-F` does not quit automatically, since it waits for new log entries.
+You can exit by pressing `CTRL + C`.
+
+```bash
+tail -F -n 100 /data/log/serial-starter/current | grep dbus-serialbattery | tai64nlocal
+```
+
+**Output**
+```bash
+...
+INFO: Create daemontools service dbus-serialbattery.ttyUSB0
+INFO: Start service dbus-serialbattery.ttyUSB0 once
+...
+```
+
+✅ This indicates, that the driver was successfully started against the `USB0` port.
+
+❌ If there is no `dbus-serialbattery.tty*` entry check with `lsusb`, if your USB to serial converter is recognized from Venus OS.
+
+Here are some partial `lsusb` outputs which show a few different adapters. If you have attached only one adapter you will see only one similar entry as below:
+
+`Bus 001 Device 002: ID 0403:6015 Future Technology Devices International, Ltd Bridge(I2C/SPI/UART/FIFO)`
+`Bus 001 Device 003: ID 0403:6001 Future Technology Devices International, Ltd FT232 Serial (UART) IC`
+`Bus 001 Device 004: ID 0403:6015 Future Technology Devices International, Ltd Bridge(I2C/SPI/UART/FIFO)`
+`Bus 001 Device 005: ID 0403:6011 Future Technology Devices International, Ltd FT4232H Quad HS USB-UART/FIFO IC`
+`Bus 002 Device 002: ID 1a86:7523 QinHeng Electronics HL-340 USB-Serial adapter`
+
 
 
 ### Bluetooth BMS connection
