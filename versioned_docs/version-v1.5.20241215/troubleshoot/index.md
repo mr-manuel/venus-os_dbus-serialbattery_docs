@@ -389,6 +389,47 @@ Some calculation errors occured in the driver. Check the [driver logs](#datalogd
 
 Some settings in your `config.ini` are invalid. Check the [driver logs](#datalogdbus-serialbatteryttyusbcurrent-or-datalogdbus-serialbatteryttyama0current) for more details.
 
+## Driver behavior problems
+
+### Battery charging/discharging problems
+
+Open the remote console/GUI and check the `IO` and `Parameters` page under the battery device.
+
+On the `IO` page you see if the driver or BMS allows charging, discharging and balancing. If charging or discharging is `No`, check the `Parameters` page for the reason. Should there be no reason, then check the `Alarms` page and your BMS settings in the BMS app.
+
+![IO page](../screenshots/venus-os_guiv2_011.png)
+
+On the `Parameters` page you see the `Charge Mode`, `Charge Current Limit` and `Discharge Current Limit`.
+
+- `Charge Mode`: Here you see the active charge mode.
+  - `Bulk`, `Absorption`, `Float Transition`, `Float` or `Keep always max voltage` is related to the `Charge Voltage Limitation (affecting CVL)` in the [config file](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/dbus-serialbattery/config.default.ini).
+  - `Cell OVP` (Over Voltage Protection) is related to the `Cell Voltage Limitation (affecting CVL)` section in the [config file](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/dbus-serialbattery/config.default.ini).
+  - `SoC Reset` is related to the `SoC Reset Voltage (must match BMS settings)` section in the [config file](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/dbus-serialbattery/config.default.ini).
+  - `Balancing`
+  - `Step Mode` or `Linear Mode` is related to the `Charge Mode` section in the [config file](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/dbus-serialbattery/config.default.ini).
+- `Charge Current Limit` and `Discharge Current Limit`: Here you see the parameter that most limits the current.
+  - `Cell Voltage` is related to the `Cell Voltage Current Limitation (affecting CCL/DCL)` section in the [config file](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/dbus-serialbattery/config.default.ini).
+  - `Temperature` is related to the `Temperature Current Limitation (affecting CCL/DCL)` section in the [config file](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/dbus-serialbattery/config.default.ini).
+  - `SoC` is related to the `SoC Current Limitation (affecting CCL/DCL)` section in the [config file](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/dbus-serialbattery/config.default.ini).
+  - `BMS` indicates if the current set in the BMS app is lower than the current set in the [config file](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/dbus-serialbattery/config.default.ini).
+
+![Parameters page](../screenshots/venus-os_guiv2_013.png)
+
+### Charge mode problems
+
+To better troubleshoot this make sure you have set this options in the `config.ini`. See [How to edit the config.ini](../general/install.md#how-to-edit-the-configini):
+
+```ini
+GUI_PARAMETERS_SHOW_ADDITIONAL_INFO = True
+CVCM_ENABLE = True
+```
+
+Now you see in the remote console/GUI the driver internal values under the battery `Parameters` page and you can check, why it's not working like it should.
+
+![Debugging data](../screenshots/venus-os_guiv2_parameters-debugging-001.png)
+
+![Debugging data](../screenshots/venus-os_guiv2_parameters-debugging-002.png)
+
 ## FAQ (Frequently Asked Questions)
 
 Check the [FAQ (Frequently Asked Questions)](../faq/index.md) for answers
@@ -416,7 +457,6 @@ You can use the graphs to look at your values over time. This makes finding valu
 Forum thead discussions for this driver can be found at:
 
 * [GitHub Discussions mr-manuel](https://github.com/mr-manuel/venus-os_dbus-serialbattery/discussions) (most frequented and recommended)
-* [GitHub Discussions Louisvdw](https://github.com/Louisvdw/dbus-serialbattery/discussions) (most frequented and recommended)
 * [Energy Talk - DIY Serial battery driver for Victron GX](https://energytalk.co.za/t/diy-serial-battery-driver-for-victron-gx/80)
 * [Victron Community - Victron VenusOS driver for serial battery BMS](https://community.victronenergy.com/questions/76159/victron-venusos-driver-for-serial-connected-bms-av.html)
 * [DIY Solar Power Forum - Victron VenusOS driver for serial connected BMS](https://diysolarforum.com/threads/victron-venusos-driver-for-serial-connected-bms-available-ltt-power-jbd-battery-overkill-solar-smart-bms.17847/)

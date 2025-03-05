@@ -256,8 +256,6 @@ If you use the cell voltage limits, temperature limits and/or SoC limits you als
 
 ## Settings location/path
 
-💡 After updating the settings, reboot the device or run `/data/etc/dbus-serialbattery/reinstall-local.sh` to apply the changes.
-
 Copy the values you want to change from `/data/etc/dbus-serialbattery/config.default.ini` and insert them in the `/data/etc/dbus-serialbattery/config.ini`.
 
 All available options can also be found [here](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/v1.5.20241215/etc/dbus-serialbattery/config.default.ini).
@@ -271,15 +269,18 @@ There are two ways to edit the files. You can edit them:
 
 ### SSH edit using Nano editor (recommended)
 
-Log into your GX device/Raspberry Pi using SSH and run this command. Replace `FILE_NAME` with the file name you want to edit, e.g. `config.ini`.
+Log into your GX device/Raspberry Pi using SSH and run this command:
 
 ```bash
-nano /data/etc/dbus-serialbattery/FILE_NAME
+nano /data/etc/dbus-serialbattery/config.ini
 ```
 
 You can use the arrow keys to scroll down and edit the values you need.
 
 Use `Ctrl + O` (O like Oskar) to save and `Ctrl + X` to exit the editor.
+
+💡 After updating the settings, run `/data/apps/dbus-serialbattery/restart.sh` to apply the changes.
+If you changed `BLUETOOTH_BMS`, `BLUETOOTH_USE_USB` or `CAN_PORT` reboot to apply the changes.
 
 ### Copy edited file from PC to GX device/Raspberry Pi
 
@@ -290,6 +291,9 @@ Connect to your GX using the same login as with SSH and copy your edited file ov
 ⚠️ Sometimes it happens, that the line endings get changed from `LF` to `CRLF` with this method. Check the [FAQ --> `$'\r': command not found` or `syntax error: unexpected end of file`](../faq/index.md#r-command-not-found-or-syntax-error-unexpected-end-of-file) to solve.
 
 > Don't copy all the files as the required file permissions will be destroyed and your driver might fail to start.
+
+💡 After updating the settings, run `/data/apps/dbus-serialbattery/restart.sh` to apply the changes.
+If you changed `BLUETOOTH_BMS`, `BLUETOOTH_USE_USB` or `CAN_PORT` reboot to apply the changes.
 
 ## How to enable a disabled BMS
 If your BMS is disabled by default, you have to enable it to get it working.
