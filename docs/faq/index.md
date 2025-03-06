@@ -115,6 +115,7 @@ Select another or `No battery monitor` in the remote console under `Settings -> 
 To track all cell voltages and/or other data locally you could use Node-RED, InfluxDB and Grafana. This allows you to have offline statistics. See [Track individual cell voltages](https://github.com/Louisvdw/dbus-serialbattery/discussions/495).
 
 ## Why no SoC is displayed in the overview page?
+
 Navigate to `Settings -> System Setup` and check that under `Battery monitor` your BMS or battery aggregator is selected.
 
 ## Should I set the Smartshunt or the BMS as the Battery Monitor?
@@ -135,8 +136,8 @@ If you look at your cells you will see that it takes hours of charging to go fro
 
 An example might help (using a 8 cell battery):
 
-* If we aim for `3.45V` per cell that will tell the charger to charge to `27.60V` (`3.45V x 8`)
-* If we aim for `3.64V` per cell that will tell the charger to charge to `29.12V` (`3.64V x 8`)
+- If we aim for `3.45V` per cell that will tell the charger to charge to `27.60V` (`3.45V x 8`)
+- If we aim for `3.64V` per cell that will tell the charger to charge to `29.12V` (`3.64V x 8`)
 
 Now say all our cells are almost full. That would mean they are close to `3.45V` or `27.6V` while we are requesting the battery to go up to `29.12V` or another `1.52V`.
 
@@ -157,11 +158,13 @@ The limits are based on percentages of `MAX_BATTERY_CHARGE_CURRENT` and `MAX_BAT
 ![VenusOS](../screenshots/venus-os_guiv2_013.png)
 
 ## Why is the displayed charging/discharging current limit (CCL/DCL) not applied?
+
 Navigate to `Settings -> DVCC`, check that `DVCC` is enabled and that under `Controlling BMS` your BMS or battery aggregator is selected. On this page normally only `DVCC` should be enabled.
 
 ## Why is my battery not switching to float/bulk?
 
 Make sure you have set this options in the `config.ini`:
+
 ```ini
 GUI_PARAMETERS_SHOW_ADDITIONAL_INFO = True
 CVCM_ENABLE = True
@@ -184,27 +187,21 @@ MIN_CELL_VOLTAGE = 3.6
 
 ## Why do I get a Low Voltage alarm?
 
-> Not elaborated completely, in the meanwhile see infos below
+![MultiPlus-II low battery](../screenshots/alarm-multiplus-low-battery.png)
 
-* [Low Battery Voltage Alarm if /Info/MaxDischargeCurrent = 0](https://github.com/Louisvdw/dbus-serialbattery/issues/407)
-* [Undervoltage alarm - why?](https://github.com/Louisvdw/dbus-serialbattery/issues/363)
+NOTE: Below the alarm message, you can see which device triggered the alarm.
 
-## Why is DCL jumping from/to `0`?
+You may encounter this error from the MultiPlus/Quattro in two scenarios:
 
-> Not elaborated completely, in the meanwhile see infos below
+1. The controlling battery sets the `DCL` (Discharge Current Limit) to `0`, which also triggers `Allow to discharge` to be set to `No`.
+2. The controlling battery is no longer available and has disappeared from the devices list. Refer to the [How to troubleshoot](../troubleshoot/index.md) page to identify the cause.
 
-* [DCL is "jumping" - should be 0 ?! - JKBMS](https://github.com/Louisvdw/dbus-serialbattery/issues/371)
+This triggers the alarm from the MultiPlus/Quattro and puts the inverter into passthrough mode (when grid connected) or turns the inverter off (when off-grid). This is the default behavior in Venus OS and cannot be changed, as the battery is empty and the system cannot use the battery anymore.
 
-What is happening is that as soon as no more current is drawn the cell values starts to recover and the BMS release (the charger should only kick in when you are below the min SoC value you have set in the ESS settings).
+See also:
 
-What helped me here was reducing the Cut-off voltages in the ESS asisstant (there are 4 voltages for different currents) - when the battery voltage dropped to this cut-off voltage, the discharging will stop and the "sustain voltage" will jump in until the battery voltage rises up over the "above-cut-off" value.
-
-Important!!! - When the ESS asisstant is activated, all the 3 "DC input low voltage" settings under the "Inverter" tab are completely ignored by the MP2.
-
-**How to solve this:**
-
-1. Current setting `> 0` (but I did not test this)
-2. Reducing the ESS "Cut-off voltage" like I mentioned above
+- [Low Battery Voltage Alarm if /Info/MaxDischargeCurrent = 0](https://github.com/Louisvdw/dbus-serialbattery/issues/407)
+- [Undervoltage alarm - why?](https://github.com/Louisvdw/dbus-serialbattery/issues/363)
 
 ## Why do I get a high voltage alarm?
 
@@ -216,6 +213,7 @@ If you receive high voltage alarms that would indicate your battery is:
 So asuming you have set the max battery voltage for what the battery require, you then need to help the battery to get the cells balanced. You do that by  lowering the max voltage to a level where you don’t get high voltage alarms anymore and then slowly over a few weeks you can increase the max voltage to where it should be. This will give the balancers time to work.
 
 In your GX settings go to the DVCC menu and activate the "Limit managed battery charge voltage" feature and lower the "Maximum Charge Voltage".
+
 Drop your voltage to `0.2V` lees that normal and then increase it every day by `0.05V` if you did not get a high voltage alarm during the previous day. If you did get an alarm leave it unchanged for another day.
 
 Do this until you get to the original max charge voltage for your battery.
@@ -238,12 +236,12 @@ Some Daly BMS send the current as inverted value. This can be corrected by setti
 
 Most unstable communications arise due to:
 
-* **Cabling:** Check that your serial cables are not too short (< 30 cm). Sometimes this also creates problems.
-* **Cabling:** Check your cables again and make sure that all solder points are making good connection.
-* **Cheap USB Hubs:** Make sure you are using a qualitative USB Hub with enough power.
-* **Damaged/Defective serial adapters:** Try another serial adapter.
-* **Missing shielded cable:** If your serial cable is near or along the battery power cable, then try to use a shielded cable or move the cable.
-* **Raspberry Pi:** Do not use a charger for powering the Raspberry Pi. Instead buy a power supply with enough power.
+- **Cabling:** Check that your serial cables are not too short (< 30 cm). Sometimes this also creates problems.
+- **Cabling:** Check your cables again and make sure that all solder points are making good connection.
+- **Cheap USB Hubs:** Make sure you are using a qualitative USB Hub with enough power.
+- **Damaged/Defective serial adapters:** Try another serial adapter.
+- **Missing shielded cable:** If your serial cable is near or along the battery power cable, then try to use a shielded cable or move the cable.
+- **Raspberry Pi:** Do not use a charger for powering the Raspberry Pi. Instead buy a power supply with enough power.
 
 ## How to troubleshoot high CPU load?
 
@@ -260,7 +258,6 @@ The driver polls a lot of data every second (for most BMS), which also has to be
 If your system cannot handle this and reboots often (check with `uptime` how long the system is up), try to set the `POLL_INTERVAL` in the `config.ini` to `2` and then increase this value by `1`, until the CPU overload is fixed. `POLL_INTERVAL` defines how often the data is polled from the BMS.
 
 Keep in mind, that the battery data is then refreshed less often and which can cause system instabilities. In this case you have to try and see which value works best for you.
-
 
 ## How can I reset the SOC to 100%?
 
