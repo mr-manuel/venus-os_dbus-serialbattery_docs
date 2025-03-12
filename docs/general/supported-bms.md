@@ -54,6 +54,12 @@ Works also for:
 
 ### &bull; [Litime BMS](https://www.litime.com)
 
+Works also for:
+
+#### |- [Power Queen](https://www.ipowerqueen.de)
+
+#### |- [Redodo](https://www.redodopower.de)
+
 ### &bull; [Heltec Modbus SmartBMS](https://heltec-bms.com) / [YanYang BMS](http://en.yybms.com)
 
 Communication to the Heltec SmartBMS (which is a rebranded YYBMS) via Modbus/RS485.
