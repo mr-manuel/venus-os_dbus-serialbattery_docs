@@ -77,6 +77,7 @@ All listed data below depend on each [BMS capabilities](#bms-feature-comparison)
 - Set `CVL` based on cell voltage to prevent overvoltage of a single cell (optional)
 - Set `CCL` and `DCL` based on cell voltage to reduce cell stress (optional)
 - Set `CCL` and `DCL` based on temperature to reduce cell stress (optional)
+- Set `CCL` and `DCL` based on MOSFET temperature to reduce BMS stress (optional)
 - Set `CCL` and `DCL` based on SoC to reduce cell stress (optional)
 - Time-to-go
 - Time to custom SoC (multiple points can be specified)
@@ -132,17 +133,17 @@ Detailed info can be found here: [CCL/DCL depending on cell-voltage does not tur
 
 If the `MAX_CELL_VOLTAGE` \* `cell count` is reached for `MAX_VOLTAGE_TIME_SEC` then the CVL changes to `FLOAT_CELL_VOLTAGE` \* `cell count`. Max voltage could be reached again if the SoC gets under `SOC_LEVEL_TO_RESET_VOLTAGE_LIMIT`.
 
-## Charge current control management
+## Charge/Discharge current control management
 
-CCCM limits the current when the battery is close to full or close to empty.
+CCCM/DCCM limits the current when the battery is close to full or close to empty.
 
 When your battery is full, the reduced charge current will give the balancers in your BMS time to work.
 
 When your battery is close to empty the reduced dicharge current will limit that a sudden large load will pull your battery cells below their protection values.
 
-### CCCM attributes
+### CCCM/DCCM attributes
 
-You can set CCCM limits for 3 attributes which can be enabled / disabled and adjusted by settings in the `config.ini`.
+You can set CCCM/DCCM limits for 4 attributes which can be enabled / disabled and adjusted by settings in the `config.ini`.
 
 The smallest limit from all enabled will apply.
 
@@ -153,21 +154,28 @@ Check the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-seri
 - `CCCM_CV_ENABLE = True/False`
 - `DCCM_CV_ENABLE = True/False`
 
-CCCM limits the charge/discharge current depending on the highest/lowest cell voltages.
+CCCM/DCCM limits the charge/discharge current depending on the highest/lowest cell voltages.
 
 ### Temperature
 
 - `CCCM_T_ENABLE = True/False`
 - `DCCM_T_ENABLE = True/False`
 
-CCCM limits the charge/discharge current depending on the highest/lowest temperature sensor values.
+CCCM/DCCM limits the charge/discharge current depending on the highest/lowest temperature sensor values.
+
+### MOSFET Temperature
+
+- `CCCM_T_MOSFET_ENABLE = True/False`
+- `DCCM_T_MOSFET_ENABLE = True/False`
+
+CCCM/DCCM limits the charge/discharge current depending on the MOSFET temperature sensor value.
 
 ### SoC (State of Charge) from the BMS
 
 - `CCCM_SOC_ENABLE = True/False`
 - `DCCM_SOC_ENABLE = True/False`
 
-CCCM limits the charge/discharge current depending on the SoC.
+CCCM/DCCM limits the charge/discharge current depending on the SoC.
 
 ## BMS feature comparison
 
