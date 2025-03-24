@@ -110,6 +110,10 @@ Works for the Seplos v3 BMS which uses different (Modbus) protocol than the earl
 
 Disabled by default since driver version `v0.14.0` as it causes other issues. See [How to enable a disabled BMS](../general/install.md#how-to-enable-a-disabled-bms) to enable the BMS.
 
+### &bull; [Valence U-BMS](https://www.valence.com)
+
+So far only tested together with 12V (4 cell) modules, i.e. https://www.valence.com/stackable-modules-12-819v/u27-12xp. 6 cell modules might require adaptations.
+
 | Android | iOS |
 | - |-|
 | ![Xiaoxian app](../screenshots/bms-xiaoxian-android.jpg) | ![Xiaoxian app](../screenshots/bms-xiaoxian-ios.jpg) |
