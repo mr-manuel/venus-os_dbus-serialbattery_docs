@@ -131,7 +131,3 @@ Here is a short checklist that should help you:
 Start a [new discussion](https://github.com/mr-manuel/venus-os_dbus-serialbattery/discussions/new?category=new-bms-requests) in the `New BMS request` category. Please add also the protocol documentation which you can request from the manufacturer/seller. The more upvotes the BMS request has, the higher is the priority.
 
 If you would like to donate hardware or would like to help testing a specific BMS please get in contact over the [discussions section](https://github.com/mr-manuel/venus-os_dbus-serialbattery/discussions).
-
-## Which BMS are you using?
-
-Please let us know, which BMS you are using with the driver by upvoting your BMS: [Which BMS are you using?](https://github.com/Louisvdw/dbus-serialbattery/discussions/546)
