@@ -140,7 +140,7 @@ Here is a short checklist that should help you:
 - [ ] Add the new BMS to the available BMS list under `; --------- Additional settings ---------` in the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/dbus-serialbattery/config.default.ini)
 - [ ] Add an entry to the [CHANGELOG.md](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/CHANGELOG.md)
 - [ ] Add an entry in the issue template [`bug_report.yml`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/.github/ISSUE_TEMPLATE/bug_report.yml?plain=1) under `id: bms_type`
-- [ ] Add an entry in the issue template [`feature_request.yml`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/.github/ISSUE_TEMPLATE/feature_request.yml?plain=1) under `id: bms_type`
+- [ ] Add an entry in the issue template [`support_request.yml`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/.github/ISSUE_TEMPLATE/support_request.yml?plain=1) under `id: bms_type`
 
 ### Request by opening a discussion
 
