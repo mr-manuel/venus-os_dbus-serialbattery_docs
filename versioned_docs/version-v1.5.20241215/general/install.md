@@ -22,15 +22,13 @@ toc_max_heading_level: 4
 
 ## Compatibility Matrix
 
-The latest three stable versions of Venus OS are supported. It may also work on older and newer beta versions, but this is not guaranteed.
+The compatibility between Venus OS and the driver is summarized below:
 
-| &darr; Venus OS version \ Driver version &rarr;  | v0.12.0  | v0.13.0  | v0.14.x              | v1.x.x   |
-| ---                                              | :---:    | :---:    | :---:                | :---:    |
-| v2.80 - v2.84                                    | ok       | ok       | untested             | untested |
-| v2.85 - v2.89                                    | ok       | ok       | untested             | untested |
-| v2.90 - v2.94                                    | untested | ok       | ok                   | ok       |
-| v3.00 - v3.x                                     | untested | untested | not supported        | ok       |
-
+| **Venus OS Version**         | **Driver Version**     | **Notes**                                                                            |
+| ---------------------------- | ---------------------- | ------------------------------------------------------------------------------------ |
+| Latest three stable versions | Latest stable version  | Fully supported.                                                                     |
+| Latest beta version          | Latest nightly version | Fully supported.                                                                     |
+| Other combinations           | Not guaranteed         | Driver likely works, but local display may not. GUIv2 web access should always work. |
 
 ## Default hard limits
 
