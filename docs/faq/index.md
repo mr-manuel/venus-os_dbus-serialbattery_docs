@@ -159,7 +159,7 @@ The limits are based on percentages of `MAX_BATTERY_CHARGE_CURRENT` and `MAX_BAT
 
 ## Why is the displayed charging/discharging current limit (CCL/DCL) not applied?
 
-Navigate to `Settings -> DVCC`, check that `DVCC` is enabled and that under `Controlling BMS` your BMS or battery aggregator is selected. On this page normally only `DVCC` should be enabled.
+Navigate to `Settings -> System Setup -> Charge Control`, check that `DVCC` is enabled and that under `Controlling BMS` your BMS or battery aggregator is selected. On this page normally only `DVCC` should be enabled.
 
 ## Why is my battery not switching to float/bulk?
 
@@ -170,7 +170,9 @@ GUI_PARAMETERS_SHOW_ADDITIONAL_INFO = True
 CVCM_ENABLE = True
 ```
 
-Go to the remote console/GUI under SerialBattery -> Parameters and go to the bottom. Here you see the requirements which are met/not met to do the switch. The advanced pages are available since `v1.3.20240527dev`.
+Go to the remote console/GUI under `Settings -> Devices -> SerialBattery -> Parameters` and go to the bottom. Here you see the requirements which are met/not met to do the switch. The advanced pages are available since `v1.3.20240527dev`.
+
+If the `voltage_sum` does not reach or exceed `max_battery_voltage` then you can try to enable `SVS - Shared voltage sense` in the remote console/GUI under `Settings -> System Setup -> Charge Control`. If that still does not help, check the `VOLTAGE_DROP` parameter in the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/dbus-serialbattery/config.default.ini).
 
 ![VenusOS](../screenshots/venus-os_guiv2_dbus-serialbattery_parameters.gif)
 
