@@ -14,7 +14,7 @@ This are the three most used BMS with this driver.
 
 🥇 JKBMS (51% of all systems)
 
-🥈 Jiabaida JDB BMS (20% of all systems)
+🥈 Jiabaida JBD BMS (20% of all systems)
 
 🥉 Daly BMS (14% of all systems)
 
@@ -44,7 +44,7 @@ Communication to the Heltec SmartBMS (which is a rebranded YYBMS) via Modbus/RS4
 
 ### &bull; [HLPdata](https://www.hlpdata.se) BMS4S
 
-### &bull; [Jiabaida JDB BMS](https://dgjbd.en.alibaba.com/) 🥈  <small>Second most used BMS</small>
+### &bull; [Jiabaida JBD BMS](https://dgjbd.en.alibaba.com/) 🥈  <small>Second most used BMS</small>
 
 Works also for:
 #### |- [LLT Power](https://www.lithiumbatterypcb.com/product-instructionev-battery-pcb-boardev-battery-pcb-board/ev-battery-pcb-board/smart-bms-of-power-battery/)
