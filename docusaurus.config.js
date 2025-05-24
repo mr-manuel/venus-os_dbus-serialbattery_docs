@@ -130,7 +130,12 @@ const config = {
                         position: 'right',
                         // dropdownItemsAfter: [{to: '/versions', label: 'All versions'}],
                         dropdownActiveClassDisabled: true,
-                    },
+                    }/*,
+                    {
+                        type: 'html',
+                        position: 'right',
+                        value: '<button id="custom-ask-ai-button">✨ Ask AI</button>',
+                    }*/
                 ],
             },
             footer: {
@@ -165,6 +170,48 @@ const config = {
             async: true
         },{
             src: `//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit`,
+            async: true
+        },
+        {
+            src: "https://widget.kapa.ai/kapa-widget.bundle.js",
+            "data-website-id": "3457d215-3ab3-47ea-81d9-e34e67bfc231",
+            "data-project-name": "dbus-serialbattery",
+            "data-project-color": "#25c2a0",
+            "data-project-logo": "https://docs.kapa.ai/img/logo.png",
+            "data-consent-required": "false",
+            "data-user-analytics-cookie-enabled": "true",
+            // "data-consent-screen-title": "Help us improve our AI assistant",
+            // "data-consent-screen-disclaimer": "By clicking 'Allow tracking', you consent to anonymous user tracking which helps us improve our service. We don't collect any personally identifiable information.",
+            "data-consent-screen-accept-button-text": "Allow tracking",
+            "data-consent-screen-reject-button-text": "No, thanks",
+
+            "data-modal-disclaimer": "This is a custom chatbot with access to [this documentation](https://mr-manuel.github.io/venus-os_dbus-serialbattery_docs/), [GitHub Issues](https://github.com/mr-manuel/venus-os_dbus-serialbattery/issues?q=is%3Aissue) and [GitHub Discussions](https://github.com/mr-manuel/venus-os_dbus-serialbattery/discussions?discussions_q=).\n\nIt's still experimental, so be patient with it.",
+            "data-modal-example-questions": "How do I get started?,How to troubleshoot?",
+            "data-user-analytics-fingerprint-enabled": "true",
+            // "data-modal-x-offset": "0",
+            // "data-modal-y-offset": "0",
+            // "data-modal-with-overlay": "false",
+            // "data-modal-inner-flex-direction": "column",
+            // "data-modal-inner-justify-content": "end",
+            // "data-modal-inner-max-width": "400px",
+            // "data-modal-inner-position-left": "auto",
+            // "data-modal-inner-position-right": "20px",
+            // "data-modal-inner-position-bottom": "calc(2.5rem + 25px)",
+            // "data-button-height": "2.5rem",
+            // "data-button-width": "2.5rem",
+            // "data-button-text": "Ask AI",
+            "data-button-position-right": "20px",
+            "data-button-position-bottom": "90px",
+            // "data-button-position-bottom": "unset",
+            // "data-button-position-top": "80px",
+            // "data-conversation-button-icons-only": "true",
+            // "data-modal-size": "60%",
+            // "data-modal-lock-scroll": "false",
+
+            "data-search-mode-enabled": "true",
+            "data-search-mode-default": "false",
+
+            "data-modal-override-open-id": "custom-ask-ai-button",
             async: true
         }
     ],
