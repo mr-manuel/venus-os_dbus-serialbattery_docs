@@ -245,13 +245,62 @@ Most unstable communications arise due to:
 - **Missing shielded cable:** If your serial cable is near or along the battery power cable, then try to use a shielded cable or move the cable.
 - **Raspberry Pi:** Do not use a charger for powering the Raspberry Pi. Instead buy a power supply with enough power.
 
-## How to troubleshoot high CPU load?
+## How to troubleshoot a slow system?
 
-The easiest way to troubleshoot high CPU load is to use `htop`. Since `htop` is not available on Venus OS you have to install it first. See [here](https://github.com/mr-manuel/venus-os_helpful-scripts/tree/master/htop/armv7).
+### Dbus roundtrip time
+
+Check the dbus roundtrip time on the VRM portal:
+
+1. Open your installation on the [VRM portal](https://vrm.victronenergy.com).
+2. Go to **Advanced** (left navigation bar).
+3. Click **Widgets** (top right settings icon).
+4. Select **Custom Widget** and click **Create custom widget**.
+
+    **Widget name:** dbus roundtrip time
+
+    **New device:**
+    - Device: Gateway
+    - Parameter: D-Bus Round-trip time (ms)
+
+If the D-Bus roundtrip time is always above **50 ms**, your system may start having problems.
+If it is above **100 ms**, the system is too slow to respond and can become unstable.
+
+If you see high values, your system might have high CPU load. See the [CPU load](#cpu-load) section for troubleshooting steps.
+
+### CPU load
+
+The easiest way to troubleshoot high CPU load is to use `htop`. Since `htop` is not available on Venus OS you have to install it first. See [here](https://github.com/mr-manuel/venus-os_helpful-scripts/tree/master/htop/armv7) or use `opkg` to install it (if you know what you do).
 
 Once installed open `htop` and sort by CPU time. To do this press `F6`, then select `Time`and hit `Enter`. Now the process that uses the most CPU time is at the top.
 
 Top exit `htop` press `q` or `CTRL + C`. After exiting you will see a few warnings, which you can ignore.
+
+### Unexpeted system reboot (watchdog)
+
+If your system is rebooting multiple times a day, then it's very likely that the watchdog triggers a reboot.
+
+You can check this by executing this command:
+
+```bash
+cat /var/log/messages* | grep watchdog
+```
+
+If there is no output, your system did **not** restart due to high load.
+
+If you see lines like the following, your device **was** rebooted because the load average was too high:
+
+```
+Jun  3 11:15:32 ekrano daemon.err watchdog[400]: loadavg 10 10 7 is higher than the given threshold 0 10 6!
+Jun  3 11:15:32 ekrano daemon.err watchdog[400]: repair binary /usr/sbin/store_watchdog_error.sh returned 253 = 'load average too high'
+Jun  3 11:15:32 ekrano daemon.alert watchdog[400]: shutting down the system because of error 253 = 'load average too high'
+Jun  3 11:15:32 ekrano daemon.err watchdog[31871]: /usr/sbin/sendmail does not exist or is not executable (errno = 2)
+```
+
+To further check which process had a high CPU usage at that time check the logfile that is written at the moment of the watchdog trigger:
+
+```bash
+head /data/log/watchdog_processlist.txt
+```
 
 ## Why do I have a high CPU usage after installing the driver?
 
