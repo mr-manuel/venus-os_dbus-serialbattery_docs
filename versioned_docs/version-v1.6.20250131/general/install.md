@@ -82,12 +82,12 @@ In [VRM](https://vrm.victronenergy.com/) look under the device list for your ins
 
 ### Install or update automatically with USB/SD card
 
-> 🚨 IMPORTANT! Read the [changelog](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/v1.5.20241215/CHANGELOG.md) BEFORE updating to a new version.
+> 🚨 IMPORTANT! Read the [changelog](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/v1.6.20250131/CHANGELOG.md) BEFORE updating to a new version.
 
 > It might be, that this doesn't work on older CerboGX devices. In this case use SSH option instead.
 
 1. Download and copy the [latest release](https://github.com/mr-manuel/venus-os_dbus-serialbattery/releases) `venus-data.tar.gz` to the root of a USB flash drive that is in FAT32 format (a SD card is also an option for GX devices, but not for Raspberry Pi).
-1. OPTIONAL: Create a `config.ini` file in the root of your USB flash drive with your custom settings. Put `[DEFAULT]` in the first line of the file and add all the values you want to change below. You only have to insert the values you want to change, all other values are fetched from the `config.default.ini`. In the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/v1.5.20241215/dbus-serialbattery/config.default.ini) you find all possible settings that you can copy over and change.
+1. OPTIONAL: Create a `config.ini` file in the root of your USB flash drive with your custom settings. Put `[DEFAULT]` in the first line of the file and add all the values you want to change below. You only have to insert the values you want to change, all other values are fetched from the `config.default.ini`. In the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/v1.6.20250131/dbus-serialbattery/config.default.ini) you find all possible settings that you can copy over and change.
 
    > If you put a `config.ini` in the root of the USB flash drive, then an existing `config.ini` will be overwritten.
 1. Plug the flash drive/SD into the Venus device and reboot. It will automatically extract and install to the correct locations and try the driver on any connected devices.
@@ -95,7 +95,7 @@ In [VRM](https://vrm.victronenergy.com/) look under the device list for your ins
 
 ### Install or update over SSH
 
-> 🚨 IMPORTANT! Read the [changelog](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/v1.5.20241215/CHANGELOG.md) BEFORE updating to a new version.
+> 🚨 IMPORTANT! Read the [changelog](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/v1.6.20250131/CHANGELOG.md) BEFORE updating to a new version.
 
 > Require [root access](https://www.victronenergy.com/live/ccgx:root_access#root_access)
 
@@ -178,7 +178,7 @@ Place a `venus-data.tar.gz` file in the folder `/var/volatile/tmp/` by copying/u
 * ECS BMS &rarr; Check [#254 ECS BMS (comment)](https://github.com/Louisvdw/dbus-serialbattery/issues/254#issuecomment-1275924313)
 * MNB BMS &rarr; Check [MNB BMS setup](https://github.com/Louisvdw/dbus-serialbattery/issues/590)
 
-You can also get an overview of the BMS specific settings by checking the end of the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/v1.5.20241215/etc/dbus-serialbattery/config.default.ini).
+You can also get an overview of the BMS specific settings by checking the end of the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/v1.6.20250131/etc/dbus-serialbattery/config.default.ini).
 
 ### Get BMS MAC address
 
@@ -266,7 +266,7 @@ If you use the cell voltage limits, temperature limits and/or SoC limits you als
 
 Copy the values you want to change from `/data/etc/dbus-serialbattery/config.default.ini` and insert them in the `/data/etc/dbus-serialbattery/config.ini`.
 
-All available options can also be found [here](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/v1.5.20241215/dbus-serialbattery/config.default.ini).
+All available options can also be found [here](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/v1.6.20250131/dbus-serialbattery/config.default.ini).
 
 ## How to edit the `config.ini`
 
