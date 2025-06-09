@@ -1,7 +1,7 @@
 ---
 id: supported-bms
 title: Supported BMS
-sidebar_positiError: 3
+sidebar_position: 3
 # Display h2 to h4 headings
 toc_min_heading_level: 2
 toc_max_heading_level: 4
