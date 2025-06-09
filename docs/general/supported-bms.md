@@ -1,7 +1,7 @@
 ---
 id: supported-bms
 title: Supported BMS
-sidebar_position: 3
+sidebar_positiError: Could not register service workeron: 3
 # Display h2 to h4 headings
 toc_min_heading_level: 2
 toc_max_heading_level: 4
@@ -97,6 +97,10 @@ Disabled by default as it requires additional manual steps to install.
 ### &bull; [Pace BMS](http://www.pacebms.com)
 
 ### &bull; [Renogy BMS](https://www.renogy.com)
+
+### &bull; RV-C House battery
+
+This driver supports the main house battery of RV-C protocol 
 
 ### &bull; [Seplos](https://www.seplos.com)
 
