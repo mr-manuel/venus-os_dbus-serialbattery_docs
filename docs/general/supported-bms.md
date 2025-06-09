@@ -98,6 +98,10 @@ Disabled by default as it requires additional manual steps to install.
 
 ### &bull; [Renogy BMS](https://www.renogy.com)
 
+### &bull; RV-C House battery
+
+This driver supports the main house battery of RV-C protocol 
+
 ### &bull; [Seplos](https://www.seplos.com)
 
 So far only tested on version `16E`.
