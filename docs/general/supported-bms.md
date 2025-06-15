@@ -52,6 +52,13 @@ Works also for:
 
 ### &bull; [Felicity Solar](https://www.felicitysolar.com/)
 
+### &bull; KS48100
+
+#### |- [Bemory](https://de.aliexpress.com/store/912104017)
+#### |- [CERRNSS](https://cerrnss.com/)
+#### |- [PAPool](https://www.aliexpress.com/store/1101978913)
+#### |- [VoltPolska](https://voltpolska.pl/)
+
 ### &bull; [Litime BMS](https://www.litime.com)
 
 Works also for:
@@ -100,7 +107,7 @@ Disabled by default as it requires additional manual steps to install.
 
 ### &bull; RV-C House battery
 
-This driver supports the main house battery of RV-C protocol 
+This driver supports the main house battery of RV-C protocol
 
 ### &bull; [Seplos](https://www.seplos.com)
 
