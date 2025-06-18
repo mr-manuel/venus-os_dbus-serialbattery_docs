@@ -29,6 +29,10 @@ Connect the wires in a device-to-device configuration. The main cable runs from 
 
 The main cable should be shielded to prevent interference. Ensure that the TX of the master is connected to the RX of the BMS and the RX of the master is connected to the TX of the BMS.
 
+Recommended adapters that are high quality and have been tested over a long period:
+- [USB SinglePort VE.Direct](https://www.duppa.net/product/usb-singleport-ve-direct/?ref=2892) (affiliate link)
+- [USB Quadport VE.Direct](https://www.duppa.net/product/usb-quadport-ve-direct/?ref=2892) (affiliate link)
+
 ![Cabeling UART/TTL](../screenshots/cabeling-uart-ttl.png)
 
 ## RS485/Modbus (daisy chain possible)

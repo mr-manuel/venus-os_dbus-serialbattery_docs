@@ -37,6 +37,10 @@ https://discord.gg/YXzFB8rSgx
 Depending on how you want to connect your battery, you may need one of these adapters. Normally, one adapter per BMS is needed, unless you daisy chain. Find more information on the [How to connect and prepare the battery/BMS](./connect.md) page.
 
 * USB to UART/TTL adapter (recommended chipsets: FT230X, FT4232H or CH340)
+
+  Recommended adapters that are high quality and have been tested over a long period:
+    - [USB SinglePort VE.Direct](https://www.duppa.net/product/usb-singleport-ve-direct/?ref=2892) (affiliate link)
+    - [USB Quadport VE.Direct](https://www.duppa.net/product/usb-quadport-ve-direct/?ref=2892) (affiliate link)
 * USB to RS485 adapter (recommended chipsets: FT230X, FT4232H or CH340)
 * USB to CAN adapter
 * CAN HAT for Raspberry Pi
