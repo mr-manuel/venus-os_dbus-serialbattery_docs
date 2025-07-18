@@ -25,11 +25,23 @@ toc_max_heading_level: 4
 
 The compatibility between Venus OS and the driver is summarized below:
 
-| **Venus OS Version**         | **Driver Version**     | **Notes**                                                                            |
-| ---------------------------- | ---------------------- | ------------------------------------------------------------------------------------ |
-| Latest three stable versions | Latest stable version  | Fully supported.                                                                     |
-| Latest beta version          | Latest nightly version | Fully supported.                                                                     |
-| Other combinations           | Not guaranteed         | Driver likely works, but local display may not. GUIv2 web access should always work. |
+| Venus OS Version | Driver Version | Driver Runtime <sup>1</sup> | GUIv2 GX Display     | GUIv2 Browser                         | GUIv1 <sup>2</sup>   |
+| :--------------: | :------------: | :-------------------------: | :------------------: | :-----------------------------------: | :------------------: |
+| v2.9x            | v1.6.x         | OK                          | Unavailable          | Unavailable                           | OK                   |
+| v3.0x - v3.4x    | v1.6.x         | OK                          | Unavailable          | Unavailable                           | OK                   |
+| v3.5.x           | v1.6.x         | OK                          | OK                   | OK                                    | OK                   |
+| v3.6x            | v1.6.x         | OK                          | OK                   | OK                                    | OK                   |
+| Future versions  | v1.6.x         | Very likely OK              | No mods <sup>3</sup> | May not fully functional <sup>4</sup> | May break completely |
+
+<sup>1</sup> **Driver Runtime:** The driver successfully detects the battery and provides correct data to the system.
+
+<sup>2</sup> **Note:** dbus-serialbattery features are not developed for GUIv1 anymore. Switch to GUIv2 for a better experience and new features.
+
+<sup>3</sup> The original GUIv2 will displayed without modifications to ensure functionality.
+
+<sup>4</sup> It could be that some buttons do not work due to Venus OS backend changes.
+
+To see other driver version compatibility, select a driver version in the navigation menu.
 
 ## Default driver limits
 
@@ -43,7 +55,9 @@ The driver uses some configurable limits. Ensure your BMS and cells can handle t
 | Max cell voltage  | 3.45 V        |
 
 It’s best to set strict (hard) limits for current and voltage directly in your BMS using its own software.
+
 Set the limits in the driver a bit lower (softer limits), so the BMS never has to step in.
+
 You need to set up both your BMS and the driver separately.
 
 These default settings are for LFP (Lithium Iron Phosphate) batteries. If you are using a different cell chemistry, you must update the limits accordingly.
@@ -107,7 +121,6 @@ In [VRM](https://vrm.victronenergy.com/) look under the device list for your ins
 
    bash /tmp/install.sh
    ```
-
 3. You can now choose which version you want to install:
     1. [Latest release](#latest-release)
 

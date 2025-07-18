@@ -29,7 +29,7 @@ The latest three stable versions of Venus OS are supported. It may also work on 
 | v2.80 - v2.84                                    | ok       | ok       | untested             | untested |
 | v2.85 - v2.89                                    | ok       | ok       | untested             | untested |
 | v2.90 - v2.94                                    | untested | ok       | ok                   | ok       |
-| v3.00 - v3.x                                     | untested | untested | not supported        | ok       |
+| v3.00 - v3.4x                                    | untested | untested | not supported        | ok       |
 
 
 ## Default hard limits
