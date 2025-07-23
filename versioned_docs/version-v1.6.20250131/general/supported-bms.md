@@ -13,11 +13,11 @@ toc_max_heading_level: 4
 
 This are the three most used BMS with this driver.
 
-🥇 JKBMS (64% of all systems)
+🥇 JKBMS (68% of all systems)
 
-🥈 Jiabaida JBD BMS (16% of all systems)
+🥈 Jiabaida JBD BMS (13% of all systems)
 
-🥉 Daly BMS (14% of all systems)
+🥉 Daly BMS (12% of all systems)
 
 The Daly BMS is not recommended, if you have to buy a new BMS, since it has a bad communication implementation and
 sometimes it happens that the driver is not able to fetch data for a multiple cycles.
