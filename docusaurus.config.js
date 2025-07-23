@@ -73,6 +73,8 @@ const config = {
                 appId: '28QXXQCY25',
                 apiKey: 'be57479272c890c67a6abf7452bdc47d',
                 indexName: 'mr-manuelio',
+                askAi: '5nWkeRyTo5dR',
+                contextualSearch: true,  // default: true
             },
             //
             colorMode: {
