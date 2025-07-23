@@ -17,8 +17,11 @@
   },
   "dependencies": {
     "@algolia/client-search": "^4.24.0",
-    "@docusaurus/core": "^3.8.1",
-    "@docusaurus/preset-classic": "^3.8.1",
+    "@docusaurus/core": "https://github.com/algolia/docsearch/releases/download/v4.0.0-beta.4/docusaurus-core-3.8.1.tgz",
+    "@docusaurus/preset-classic": "https://github.com/algolia/docsearch/releases/download/v4.0.0-beta.4/docusaurus-preset-classic-3.8.1.tgz",
+    "@docusaurus/theme-search-algolia": "https://github.com/algolia/docsearch/releases/download/v4.0.0-beta.4/docusaurus-theme-search-algolia-3.8.1.tgz",
+    "@docusaurus/theme-translations": "https://github.com/algolia/docsearch/releases/download/v4.0.0-beta.4/docusaurus-theme-translations-3.8.1.tgz",
+    "@docusaurus/utils": "https://github.com/algolia/docsearch/releases/download/v4.0.0-beta.4/docusaurus-utils-3.8.1.tgz",
     "@mdx-js/react": "^3.0.0",
     "@types/react": "^18.3.3",
     "clsx": "^2.1.1",
@@ -47,5 +50,10 @@
   },
   "engines": {
     "node": ">=20.0"
+  },
+  "resolutions": {
+    "@docusaurus/utils": "https://github.com/algolia/docsearch/releases/download/v4.0.0-beta.4/docusaurus-utils-3.8.1.tgz",
+    "@docusaurus/theme-search-algolia": "https://github.com/algolia/docsearch/releases/download/v4.0.0-beta.4/docusaurus-theme-search-algolia-3.8.1.tgz",
+    "@docusaurus/theme-translations": "https://github.com/algolia/docsearch/releases/download/v4.0.0-beta.4/docusaurus-theme-translations-3.8.1.tgz"
   }
 }
