@@ -64,6 +64,7 @@ Depending on how you want to connect your battery, you may need one of these ada
 ![VenusOS](../screenshots/venus-os_guiv2_011.png)
 ![VenusOS](../screenshots/venus-os_guiv2_012.png)
 ![VenusOS](../screenshots/venus-os_guiv2_013.png)
+![VenusOS](../screenshots/venus-os_guiv2_014.png)
 
 ### VRM Portal
 

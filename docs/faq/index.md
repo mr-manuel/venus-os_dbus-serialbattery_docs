@@ -174,11 +174,13 @@ GUI_PARAMETERS_SHOW_ADDITIONAL_INFO = True
 CVCM_ENABLE = True
 ```
 
-Go to the remote console/GUI under `Settings -> Devices -> SerialBattery -> Parameters` and go to the bottom. Here you see the requirements which are met/not met to do the switch. The advanced pages are available since `v1.3.20240527dev`.
+Go to the remote console/GUI under `Settings -> Devices -> SerialBattery -> dbus-serialbattery - General` and go to the bottom. Here you see the requirements which are met/not met to do the switch.
 
 If the `voltage_sum` does not reach or exceed `max_battery_voltage` then you can try to enable `SVS - Shared voltage sense` in the remote console/GUI under `Settings -> System Setup -> Charge Control`. If that still does not help, check the `VOLTAGE_DROP` parameter in the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/dbus-serialbattery/config.default.ini).
 
-![VenusOS](../screenshots/venus-os_guiv2_dbus-serialbattery_parameters.gif)
+![VenusOS](../screenshots/venus-os_guiv2_parameters-debugging-001.png)
+
+![VenusOS](../screenshots/venus-os_guiv2_parameters-debugging-002.png)
 
 ## Does the driver work for `3.7V` based cells also?
 
