@@ -45,8 +45,10 @@ but with `yarn` not everything seems to work.
 This command creates a new version of the documentation. This allows to match the documentation always to the current version of the driver.
 
 ```bash
-yarn docusaurus docs:version v1.6.20250131
+yarn docusaurus docs:version v2.0.20250729
 ```
+
+Replace `blob/master` with `tree/v2.0.20250729` in the links that point to GitHub, so that the files match the displayed driver version.
 
 For more informations see https://docusaurus.io/docs/versioning.
 
