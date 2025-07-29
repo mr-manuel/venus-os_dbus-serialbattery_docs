@@ -27,11 +27,12 @@ The compatibility between Venus OS and the driver is summarized below:
 
 | Venus OS Version | Driver Version | Driver Runtime <sup>1</sup> | GUIv2 GX Display     | GUIv2 Browser                         | GUIv1 <sup>2</sup>   |
 | :--------------: | :------------: | :-------------------------: | :------------------: | :-----------------------------------: | :------------------: |
-| v2.9x            | v2.0.x         | OK                          | Unavailable          | Unavailable                           | OK                   |
-| v3.0x - v3.4x    | v2.0.x         | OK                          | Unavailable          | Unavailable                           | OK                   |
-| v3.5x            | v2.0.x         | OK                          | OK                   | OK                                    | OK                   |
-| v3.6x            | v2.0.x         | OK                          | OK                   | OK                                    | OK                   |
-| Future versions  | v2.0.x         | Very likely OK              | No mods <sup>3</sup> | May not fully functional <sup>4</sup> | May break completely |
+| v2.9x            | v2.1.x         | OK                          | Unavailable          | Unavailable                           | OK                   |
+| v3.0x - v3.4x    | v2.1.x         | OK                          | Unavailable          | Unavailable                           | OK                   |
+| v3.5x            | v2.1.x         | OK                          | OK                   | OK                                    | OK                   |
+| v3.6x            | v2.1.x         | OK                          | OK                   | OK                                    | OK                   |
+| v3.7x            | v2.1.x         | OK                          | OK                   | OK                                    | OK                   |
+| Future versions  | v2.1.x         | Very likely OK              | No mods <sup>3</sup> | May not fully functional <sup>4</sup> | May break completely |
 
 <sup>1</sup> **Driver Runtime:** The driver successfully detects the battery and provides correct data to the system.
 
