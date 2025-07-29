@@ -394,27 +394,30 @@ Some settings in your `config.ini` are invalid. Check the [driver logs](#datalog
 
 ### Battery charging/discharging problems
 
-Open the remote console/GUI and check the `IO` and `Parameters` page under the battery device.
+Open the remote console/GUIv2 and check the `dbus-serialbattery - General` page under the battery device.
 
-On the `IO` page you see if the driver or BMS allows charging, discharging and balancing. If charging or discharging is `No`, check the `Parameters` page for the reason. Should there be no reason, then check the `Alarms` page and your BMS settings in the BMS app.
+![dbus-serialbattery - General page](../screenshots/venus-os_guiv2_005.png)
 
-![IO page](../screenshots/venus-os_guiv2_011.png)
+Here you see all relevant data of the driver.
 
-On the `Parameters` page you see the `Charge Mode`, `Charge Current Limit` and `Discharge Current Limit`.
-
+- `Overview`: Red values mean that they are limiting `CVL`, `CCL` or `DCL`.
+- `Temperatures`: Red values mean that they are limiting `CVL`, `CCL` or `DCL`.
 - `Charge Mode`: Here you see the active charge mode.
-  - `Bulk`, `Absorption`, `Float Transition`, `Float` or `Keep always max voltage` is related to the `Charge Voltage Limitation (affecting CVL)` in the [config file](https://github.com/mr-manuel/venus-os_dbus-serialbattery/tree/v2.0.20250729/dbus-serialbattery/config.default.ini).
+  - `Bulk`, `Absorption`, `Float Transition`, `Float` or `Keep always max voltage` is related to the `Charge Voltage Limitation (affecting CVL)` section in the [config file](https://github.com/mr-manuel/venus-os_dbus-serialbattery/tree/v2.0.20250729/dbus-serialbattery/config.default.ini).
   - `Cell OVP` (Over Voltage Protection) is related to the `Cell Voltage Limitation (affecting CVL)` section in the [config file](https://github.com/mr-manuel/venus-os_dbus-serialbattery/tree/v2.0.20250729/dbus-serialbattery/config.default.ini).
   - `SoC Reset` is related to the `SoC Reset Voltage (must match BMS settings)` section in the [config file](https://github.com/mr-manuel/venus-os_dbus-serialbattery/tree/v2.0.20250729/dbus-serialbattery/config.default.ini).
   - `Balancing`
   - `Step Mode` or `Linear Mode` is related to the `Charge Mode` section in the [config file](https://github.com/mr-manuel/venus-os_dbus-serialbattery/tree/v2.0.20250729/dbus-serialbattery/config.default.ini).
-- `Charge Current Limit` and `Discharge Current Limit`: Here you see the parameter that most limits the current.
+- `Charge Voltage Limit (CVL)`: Here you see the maximum voltage per cell and for the whole battery.
+- `Charge Current Limit (CCL/DCL)` and `Discharge Current Limit`: Here you see the parameter that most limits the current.
   - `Cell Voltage` is related to the `Cell Voltage Current Limitation (affecting CCL/DCL)` section in the [config file](https://github.com/mr-manuel/venus-os_dbus-serialbattery/tree/v2.0.20250729/dbus-serialbattery/config.default.ini).
   - `Temperature` is related to the `Temperature Current Limitation (affecting CCL/DCL)` section in the [config file](https://github.com/mr-manuel/venus-os_dbus-serialbattery/tree/v2.0.20250729/dbus-serialbattery/config.default.ini).
   - `SoC` is related to the `SoC Current Limitation (affecting CCL/DCL)` section in the [config file](https://github.com/mr-manuel/venus-os_dbus-serialbattery/tree/v2.0.20250729/dbus-serialbattery/config.default.ini).
   - `BMS` indicates if the current set in the BMS app is lower than the current set in the [config file](https://github.com/mr-manuel/venus-os_dbus-serialbattery/tree/v2.0.20250729/dbus-serialbattery/config.default.ini).
+- `Allow to Charge/Discharge/Balance`: If charging or discharging is `No`, then `CCL` or `DCL` is `0`. If that is not the case an alarm should be active and displayed in the field below.
+- `Alarms`: This row only appears if there are active alarms. If multiple alarms are active, all of them will be shown here.
 
-![Parameters page](../screenshots/venus-os_guiv2_013.png)
+  ![dbus-serialbattery - General page](../screenshots/venus-os_guiv2_parameters-debugging-003.png)
 
 ### Charge mode problems
 
@@ -422,10 +425,9 @@ To better troubleshoot this make sure you have set this options in the `config.i
 
 ```ini
 GUI_PARAMETERS_SHOW_ADDITIONAL_INFO = True
-CVCM_ENABLE = True
 ```
 
-Now you see in the remote console/GUI the driver internal values under the battery `Parameters` page and you can check, why it's not working like it should.
+Now you see in the remote console/GUIv2 the driver internal values under the battery `dbus-serialbattery - General` page and you can check, why it's not working like it should.
 
 ![Debugging data](../screenshots/venus-os_guiv2_parameters-debugging-001.png)
 
