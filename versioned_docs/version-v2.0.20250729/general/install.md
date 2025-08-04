@@ -194,7 +194,9 @@ Place a `venus-data.tar.gz` file in the folder `/var/volatile/tmp/` by copying/u
 
 You can also get an overview of the BMS specific settings by checking the end of the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/tree/v2.0.20250729/dbus-serialbattery/config.default.ini).
 
-### Get BMS MAC address
+### Bluetooth settings
+
+**Get BMS MAC address**
 
 Execute this commands to scan for Bluetooth devices and get their MAC address:
 
@@ -256,6 +258,20 @@ Discovery stopped
 ```
 quit
 ```
+
+Now you can add the MAC address to the `config.ini`. Check the Bluetooth BMS section in the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/tree/v2.0.20250729/dbus-serialbattery/config.default.ini) for more informations.
+
+> If you changed the default connection PIN of your BMS, then you have to pair the BMS first using OS tools like the `bluetoothctl`. The settings PIN is not needed here.
+>
+> See https://wiki.debian.org/BluetoothUser#Using_bluetoothctl for more details.
+
+Run `/data/apps/dbus-serialbattery/enable.sh` after you added the Bluetooth config to create the needed Bluetooth services.
+
+### CAN settings
+
+Add the CAN port to the `config.ini`. Check the CAN BMS section in the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/tree/v2.0.20250729/dbus-serialbattery/config.default.ini) for more informations.
+
+Run `/data/apps/dbus-serialbattery/enable.sh` after you added the CAN config to create the needed CAN services.
 
 ## How to change the default limits
 
