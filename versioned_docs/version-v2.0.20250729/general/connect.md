@@ -98,6 +98,10 @@ Check your BMS manual for the correct pinout. If you don't find any, you could t
 
 See also [this page](https://www.lp-research.com/how-to-design-an-efficient-high-speed-can-bus-network-with-lpms-ig1/).
 
+## Bluetooth
+
+No special preparation is required.
+
 ## BMS configuration
 
 ### Daly BMS
