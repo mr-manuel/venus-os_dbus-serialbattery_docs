@@ -42,7 +42,7 @@ You need an additional driver for that. Here are a few listed:
 
 Automatically merges connected batteries. Takes consideration of SmartShunt, Multies, Quattros, SmartSolars, BlueSolars and MPPT for current calculation. Additional configuration possible.
 
-💡 Currently the only driver, which switches to float AFTER all batteries are fully charged. See `KEEP_MAX_CVL`, default is `False`.
+💡 Currently the only driver, which switches to float AFTER all batteries are fully charged. For this you need to set `KEEP_MAX_CVL` to `True` (driver default is `False`).
 
 ### [BatteryAggregator](https://github.com/pulquero/BatteryAggregator) by [pulquero](https://github.com/pulquero)
 
