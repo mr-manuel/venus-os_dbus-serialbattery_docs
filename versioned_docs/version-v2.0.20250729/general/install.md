@@ -76,21 +76,7 @@ The important steps:
 * You need to correctly set your battery capacity to match the cells you are using. Your SoC calculation in your BMS will be wrong otherwise. If you use `120Ah` cells then your battery capacity will be `120Ah` etc.
 * You need to correctly set your min/max cell protection voltages. These are voltages when your BMS will disconnect to protect your cells like `2.85V` and `3.65V`. Your driver limits should be between these and NOT the same.
 
-For BMS specific settings check the [How to connect and prepare the battery/BMS](./connect.md) page.
-
-## Settings for your GX device
-
-1. You need to have a Venus OS device set up and running on your GX system (VenusGX, Cerbo, Raspberry Pi, etc.) and connected to your inverter.
-
-In [VRM](https://vrm.victronenergy.com/) look under the device list for your installation. If you can see the Gateway (GX) and Ve.Bus System (inverter) then your GX is ready.
-
-2. On your GX device you should set DVCC On. This will enable your battery to request charge parameters. All the Share Sense option can be Off. If your battery works with lower limits, enable Limit Charge Current, Limit managed battery Charge Voltage and set the lower values as required. You can also enable Limit inverter power for Discharge Current limit under ESS. These settings will be remembered between updates.
-
-![DVCC values](../screenshots/settings-dvcc.png)
-
-3. You also need to connect your BMS to the Venus OS device using a serial interface. Use the cable for your BMS or a Victron branded USB&rarr;RS485 or USB&rarr;Ve.Direct (RS232) cable for best compatibility. Most FTDI/FT232R/CH340G USB&rarr;serial also works. The FT232R and CH340G already has a driver included in the Venus OS.
-
-   > 🚨 **NB! Only connect Rx & Tx or A & B to the BMS,** if you are NOT using an isolated ([galvanic isolation](https://en.wikipedia.org/wiki/Galvanic_isolation)) cable or adapter. This prevents the current to flow through the adapter, if the BMS cuts the ground. Else it will destroy your BMS, GX device or Raspberry Pi.
+Check the [How to connect and prepare the battery/BMS](./connect.md) page if you didn't already or for BMS specific settings.
 
 ## Install or update
 
@@ -291,6 +277,19 @@ FLOAT_CELL_VOLTAGE = 3.375
 For further informations see [Settings location/path](#settings-locationpath) and [How to edit the `config.ini`](#how-to-edit-the-configini).
 
 If you use the cell voltage limits, temperature limits and/or SoC limits you also need to adjust their values to match the new current, else CCL and DCL will not change. See also [Why is the charging/discharging current limit (CCL/DCL) smaller than the set one?](../faq/index.md#why-is-the-chargingdischarging-current-limit-ccldcl-smaller-than-the-set-one).
+
+## Settings for your GX device
+
+**Optional but recommended:**
+
+If you want the driver to control charging voltage, charging current, and discharging current for your chargers and inverters, turn on DVCC.
+You can find DVCC under `Settings -> System Setup -> Charge Control`.
+- Single battery setup: Make sure that the driver is selected as controlling BMS
+- Multi battery setup: Make sure that the battery aggregator is selected as controlling BMS (see also [How to aggregate multiple batteries?](../faq/index.md#dbus-aggregate-batteries-by-dr-gigavolt-recommended))
+
+If DVCC is off, the driver will not control the Victron system, but you can still monitor all values manually.
+
+![DVCC values](../screenshots/settings-dvcc.png)
 
 ## Settings location/path
 
