@@ -30,7 +30,12 @@ Disabled by default since driver version `v1.0.0` as it causes other issues. Mor
 
 ### &bull; [Daly BMS](https://dalybms.com/) 🥉 <small>Third most used BMS</small>
 
-![Daly app](../screenshots/bms-daly.jpg)
+Daly has different brands and models on the market, which all share the same communication protocol. Currently there are 3 types:
+* Daly Smart BMS, "the red one", old and classic type with passive 100mA balancer. It has a bad reputation for communication quirks but it seems, if it runs it runs. Not recommended, if you have to buy a new BMS, since it has a bad communication implementation and sometimes it happens that the driver is not able to fetch data for a multiple cycles.
+* 100 balance Smart Active BMS: Daly started a new BMS line with build-in active 1A balancer under this brand. Currently they are rebranded again to daly "blue", see below.
+* Daly Smart Active BMS, "the blue one", is the current and newest model. It has a build-in 1A balancer.
+
+When connecting a Daly BMS, notice that it can be that, despite a connector is available, there is no support for that port compiled in. You have to order your BMS with the correct options, CAN/RS485/RS232/UART/Wifi/BT if you want to use it. So there may be devices that are not capable to communicate. As the RS485 port is slow, it is recommended to use the CAN port.
 
 ### &bull; [Daren BMS](https://www-szdrgk-com.translate.goog/?_x_tr_sch=http&_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp)
 
