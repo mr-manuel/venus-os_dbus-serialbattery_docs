@@ -240,16 +240,21 @@ The Daly BMS alarms did not work in driver versions before `v1.0.20230531` and t
 
 Some Daly BMS send the current as inverted value. This can be corrected by setting `INVERT_CURRENT_MEASUREMENT` to `-1` in the `config.ini`. See [How to edit the `config.ini`](../general/install.md#how-to-edit-the-configini).
 
+## What can I do, if I get BMS cable error?
+
+See below.
+
 ## What can I do, if the BMS communication is unstable?
 
-Most unstable communications arise due to:
+Most BMS cable errors or unstable communication can be fixed by checking the following:
 
-- **Cabling:** Check that your serial cables are not too short (< 30 cm). Sometimes this also creates problems.
-- **Cabling:** Check your cables again and make sure that all solder points are making good connection.
-- **Cheap USB Hubs:** Make sure you are using a qualitative USB Hub with enough power.
-- **Damaged/Defective serial adapters:** Try another serial adapter.
-- **Missing shielded cable:** If your serial cable is near or along the battery power cable, then try to use a shielded cable or move the cable.
-- **Raspberry Pi:** Do not use a charger for powering the Raspberry Pi. Instead buy a power supply with enough power.
+- **Cable length:** Make sure your serial cables are not too short (should be longer than 30 cm).
+- **Cable connections:** Double-check that all cable connections and solder points are solid.
+- **USB hubs:** Use a good quality USB hub with enough power.
+- **Poll interval:** Some BMS are slower. Try setting `POLL_INTERVAL` to `2` in the config, then restart Venus OS. If errors continue, increase the value up to `5`. Do not set it higher than `30` seconds.
+- **Shielded cable:** If your serial cable runs close to the battery power cable, use a shielded cable or move it further away.
+- **Serial adapters:** If you suspect your adapter is faulty, try a different one.
+- **Raspberry Pi power:** Always use a proper power supply for your Raspberry Pi, not just a phone charger.
 
 ## How to troubleshoot a slow system?
 
