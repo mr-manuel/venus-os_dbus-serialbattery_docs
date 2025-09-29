@@ -6,11 +6,13 @@ sidebar_position: 3
 
 # FAQ (Frequently Asked Questions)
 
-## How to change the default limits
+## Configuration & Files
+
+### How to change the default limits
 
 See [this page](../general/install.md#how-to-change-the-default-limits).
 
-## What is the `config.ini` and `config.default.ini`?
+### What is the `config.ini` and `config.default.ini`?
 
 The `config.ini` is a file where you can specify your own configuration changes. Like when you want to change default values, e.g. increase the charge and discharge limits. This file is preserved after a version update. Lookup the `config.default.ini` to see which settings are available.
 
@@ -18,49 +20,55 @@ The `config.default.ini` is a file where all possible configuration settings are
 
 Click [here](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/dbus-serialbattery/config.default.ini) to see the `config.default.ini`.
 
-## How to edit the `config.ini`
+### How to edit the `config.ini`
 
 See [this page](../general/install.md#how-to-edit-the-configini).
 
-## How to enable a disabled BMS
+### How to enable a disabled BMS
 
 See [this page](../general/install.md#how-to-enable-a-disabled-bms).
 
-## What is the username and password of the SSH connection?
+### What is the username and password of the SSH connection?
 
 See the Victron Energy documentation how to get [root access](https://www.victronenergy.com/live/ccgx:root_access#root_access).
 
-## Which version do I have installed?
+### Which version do I have installed?
 
 You check the installed version in the [driver log files](../troubleshoot/index.md#driver-log-files) or in the remote console/GUI under SerialBattery -> Device -> Firmware version
 
-## How to aggregate multiple batteries?
+### Why is my `config.ini` always reset to default values?
+
+Probably you forgot to remove the USB/SD card with the `venus-data.tar.gz` after successful installation. Please delete the file or remove the USB/SD card. This is fixed with `>= v1.0.20230512`.
+
+## BMS & Battery Setup
+
+### How to aggregate multiple batteries?
 
 You need an additional driver for that. Here are a few listed:
 
-### [dbus-aggregate-batteries](https://github.com/Dr-Gigavolt/dbus-aggregate-batteries) by [Dr-Gigavolt](https://github.com/Dr-Gigavolt) (recommended)
+#### [dbus-aggregate-batteries](https://github.com/Dr-Gigavolt/dbus-aggregate-batteries) by [Dr-Gigavolt](https://github.com/Dr-Gigavolt) (recommended)
 
 Automatically merges connected batteries. Takes consideration of SmartShunt, Multies, Quattros, SmartSolars, BlueSolars and MPPT for current calculation. Additional configuration possible.
 
 💡 Currently the only driver, which switches to float AFTER all batteries are fully charged. For this you need to set `KEEP_MAX_CVL` to `True` (driver default is `False`).
 
-### [BatteryAggregator](https://github.com/pulquero/BatteryAggregator) by [pulquero](https://github.com/pulquero)
+#### [BatteryAggregator](https://github.com/pulquero/BatteryAggregator) by [pulquero](https://github.com/pulquero)
 
 Automatically merges connected batteries. Additional configuration for excluded batteries, total capacity and custom merging possible.
 
 Can be installed through the [SetupHelper](https://github.com/kwindrem/SetupHelper) of [kwindrem](https://github.com/kwindrem).
 
-### [venus-os_dbus-mqtt-battery](https://github.com/mr-manuel/venus-os_dbus-mqtt-battery) by [mr-manuel](https://github.com/mr-manuel)
+#### [venus-os_dbus-mqtt-battery](https://github.com/mr-manuel/venus-os_dbus-mqtt-battery) by [mr-manuel](https://github.com/mr-manuel)
 
 Virtual battery that has to be fed over MQTT in case you want to merge your data how you'd like. Venus OS Large with Node-RED recommended.
 
-## Why do I need a BMS for lithium batteries?
+### Why do I need a BMS for lithium batteries?
 
 Lithuim cells are great at storing energy, but they can be dangerous. An overcharged cell can cause a fire. A Battery Management System (BMS) first priority is to protect the cells in your battery from any potential hazards.
 
 The BMS will prevent your battery reaching an unsafe situation (it will disconnect the charge or discharge) and help with the state of each cell inside the battery so that your battery will last longer.
 
-## Which BMS should I buy?
+### Which BMS should I buy?
 
 Most of the BMS that the driver support will work fine and the driver does support most features for all the BMS brands. See the [comparison table](../general/features.md#bms-feature-comparison) for any small differenaces.
 
@@ -72,7 +80,7 @@ Also the way that Daly implemented their communication protocol gives for a much
 
 If you own a Daly, then it will work just fine, but if you still need to buy your BMS then one of the other supported BMS would be a better choice.
 
-## Which serial adapter/cable should I use?
+### Which serial adapter/cable should I use?
 
 Most USB serial adapters and cables should work fine. You need to use the adapter for the UART type that your BMS use, which is normally TTL, RS232, RS485 or even SPI.
 
@@ -90,7 +98,7 @@ Recommended adapters that are high quality and have been tested over a long peri
 - [USB SinglePort VE.Direct](https://www.duppa.net/product/usb-singleport-ve-direct/?ref=2892) (affiliate link)
 - [USB Quadport VE.Direct](https://www.duppa.net/product/usb-quadport-ve-direct/?ref=2892) (affiliate link)
 
-## Which UART connection is the best to use (TTL/RS232/RS485)?
+### Which UART connection is the best to use (TTL/RS232/RS485)?
 
 The driver works the same with all the supported UART types. Most BMS will use the `3.3V` TTL (which some would lable as UART) and/or RS485 (`5V`). Victron's VE.Direct is RS232 (`12V`), but not many BMS use that.
 
@@ -98,7 +106,7 @@ You need to match the UART type with what your BMS support.
 
 If the Bluetooth module for your BMS use the UART, then you will need to remove that to plug in your USB adapter, if you do not have another UART available. After your initial setup you do not need the Bluetooth, but you will not be able to connect to it with the phone app.
 
-## Do I need a SmartShunt as well?
+### Do I need a SmartShunt as well?
 
 No you don't. All BMS do measure the total battery voltage and most do use a shunt to do that already.
 
@@ -108,25 +116,27 @@ It is best to let the BMS be the Battery Monitor.
 
 You can add both to your system and in the newer Venus OS firmwares you can select to upload both values to the VRM cloud.
 
-## Can the driver be used as monitor only?
+### Can the driver be used as monitor only?
 
 > Please also read [Should I set the Smartshunt or the BMS as the Battery Monitor?](../faq/index.md#should-i-set-the-smartshunt-or-the-bms-as-the-battery-monitor)
 
 Select another or `No battery monitor` in the remote console under `Settings -> System setup -> Battery monitor` and another or `No BMS control` in the remote console under `Settings -> DVCC -> Controlling BMS`.
 
-## How can I monitor single cell voltages locally?
+### How can I monitor single cell voltages locally?
 
 To track all cell voltages and/or other data locally you could use Node-RED, InfluxDB and Grafana. This allows you to have offline statistics. See [Track individual cell voltages](https://github.com/Louisvdw/dbus-serialbattery/discussions/495).
 
-## Why no SoC is displayed in the overview page?
+## Battery Monitoring & Limits
+
+### Why no SoC is displayed in the overview page?
 
 Navigate to `Settings -> System Setup` and check that under `Battery monitor` your BMS or battery aggregator is selected.
 
-## Should I set the Smartshunt or the BMS as the Battery Monitor?
+### Should I set the Smartshunt or the BMS as the Battery Monitor?
 
 Set the BMS as the Battery Monitor of your system so that it can read the alarm and cell data to manage your GX system. If you don't, then these alarms will be ignored and the system will keep on (dis)charging the battery even if a problem alarm is raised. The BMS will react by disconnecting the battery for protection and your inverter will go offline.
 
-## Why is the max cell voltage set to `3.45V`?
+### Why is the max cell voltage set to `3.45V`?
 
 Most home power systems use LiFePo4 cells that are `3.2V`. This explanation is the same but with different voltages for a `3.7V` cell system.
 
@@ -155,17 +165,17 @@ You get most of the power from the cells between `3.1V - 3.45V` and you will hav
 
 ![lfp-charge-discharge-curves](../screenshots/faq-lfp-curves.jpg)
 
-## Why is the charging/discharging current limit (CCL/DCL) smaller than the set one?
+### Why is the charging/discharging current limit (CCL/DCL) smaller than the set one?
 
 The limits are based on percentages of `MAX_BATTERY_CHARGE_CURRENT` and `MAX_BATTERY_DISCHARGE_CURRENT` values, so there is no need for additional modifications. Additionaly you see in the remote console/GUI under `SerialBattery` &rarr; `Parameters` why it's limited.
 
 ![VenusOS](../screenshots/venus-os_guiv2_013.png)
 
-## Why is the displayed charging/discharging current limit (CCL/DCL) not applied?
+### Why is the displayed charging/discharging current limit (CCL/DCL) not applied?
 
 Navigate to `Settings -> System Setup -> Charge Control`, check that `DVCC` is enabled and that under `Controlling BMS` your BMS or battery aggregator is selected. On this page normally only `DVCC` should be enabled.
 
-## Why is my battery not switching to float/bulk?
+### Why is my battery not switching to float/bulk?
 
 Make sure you have set this options in the `config.ini`:
 
@@ -182,7 +192,7 @@ If the `voltage_sum` does not reach or exceed `max_battery_voltage` then you can
 
 ![VenusOS](../screenshots/venus-os_guiv2_parameters-debugging-002.png)
 
-## Does the driver work for `3.7V` based cells also?
+### Does the driver work for `3.7V` based cells also?
 
 Yes, but you will [need to adjust](../general/install.md#how-to-change-the-default-limits) the `MAX_CELL_VOLTAGE` and `MIN_CELL_VOLTAGE` values for `3.7V` cells instead of the default `3.2V` cells.
 
@@ -193,7 +203,7 @@ MAX_CELL_VOLTAGE = 4.0
 MIN_CELL_VOLTAGE = 3.6
 ```
 
-## Why do I get a Low Voltage alarm?
+### Why do I get a low voltage alarm?
 
 ![MultiPlus-II low battery](../screenshots/alarm-multiplus-low-battery.png)
 
@@ -211,7 +221,7 @@ See also:
 - [Low Battery Voltage Alarm if /Info/MaxDischargeCurrent = 0](https://github.com/Louisvdw/dbus-serialbattery/issues/407)
 - [Undervoltage alarm - why?](https://github.com/Louisvdw/dbus-serialbattery/issues/363)
 
-## Why do I get a high voltage alarm?
+### Why do I get a high voltage alarm?
 
 If you receive high voltage alarms that would indicate your battery is:
 
@@ -230,21 +240,23 @@ This will be much faster to do if you use the Keep Batteries changed in ESS opti
 
 Balancing works when ever 1 cell go above the balance threshold, so you are trying to find the battery voltage where that one cell is above the threshold but below the high voltage alarm (e.g. `3.45V - 3.65V`) and then giving the balancers time to work down the high cell with the small balance currents (`50mA` to `200mA`).
 
-### Daly BMS - High voltage alarm
+#### Daly BMS - High voltage alarm
 
 For a high voltage alarm on Daly BMS check also [Daly BMS - High voltage alarm](https://github.com/Louisvdw/dbus-serialbattery/issues/653).
 
 The Daly BMS alarms did not work in driver versions before `v1.0.20230531` and therefore in 99% of the cases the BMS is not setup correctly.
 
-## Why is the battery current inverted?
+### Why is the battery current inverted?
 
 Some Daly BMS send the current as inverted value. This can be corrected by setting `INVERT_CURRENT_MEASUREMENT` to `-1` in the `config.ini`. See [How to edit the `config.ini`](../general/install.md#how-to-edit-the-configini).
 
-## What can I do, if I get BMS cable error?
+## Troubleshooting & System Performance
+
+### What can I do, if I get BMS cable error?
 
 See below.
 
-## What can I do, if the BMS communication is unstable?
+### What can I do, if the BMS communication is unstable?
 
 Most BMS cable errors or unstable communication can be fixed by checking the following:
 
@@ -256,9 +268,9 @@ Most BMS cable errors or unstable communication can be fixed by checking the fol
 - **Serial adapters:** If you suspect your adapter is faulty, try a different one.
 - **Raspberry Pi power:** Always use a proper power supply for your Raspberry Pi, not just a phone charger.
 
-## How to troubleshoot a slow system?
+### How to troubleshoot a slow system?
 
-### Dbus roundtrip time
+#### Dbus roundtrip time
 
 Check the dbus roundtrip time on the VRM portal:
 
@@ -278,7 +290,7 @@ If it is above **100 ms**, the system is too slow to respond and can become unst
 
 If you see high values, your system might have high CPU load. See the [CPU load](#cpu-load) section for troubleshooting steps.
 
-### CPU load
+#### CPU load
 
 The easiest way to troubleshoot high CPU load is to use `htop`. Since `htop` is not available on Venus OS you have to install it first. See [here](https://github.com/mr-manuel/venus-os_helpful-scripts/tree/master/htop/armv7) or use `opkg` to install it (if you know what you do).
 
@@ -286,7 +298,7 @@ Once installed open `htop` and sort by CPU time. To do this press `F6`, then sel
 
 Top exit `htop` press `q` or `CTRL + C`. After exiting you will see a few warnings, which you can ignore.
 
-### Unexpeted system reboot (watchdog)
+#### Unexpeted system reboot (watchdog)
 
 If your system is rebooting multiple times a day, then it's very likely that the watchdog triggers a reboot.
 
@@ -313,7 +325,7 @@ To further check which process had a high CPU usage at that time check the logfi
 head /data/log/watchdog_processlist.txt
 ```
 
-## Why do I have a high CPU usage after installing the driver?
+### Why do I have a high CPU usage after installing the driver?
 
 The driver polls a lot of data every second (for most BMS), which also has to be elaborated. Additionaly the more BMS and USB to serial adapter you have connected, the bigger the load.
 
@@ -321,25 +333,17 @@ If your system cannot handle this and reboots often (check with `uptime` how lon
 
 Keep in mind, that the battery data is then refreshed less often and which can cause system instabilities. In this case you have to try and see which value works best for you.
 
-## How can I reset the SOC to 100%?
+### How can I reset the SOC to 100%?
 
 See the SOC sections on the [features page](../general/features.md#soc-reset-voltage).
 
-## Why is my `config.ini` always reset to default values?
-
-Probably you forgot to remove the USB/SD card with the `venus-data.tar.gz` after successful installation. Please delete the file or remove the USB/SD card. This is fixed with `>= v1.0.20230512`.
-
-## Why is the custom name lost after a reboot?
-
-This feature is only available in and after `v1.0.20230724beta`.
-
-## Fix white screen after install
+### Fix white screen after install
 
 Normally this will happen, if you were on an older firmware for your GX.
 
 You can remove the GUI changes or update your GX firmware to solve this.
 
-### Remove GUI changes
+#### Remove GUI changes
 
 Execute the command below to restore the GUI.
 
@@ -347,7 +351,7 @@ Execute the command below to restore the GUI.
 bash /data/apps/dbus-serialbattery/restore-gui.sh
 ```
 
-### Update to the latest firmware
+#### Update to the latest firmware
 
 If the removal of the GUI changes did not help, you can force a reinstall/update of the firmware. This takes about 5-15 minutes depending on your device and internet connection.
 
@@ -364,11 +368,11 @@ mv /data/rcS.local /data/rcS.local.backup
 
 Now run again the reinstall/update of the firmware.
 
-## How many USB to serial adapters can I connect?
+### How many USB to serial adapters can I connect?
 
 It seems that the Victron GX device has a limit of maximum 8 USB to serial adapters. See [Serial battery driver not found if other VE.direct-USB devices are present](https://github.com/Louisvdw/dbus-serialbattery/issues/422)
 
-## `$'\r': command not found` or `syntax error: unexpected end of file`
+### `$'\r': command not found` or `syntax error: unexpected end of file`
 
 This indicates, that the line endlings were changed during the upload from `LF` to `CRLF`. Run this commands to repair the files:
 
