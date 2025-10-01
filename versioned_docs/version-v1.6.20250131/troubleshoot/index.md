@@ -383,11 +383,11 @@ root@raspberrypi2:~# svstat /service/dbus-serialbattery.*
 
 ### #8 Internal calculation error
 
-Some calculation errors occured in the driver. Check the [driver logs](#datalogdbus-serialbatteryttyusbcurrent-or-datalogdbus-serialbatteryttyama0current) for more details.
+Some calculation errors occured in the driver. Check the [driver logs](#driver-log-files) for more details.
 
 ### #119 Settings invalid
 
-Some settings in your `config.ini` are invalid. Check the [driver logs](#datalogdbus-serialbatteryttyusbcurrent-or-datalogdbus-serialbatteryttyama0current) for more details.
+Some settings in your `config.ini` are invalid. Check the [driver logs](#driver-log-files) for more details.
 
 ## Driver behavior problems
 
