@@ -258,6 +258,16 @@ For example, if you are using three batteries (battery 1 dip switches: `1: ON, r
 
 See also [EG Lifepower (Narada battery that uses Tianpower BMS) - Multi battery setup problems](https://github.com/Louisvdw/dbus-serialbattery/issues/1104).
 
+### JBD BMS
+
+#### CAN
+
+You'll need to change the CAN protocol in the BMS settings to "Victron".
+
+Note that RS-485 connection provides more detailed information than what's available over CAN, such as individual cell voltages. However, the benefit of using CAN is that it requires only cables, not additional adapter hardware.
+
+JBD BMS CAN protocol support has been verified to work with UP16S015 through [Type A](https://www.victronenergy.com/live/battery_compatibility:can-bus_bms-cable) cable connected to CAN1 port on the BMS. [This guide](https://cdn.shopify.com/s/files/1/0253/9752/6580/files/48V100AH_-24-08-21-min.pdf?v=1728522535) has some more detailed information on how to chain UP16S that may or may not be applicable to other JBD BMSs.
+
 ### JKBMS
 
 The JKBMS unfortunately has a wrong labeling. Here the correct pinout.
