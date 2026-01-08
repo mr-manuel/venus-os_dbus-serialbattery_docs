@@ -27,11 +27,11 @@ The compatibility between Venus OS and the driver is summarized below:
 
 | Venus OS Version | Driver Version | Driver Runtime <sup>1</sup> | GUIv2 GX Display     | GUIv2 Browser                         | GUIv1 <sup>2</sup>   |
 | :--------------: | :------------: | :-------------------------: | :------------------: | :-----------------------------------: | :------------------: |
-| v2.9x            | v2.1.x         | OK                          | Unavailable          | Unavailable                           | OK                   |
-| v3.0x - v3.4x    | v2.1.x         | OK                          | Unavailable          | Unavailable                           | OK                   |
-| v3.5x            | v2.1.x         | OK                          | OK                   | OK                                    | OK                   |
-| v3.6x            | v2.1.x         | OK                          | OK                   | OK                                    | OK                   |
-| v3.7x            | v2.1.x         | OK                          | OK                   | OK                                    | OK                   |
+| v2.9x            | v2.1.x         | OK                          | Unavailable          | Unavailable                           | OK <sup>5</sup>      |
+| v3.0x - v3.4x    | v2.1.x         | OK                          | Unavailable          | Unavailable                           | OK <sup>5</sup>      |
+| v3.5x            | v2.1.x         | OK                          | OK <sup>5</sup>      | OK <sup>5</sup>                       | OK <sup>5</sup>      |
+| v3.6x            | v2.1.x         | OK                          | OK                   | OK                                    | OK <sup>5</sup>      |
+| v3.7x            | v2.1.x         | OK                          | OK                   | OK                                    | OK <sup>5</sup>      |
 | Future versions  | v2.1.x         | Very likely OK              | No mods <sup>3</sup> | May not fully functional <sup>4</sup> | May break completely |
 
 <sup>1</sup> **Driver Runtime:** The driver successfully detects the battery and provides correct data to the system.
@@ -41,6 +41,8 @@ The compatibility between Venus OS and the driver is summarized below:
 <sup>3</sup> The original GUIv2 will displayed without modifications to ensure functionality.
 
 <sup>4</sup> It could be that some buttons do not work due to Venus OS backend changes.
+
+<sup>5</sup> New driver features work in the background, but they may not be shown in the GUI.
 
 To see other driver version compatibility, select a driver version in the navigation menu.
 
