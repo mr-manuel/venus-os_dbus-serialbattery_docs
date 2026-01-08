@@ -57,6 +57,10 @@ Works also for:
 
 ### &bull; [Felicity Solar](https://www.felicitysolar.com/)
 
+### &bull; Generic MQTT
+
+Add your own BMS by providing the data via MQTT. For more informations see [How to connect and prepare the battery/BMS](connect.md#generic-mqtt-battery-data-structure).
+
 ### &bull; KS48100
 
 #### |- [Bemory](https://de.aliexpress.com/store/912104017)

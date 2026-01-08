@@ -352,3 +352,207 @@ See also [Is anyone using the new style JK inverter BMS with dbus-serialbattery 
     |     `16`      |     `0x3f`     |
 
 See also [Renogy - Multi battery setup documentation](https://github.com/Louisvdw/dbus-serialbattery/issues/1099).
+
+## Generic MQTT battery data structure
+
+This describes the JSON data structure needed for a generic MQTT driver. It covers all possible fields, their types, whether they are mandatory, and a short description for each.
+
+### Minimal example
+
+```json
+{
+    "cell_count": 4,
+    "capacity": 100,
+    "serial_number": "SN12345678",
+    "voltage": 13.2,
+    "current": 5.2,
+    "soc": 45.87,
+    "temperature_1": 25.5,
+    "charge_fet": true,
+    "discharge_fet": true,
+    "cells": [
+        { "voltage": 3.3 },
+        { "voltage": 3.31 },
+        { "voltage": 3.29 },
+        { "voltage": 3.3 }
+    ]
+}
+```
+
+### Full example
+
+```json
+{
+    "balance_fet": true,
+    "capacity_remain": 80,
+    "capacity": 100,
+    "cell_count": 4,
+    "charge_fet": true,
+    "current": 5.2,
+    "custom_field": "Example custom value",
+    "discharge_fet": true,
+    "hardware_version": "v1.2",
+    "heater_fet": true,
+    "heating": false,
+    "heater_current": 2.05,
+    "heater_power": 27.06,
+    "heater_temperature_start": 2,
+    "heater_temperature_stop": 5,
+    "max_battery_charge_current": 50,
+    "max_battery_discharge_current": 60,
+    "max_battery_voltage_bms": 14.6,
+    "min_battery_voltage_bms": 10,
+    "production": "2025-12-25",
+    "serial_number": "SN12345678",
+    "soc": 45.87,
+    "soh": 98.5,
+    "temperature_1": 25.5,
+    "temperature_2": 25.6,
+    "temperature_3": 25.7,
+    "temperature_4": 25.8,
+    "temperature_mos": 30,
+    "voltage": 13.2,
+    "cells": [
+        { "voltage": 3.3, "balance": false },
+        { "voltage": 3.31, "balance": true },
+        { "voltage": 3.29, "balance": false },
+        { "voltage": 3.3, "balance": false }
+    ],
+    "history": {
+        "deepest_discharge": -80.0,
+        "last_discharge": -40.0,
+        "average_discharge": -50.0,
+        "total_ah_drawn": -1200.0,
+        "charge_cycles": 120,
+        "timestamp_last_full_charge": 1766774400,
+        "full_discharges": 5,
+        "minimum_voltage": 10.5,
+        "maximum_voltage": 14.7,
+        "minimum_cell_voltage": 2.5,
+        "maximum_cell_voltage": 3.7,
+        "low_voltage_alarms": 2,
+        "high_voltage_alarms": 1,
+        "minimum_temperature": 15.0,
+        "maximum_temperature": 38.5,
+        "discharged_energy": 350,
+        "charged_energy": 360
+    },
+    "protection": {
+        "high_voltage": 0,
+        "high_cell_voltage": 0,
+        "low_voltage": 0,
+        "low_cell_voltage": 0,
+        "low_soc": 0,
+        "high_charge_current": 0,
+        "high_discharge_current": 0,
+        "cell_imbalance": 0,
+        "internal_failure": 0,
+        "high_charge_temperature": 0,
+        "low_charge_temperature": 0,
+        "high_temperature": 0,
+        "low_temperature": 0,
+        "high_internal_temperature": 0,
+        "fuse_blown": 0
+    }
+}
+```
+
+### Field Reference
+
+| Field                           | Type               | Mandatory | Description                                            |
+| ------------------------------- | ------------------ | --------- | ------------------------------------------------------ |
+| `cell_count`                    | integer            | Yes       | Number of cells in the battery                         |
+| `capacity`                      | number (float/int) | Yes       | Total battery capacity (usually in Ah)                 |
+| `serial_number`                 | string             | Yes       | Unique serial number of the battery                    |
+| `voltage`                       | number (float)     | Yes       | Total battery voltage (V)                              |
+| `current`                       | number (float)     | Yes       | Current flowing through the battery (A)                |
+| `soc`                           | number (float)     | Yes       | State of charge in percent (0-100)                     |
+| `temperature_1`                 | number (float)     | Yes       | Temperature from the first sensor (°C)                 |
+| `charge_fet`                    | boolean            | Yes       | Charging FET status (true=enabled, false=disabled)     |
+| `discharge_fet`                 | boolean            | Yes       | Discharging FET status (true=enabled, false=disabled)  |
+| `cells`                         | array of objects   | Yes       | List of cell objects (see below)                       |
+| `balance_fet`                   | boolean            | No        | Balancing FET status                                   |
+| `capacity_remain`               | number (float)     | No        | Remaining battery capacity (Ah)                        |
+| `custom_field`                  | string             | No        | Custom user-defined field                              |
+| `hardware_version`              | string             | No        | Hardware version identifier                            |
+| `heater_fet`                    | boolean            | No        | Heater FET status                                      |
+| `heating`                       | boolean            | No        | Heating status                                         |
+| `heater_current`                | number (float)     | No        | Current used by the heater (A)                         |
+| `heater_power`                  | number (float)     | No        | Power used by the heater (W)                           |
+| `heater_temperature_start`      | number (float/int) | No        | Heater start temperature (°C)                          |
+| `heater_temperature_stop`       | number (float/int) | No        | Heater stop temperature (°C)                           |
+| `max_battery_charge_current`    | number (float)     | No        | Maximum allowed charge current (A)                     |
+| `max_battery_discharge_current` | number (float)     | No        | Maximum allowed discharge current (A)                  |
+| `max_battery_voltage_bms`       | number (float)     | No        | Maximum battery voltage as reported by BMS (V)         |
+| `min_battery_voltage_bms`       | number (float)     | No        | Minimum battery voltage as reported by BMS (V)         |
+| `production`                    | string (date)      | No        | Production date or code                                |
+| `soh`                           | number (float)     | No        | State of health in percent (0-100)                     |
+| `temperature_2`                 | number (float)     | No        | Temperature from the second sensor (°C)                |
+| `temperature_3`                 | number (float)     | No        | Temperature from the third sensor (°C)                 |
+| `temperature_4`                 | number (float)     | No        | Temperature from the fourth sensor (°C)                |
+| `temperature_mos`               | number (float)     | No        | MOSFET temperature (°C)                                |
+| `history`                       | object             | No        | Historical data (see below)                            |
+| `protection`                    | object             | No        | Protection/Alarm status (see below)                    |
+
+#### `cells` Array
+
+Each cell object contains:
+
+| Field     | Type    | Mandatory | Description                         |
+| --------- | ------- | --------- | ----------------------------------- |
+| `voltage` | float   | Yes       | Voltage of the cell (V)             |
+| `balance` | boolean | Yes       | Whether the cell is being balanced  |
+
+#### `history` Object
+
+Contains historical battery data:
+
+| Field                        | Type  | Description                              |
+| ---------------------------- | ----- | ---------------------------------------- |
+| `deepest_discharge`          | float | Deepest discharge recorded (Ah)          |
+| `last_discharge`             | float | Last discharge value (Ah)                |
+| `average_discharge`          | float | Average discharge value (Ah)             |
+| `total_ah_drawn`             | float | Total amp-hours drawn from battery (Ah)  |
+| `charge_cycles`              | int   | Number of charge cycles                  |
+| `timestamp_last_full_charge` | int   | Unix timestamp of last full charge       |
+| `full_discharges`            | int   | Number of full discharges                |
+| `minimum_voltage`            | float | Minimum voltage recorded (V)             |
+| `maximum_voltage`            | float | Maximum voltage recorded (V)             |
+| `minimum_cell_voltage`       | float | Minimum cell voltage recorded (V)        |
+| `maximum_cell_voltage`       | float | Maximum cell voltage recorded (V)        |
+| `low_voltage_alarms`         | int   | Number of low voltage alarms             |
+| `high_voltage_alarms`        | int   | Number of high voltage alarms            |
+| `minimum_temperature`        | float | Minimum temperature recorded (°C)        |
+| `maximum_temperature`        | float | Maximum temperature recorded (°C)        |
+| `discharged_energy`          | float | Total discharged energy (Wh or kWh)      |
+| `charged_energy`             | float | Total charged energy (Wh or kWh)         |
+
+#### `protection` Object
+
+Contains protection and alarm status flags. For all fields: **2 = Alarm, 1 = Warning, 0 = OK**.
+
+| Field                       | Type | Description                       |
+| --------------------------- | ---- | --------------------------------- |
+| `high_voltage`              | int  | High voltage status               |
+| `high_cell_voltage`         | int  | High cell voltage status          |
+| `low_voltage`               | int  | Low voltage status                |
+| `low_cell_voltage`          | int  | Low cell voltage status           |
+| `low_soc`                   | int  | Low state of charge status        |
+| `high_charge_current`       | int  | High charge current status        |
+| `high_discharge_current`    | int  | High discharge current status     |
+| `cell_imbalance`            | int  | Cell imbalance status             |
+| `internal_failure`          | int  | Internal failure status           |
+| `high_charge_temperature`   | int  | High charge temperature status    |
+| `low_charge_temperature`    | int  | Low charge temperature status     |
+| `high_temperature`          | int  | High temperature status           |
+| `low_temperature`           | int  | Low temperature status            |
+| `high_internal_temperature` | int  | High internal temperature status  |
+| `fuse_blown`                | int  | Fuse blown status                 |
+
+### Notes
+
+- All mandatory fields must be present for the data to be valid.
+- Optional fields provide additional information if available.
+- Types must match exactly (e.g., booleans for FETs, floats for voltages).
+- The `cells` array length must match `cell_count`.
+- Timestamps are Unix epoch seconds.
