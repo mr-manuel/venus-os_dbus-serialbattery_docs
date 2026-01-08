@@ -258,6 +258,18 @@ For example, if you are using three batteries (battery 1 dip switches: `1: ON, r
 
 See also [EG Lifepower (Narada battery that uses Tianpower BMS) - Multi battery setup problems](https://github.com/Louisvdw/dbus-serialbattery/issues/1104).
 
+### JBD BMS
+
+RS-485 connection is recommended because it provides more detailed information than what's available over CAN, such as individual cell voltages. One benefit of using CAN is that it requires only cables, not additional adapter hardware.
+
+#### CAN
+
+With JBD, dbus-serialbattery currently supports only the Victron dialect of CAN protocol, so you'll need to change the CAN protocol in the BMS settings to "Victron". It's not clear whether any other JBD BMS than the UPxx series has this setting. If your BMS has a screen, the easiest way to do so might be on the screen, on the UP series go to PaskSet -> CANBus -> choose Can-Victron. Otherwise, [JBD-ES-UP](https://diysolarforum.com/resources/jbd-smart-up16s-series-bms-used-by-eco-worthy-48v-rack-battery.477/) software for UP series has protocol dropdowns on the main screen. If "Set" buttons are inactive, click Account -> User Login in the menu and enter the password from the link. Some Bluetooth apps might also allow to set CAN protocol, but the PC software appears to be more well-maintained.
+
+Note that JBD BMS over CAN is supported by Victron natively, so you don't need dbus-serialbattery if you just want communication with the BMS. However, dbus-serialbattery allows you to fine-tune the current and voltage parameters in such a way that BMS protection never has to be triggered, providing an additional layer of safety. Also, if your batteries are ever exposed to below room temperatures, you can set the charge current control based on temperature (`CCCM_T_ENABLE`) to more healthy values based on the datasheet for your cells, compared to the simple binary undertemperature cutoff that JBD BMS has.
+
+JBD BMS CAN protocol support has been verified to work with UP16S015 through [Type A](https://www.victronenergy.com/live/battery_compatibility:can-bus_bms-cable) cable connected to CAN1 port on the BMS. [This guide](https://cdn.shopify.com/s/files/1/0253/9752/6580/files/48V100AH_-24-08-21-min.pdf?v=1728522535) has some more detailed information on how to daisy-chain the UP series BMS.
+
 ### JKBMS
 
 The JKBMS unfortunately has a wrong labeling. Here the correct pinout.
