@@ -262,13 +262,38 @@ See also [EG Lifepower (Narada battery that uses Tianpower BMS) - Multi battery 
 
 RS-485 connection is recommended because it provides more detailed information than what's available over CAN, such as individual cell voltages. One benefit of using CAN is that it requires only cables, not additional adapter hardware.
 
+For UP series, [this guide](https://cdn.shopify.com/s/files/1/0253/9752/6580/files/48V100AH_-24-08-21-min.pdf?v=1728522535) has detailed information on how to daisy-chain the batteries.
+
+#### RS-485
+
+With RS-485, your BMS_TYPE will most likely be autodetected as `LltJbd`, which is the default option that does not support daisy-chaining.
+
+##### Information specific to UP series
+
+If your JBD BMS is from UP16S series, you can manually set `BMS_TYPE = LltJbd_Up16s` in config.ini to enable support for daisy-chaining, CCL/DCL from the BMS and, depending on your setup, possibly cell balancing status and high-resolution SOC (0.01%). However, compared to `LltJbd` some BMS manipulation features will not be supported, see [feature comparison](./features.md#bms-feature-comparison) to decide which option you prefer. The information below is for `LltJbd_Up16s`.
+
+Battery addresses start from 1 (1 is the master) and you need to specify them in the config, e.g. `BATTERY_ADDRESSES = 0x01, 0x02, 0x03`.
+
+Below are the possible cabling configurations in the descending order of how much information can be read from the BMSes. All of these configurations are supported, the differences are fairly minor and are described in the table. If unique BMS serial number cannot be read and a combination of "Pack SN Code" and rated battery capacity happens to be not unique among your batteries, dbus-serialbattery will refuse to work with those batteries. To workaround that, in the Config tab in [JBD-ES-UP](https://diysolarforum.com/resources/jbd-smart-up16s-series-bms-used-by-eco-worthy-48v-rack-battery.477/) you can set Pack SN Code (sometimes labeled just "SN Code") to any unique text, or, as a secondary option, slightly change the Rated Capacity to make it unique.
+| Configuration | Refresh interval, seconds | Read cell balancing status <sup>(2)</sup> | Read high-resolution SOC, cumulative Ah drawn, unique BMS serial number, full model, firmware version and production dates <sup>(3)</sup> | `AUTO_RESET_SOC` config.ini setting support |
+| - | :-: | :-: | :-: | :-: |
+| GX device connected with separate adapters directly to each BMS on RS485-1, RS232, or Bluetooth/Wifi UART port. In this (and only this) scenario set `UP16S_REQUIRE_DIRECT_CONNECTION` in config.ini to True, otherwise if your batteries are also connected through their ADD_IN/ADD_OUT ports you will either get duplicate batteries displayed, or not all the available data will be read. | ~1s | For all batteries | For all batteries | For all batteries |
+| GX device connected only to the master through the Bluetooth/Wifi UART port on the BMS PCB, e.g. using the [JBD UART Communication Module](https://jiabaida-bms.com/products/jbd-rs485-communication-module-smart-bms-tools-setting-and-monitoring-battery-via-pc). Batteries are daisy-chained through their ADD_IN/ADD_OUT ports. | ~50s <sup>(1)</sup> | For master only | For all batteries | For all batteries |
+| GX device connected only to the master through RS485-1 or RS232 (RS232 is untested), batteries are daisy-chained through their ADD_IN/ADD_OUT ports. | ~50s <sup>(1)</sup> | For master only | For master only | For master only |
+
+(1) The refresh interval with daisy-chained batteries is limited by the master BMS. Master information still gets updated every ~1s.
+
+(2) Cell balancing status for all daisy-chained batteries might be available on up-to-date firmware, but this hasn't been verified.
+
+(3) High-resolution SOC and cumulative Ah drawn require firmware around v12 or later. For the full model, firmware version and production dates, you can verify these values are read successfully by checking whether `BMS` and `Pack` dates are shown for each of your batteries in Cerbo Settings -> Devices -> your battery -> Device -> Hardware Version.
+
 #### CAN
 
 With JBD, dbus-serialbattery currently supports only the Victron dialect of CAN protocol, so you'll need to change the CAN protocol in the BMS settings to "Victron". It's not clear whether any other JBD BMS than the UPxx series has this setting. If your BMS has a screen, the easiest way to do so might be on the screen, on the UP series go to PaskSet -> CANBus -> choose Can-Victron. Otherwise, [JBD-ES-UP](https://diysolarforum.com/resources/jbd-smart-up16s-series-bms-used-by-eco-worthy-48v-rack-battery.477/) software for UP series has protocol dropdowns on the main screen. If "Set" buttons are inactive, click Account -> User Login in the menu and enter the password from the link. Some Bluetooth apps might also allow to set CAN protocol, but the PC software appears to be more well-maintained.
 
 Note that JBD BMS over CAN is supported by Victron natively, so you don't need dbus-serialbattery if you just want communication with the BMS. However, dbus-serialbattery allows you to fine-tune the current and voltage parameters in such a way that BMS protection never has to be triggered, providing an additional layer of safety. Also, if your batteries are ever exposed to below room temperatures, you can set the charge current control based on temperature (`CCCM_T_ENABLE`) to more healthy values based on the datasheet for your cells, compared to the simple binary undertemperature cutoff that JBD BMS has.
 
-JBD BMS CAN protocol support has been verified to work with UP16S015 through [Type A](https://www.victronenergy.com/live/battery_compatibility:can-bus_bms-cable) cable connected to CAN1 port on the BMS. [This guide](https://cdn.shopify.com/s/files/1/0253/9752/6580/files/48V100AH_-24-08-21-min.pdf?v=1728522535) has some more detailed information on how to daisy-chain the UP series BMS.
+JBD BMS CAN protocol support has been verified to work with UP16S015 through [Type A](https://www.victronenergy.com/live/battery_compatibility:can-bus_bms-cable) cable connected to CAN1 port on the BMS.
 
 ### JKBMS
 
