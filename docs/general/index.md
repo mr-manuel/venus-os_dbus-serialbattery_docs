@@ -45,6 +45,12 @@ Depending on how you want to connect your battery, you may need one of these ada
 * USB to CAN adapter
 * CAN HAT for Raspberry Pi
 
+## Try it out — no setup required!
+
+Curious what dbus-serialbattery looks and feels like in action? Explore the interactive demo and play around with all the settings — completely risk-free. Nothing is saved, nothing can go wrong, and no device is needed. It's a great way to get familiar with the interface before or during your own setup.
+
+[Launch the interactive demo](https://mr-manuel.github.io/venus-os_gui-v2/)
+
 ## Screenshots
 
 ### Venus OS
