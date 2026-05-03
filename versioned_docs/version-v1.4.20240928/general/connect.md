@@ -96,7 +96,7 @@ For EG4 LiFePower batteries, you need to set your DIP switch pins to 1 for the b
 
 The JKBMS unfortunately has a wrong labeling. Here the correct pinout.
 
-![VenusOS](../screenshots/jkbms-pinout.png)
+![VenusOS](../screenshots/jkbms-pinout.jpg)
 
 ![VenusOS](../screenshots/jkbms-cabeling.png)
 

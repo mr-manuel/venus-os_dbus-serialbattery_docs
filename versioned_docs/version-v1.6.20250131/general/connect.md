@@ -180,7 +180,7 @@ See also [EG Lifepower (Narada battery that uses Tianpower BMS) - Multi battery 
 
 The JKBMS unfortunately has a wrong labeling. Here the correct pinout.
 
-![VenusOS](../screenshots/jkbms-pinout.png)
+![VenusOS](../screenshots/jkbms-pinout.jpg)
 
 ![VenusOS](../screenshots/jkbms-cabeling.png)
 

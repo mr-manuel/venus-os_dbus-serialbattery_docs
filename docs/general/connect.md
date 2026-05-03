@@ -299,7 +299,7 @@ JBD BMS CAN protocol support has been verified to work with UP16S015 through [Ty
 
 The JKBMS unfortunately has a wrong labeling. Here the correct pinout.
 
-![VenusOS](../screenshots/jkbms-pinout.png)
+![VenusOS](../screenshots/jkbms-pinout.jpg)
 
 ![VenusOS](../screenshots/jkbms-cabeling.png)
 
