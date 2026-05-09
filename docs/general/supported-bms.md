@@ -138,6 +138,15 @@ So far only tested together with 12V (4 cell) modules, i.e. https://www.valence.
 | - |-|
 | ![Xiaoxian app](../screenshots/bms-xiaoxian-android.jpg) | ![Xiaoxian app](../screenshots/bms-xiaoxian-ios.jpg) |
 
+### &bull; XDZN / WattCycle BLE BMS
+
+Supports XDZN_001 and WT-prefixed devices (e.g. WattCycle 314Ah LiFePO4) communicating over Bluetooth BLE.
+Protocol reverse-engineered by [@qume](https://github.com/qume/wattcycle_ble).
+
+Works also for:
+
+#### |- WattCycle Mini Smart BMS 314Ah LiFePO4 (4S)
+
 ## Planned support
 
 You can view the current [BMS requests](https://github.com/mr-manuel/venus-os_dbus-serialbattery/discussions/categories/new-bms-requests) to see which BMS support is requested and vote for the BMS you want to be supported.
