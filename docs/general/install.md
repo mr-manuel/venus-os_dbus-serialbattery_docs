@@ -25,24 +25,22 @@ toc_max_heading_level: 4
 
 The compatibility between Venus OS and the driver is summarized below:
 
-| Venus OS Version | Driver Version | Driver Runtime <sup>1</sup> | GUIv2 GX Display     | GUIv2 Browser                         | GUIv1 <sup>2</sup>   |
-| :--------------: | :------------: | :-------------------------: | :------------------: | :-----------------------------------: | :------------------: |
-| v2.9x            | v2.1.x         | OK                          | Unavailable          | Unavailable                           | OK <sup>5</sup>      |
-| v3.0x - v3.4x    | v2.1.x         | OK                          | Unavailable          | Unavailable                           | OK <sup>5</sup>      |
-| v3.5x            | v2.1.x         | OK                          | OK <sup>5</sup>      | OK <sup>5</sup>                       | OK <sup>5</sup>      |
-| v3.6x            | v2.1.x         | OK                          | OK                   | OK                                    | OK <sup>5</sup>      |
-| v3.7x            | v2.1.x         | OK                          | OK                   | OK                                    | OK <sup>5</sup>      |
-| Future versions  | v2.1.x         | Very likely OK              | No mods <sup>3</sup> | May not fully functional <sup>4</sup> | May break completely |
+| Venus OS Version | Driver Version | Driver Runtime <sup>1</sup> | GUIv2 GX Display            | GUIv2 Browser               | GUIv1 <sup>2</sup> |
+| :--------------: | :------------: | :-------------------------: | :-------------------------: | :-------------------------: | :----------------: |
+| v2.9x            | v2.1.x         | OK                          | Unavailable                 | Unavailable                 | OK <sup>4</sup>    |
+| v3.0x - v3.4x    | v2.1.x         | OK                          | Unavailable                 | Unavailable                 | OK <sup>4</sup>    |
+| v3.5x            | v2.1.x         | OK                          | OK <sup>4</sup>             | OK <sup>4</sup>             | OK <sup>4</sup>    |
+| v3.6x            | v2.1.x         | OK                          | OK                          | OK                          | OK <sup>4</sup>    |
+| v3.7x            | v2.1.x         | OK                          | OK                          | OK                          | OK <sup>4</sup>    |
+| Future versions  | v2.1.x         | Very likely OK              | Very likely OK <sup>3</sup> | Very likely OK <sup>3</sup> | OK <sup>4</sup>    |
 
 <sup>1</sup> **Driver Runtime:** The driver successfully detects the battery and provides correct data to the system.
 
 <sup>2</sup> **Note:** dbus-serialbattery features are not developed for GUIv1 anymore. Switch to GUIv2 for a better experience and new features.
 
-<sup>3</sup> The original GUIv2 will displayed without modifications to ensure functionality.
+<sup>3</sup> It could be that some buttons do not work due to Venus OS backend changes.
 
-<sup>4</sup> It could be that some buttons do not work due to Venus OS backend changes.
-
-<sup>5</sup> New driver features work in the background, but they may not be shown in the GUI.
+<sup>4</sup> New driver features work in the background, but they may not be shown in the GUI.
 
 To see other driver version compatibility, select a driver version in the navigation menu.
 
@@ -288,6 +286,7 @@ If you use the cell voltage limits, temperature limits and/or SoC limits you als
 
 If you want the driver to control charging voltage, charging current, and discharging current for your chargers and inverters, turn on DVCC.
 You can find DVCC under `Settings -> System Setup -> Charge Control`.
+
 - Single battery setup: Make sure that the driver is selected as controlling BMS
 - Multi battery setup: Make sure that the battery aggregator is selected as controlling BMS (see also [How to aggregate multiple batteries?](../faq/index.md#dbus-aggregate-batteries-by-dr-gigavolt-recommended))
 
