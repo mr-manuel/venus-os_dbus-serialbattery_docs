@@ -36,6 +36,8 @@ All listed data below depend on each [BMS capabilities](#bms-feature-comparison)
 - Min/max temperature
 - Balancing state
 - Allow to charge/discharge/balance state
+- State of Health (SoH) (where BMS supports)
+- Heating status and allow to heat (where BMS supports)
 
 ### Cell Data
 
@@ -74,13 +76,22 @@ All listed data below depend on each [BMS capabilities](#bms-feature-comparison)
 - Choose BMS disconnect behavior
 - Linear/step calculation of `CVL`, `CCL`, and `DCL`
 - Use external current sensor, e.g., SmartShunt (optional)
+- Charge voltage limitation: automatically switch `CVL` from bulk/absorption voltage to float voltage when the battery is full, and back when needed (optional)
 - Set `CVL` based on cell voltage to prevent overvoltage of a single cell (optional)
+- `CVL` cell OVP recovery with configurable hold period and ramp rate after an over-voltage condition clears (optional)
 - Set `CCL` and `DCL` based on cell voltage to reduce cell stress (optional)
 - Set `CCL` and `DCL` based on temperature to reduce cell stress (optional)
 - Set `CCL` and `DCL` based on MOSFET temperature to reduce BMS stress (optional)
 - Set `CCL` and `DCL` based on SoC to reduce cell stress (optional)
+- `CCL` and `DCL` recovery with configurable hold period and ramp rate after a limiting condition clears
 - Time-to-go
 - Time to custom SoC (multiple points can be specified)
+- Battery history tracking (charge cycles, energy counters, min/max values)
+- Current correction via configurable measurement mapping (optional)
+- Voltage drop compensation between BMS and charger (optional)
+- Midpoint voltage simulation (optional)
+- Publish battery data as JSON via MQTT (optional)
+- Telemetry reporting to help improve the driver (anonymous, can be disabled)
 
 For more details and other options, check the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/dbus-serialbattery/config.default.ini).
 
@@ -119,15 +130,21 @@ The `CVL`, `CCL` and `DCL` limits can be applied in Step or Linear mode.
 
 ## Charge voltage control management
 
-### Cell voltage penalty
+### Cell voltage limitation (CVL cell OVP)
 
-If the cell voltage reaches a specific value, then subtract a penalty from the CVL.
+When a cell exceeds `MAX_CELL_VOLTAGE`, the driver lowers the charge voltage limit (`CVL`) to protect that cell from over-voltage while the rest of the pack continues to balance. There are three controller modes (`CVL_CONTROLLER_MODE`):
 
-Detailed info can be found here: [CCL/DCL depending on cell-voltage does not turn off charging completely, still overvoltage alarm](https://github.com/Louisvdw/dbus-serialbattery/issues/297#issuecomment-1327142635)
+1. **P-Controller (penalty sum):** The voltage overshoot of all cells above `MAX_CELL_VOLTAGE` is summed and subtracted from `CVL`.
+2. **I-Controller:** Gradually adjusts `CVL` to keep the highest cell at `MAX_CELL_VOLTAGE` + `SWITCH_TO_FLOAT_CELL_VOLTAGE_DIFF`.
+3. **Clipped sum controller:** A logic-based limiting controller that caps the total charge voltage based on individual cell overvoltage, with a small margin for balancing.
 
-### Float voltage emulation
+After the OVP condition clears, `CVL` recovers with a configurable hold period (`CVL_RECOVERY_HOLD_SEC`) followed by a gradual ramp (`CVL_RECOVERY_RATE_V_PER_SEC`).
 
-If the `MAX_CELL_VOLTAGE` \* `cell count` is reached for `SWITCH_TO_FLOAT_WAIT_FOR_SEC` seconds, the CVL changes to `FLOAT_CELL_VOLTAGE` \* `cell count`. Max voltage is used again if the SoC drops below `SWITCH_TO_BULK_SOC_THRESHOLD` or the cell voltage difference exceeds `SWITCH_TO_BULK_CELL_VOLTAGE_DIFF`.
+Detailed info on the P-Controller can be found here: [CCL/DCL depending on cell-voltage does not turn off charging completely, still overvoltage alarm](https://github.com/Louisvdw/dbus-serialbattery/issues/297#issuecomment-1327142635)
+
+### Charge voltage limitation (float switching)
+
+If the `MAX_CELL_VOLTAGE` \* `cell count` is reached and cells are balanced, the `CVL` drops to `FLOAT_CELL_VOLTAGE` \* `cell count` after `SWITCH_TO_FLOAT_WAIT_FOR_SEC` seconds. The `CVL` returns to max voltage when the SoC drops below `SWITCH_TO_BULK_SOC_THRESHOLD` or the cell voltage difference exceeds `SWITCH_TO_BULK_CELL_VOLTAGE_DIFF`. This is controlled by `CVCM_ENABLE`.
 
 ## Charge/Discharge current control management
 
@@ -142,6 +159,8 @@ When your battery is close to empty the reduced discharge current will prevent a
 You can set CCCM/DCCM limits for 4 attributes which can be enabled / disabled and adjusted by settings in the `config.ini`.
 
 The smallest limit from all enabled will apply.
+
+When a limiting condition clears, the current does not jump back immediately. A configurable hold period (`CCL_RECOVERY_HOLD_SEC` / `DCL_RECOVERY_HOLD_SEC`) ensures the condition has genuinely stabilized, after which the current ramps back up at a configurable rate (`CCL_RECOVERY_RATE_A_PER_SEC` / `DCL_RECOVERY_RATE_A_PER_SEC`) to avoid large demand spikes.
 
 Check the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/dbus-serialbattery/config.default.ini) for more information.
 
