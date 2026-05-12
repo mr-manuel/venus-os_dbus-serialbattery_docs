@@ -69,12 +69,12 @@ These limits can be changed in the config file. If you change the cell voltages,
 
 ## Settings for your BMS/battery
 
-You need to first set up your BMS hardware to match your cells. You would do this, if you build you own battery or your manufacturer/installer have done this for you.
+You need to first set up your BMS hardware to match your cells. You would do this, if you build your own battery or your manufacturer/installer have done this for you.
 
 The important steps:
 
 * Use the same cells (type, branch and capacity) and make sure they are balanced.
-* You need to correctly set your battery capacity to match the cells you are using. Your SoC calculation in your BMS will be wrong otherwise. If you use `120Ah` cells then your battery capacity will be `120Ah` etc.
+* You need to correctly set your battery capacity to match the cells you are using. Your SoC calculation in your BMS will be wrong otherwise. If you use `120Ah` cells then your battery capacity will be `120Ah`, etc.
 * You need to correctly set your min/max cell protection voltages. These are voltages when your BMS will disconnect to protect your cells like `2.85V` and `3.65V`. Your driver limits should be between these and NOT the same.
 
 Check the [How to connect and prepare the battery/BMS](./connect.md) page if you didn't already or for BMS specific settings.
@@ -98,7 +98,7 @@ Check the [How to connect and prepare the battery/BMS](./connect.md) page if you
 
 > 🚨 IMPORTANT! Read the [changelog](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/CHANGELOG.md) BEFORE updating to a new version.
 
-> Require [root access](https://www.victronenergy.com/live/ccgx:root_access#root_access)
+> Requires [root access](https://www.victronenergy.com/live/ccgx:root_access#root_access)
 
 1. Log into your Venus OS device using a SSH client like [Putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) or bash.
 2. Run these commands to start the installer.
@@ -111,7 +111,7 @@ Check the [How to connect and prepare the battery/BMS](./connect.md) page if you
 3. You can now choose which version you want to install:
     1. [Latest release](#latest-release)
 
-       Stable version, tested for more then a week.
+       Stable version, tested for more than a week.
     2. [Beta release](#beta-release)
 
        Beta version, no errors after 72 h runtime, long time testing needed.
@@ -126,7 +126,7 @@ Check the [How to connect and prepare the battery/BMS](./connect.md) page if you
 
 #### Latest release
 
-Stable version, tested for more then a week.
+Stable version, tested for more than a week.
 
 Run the [install script](#install-or-update-over-ssh) and select `1`.
 
@@ -263,7 +263,7 @@ Run `/data/apps/dbus-serialbattery/enable.sh` after you added the CAN config to 
 
 ## How to change the default limits
 
-Should you require different settings like higher/lower currents or higher/lower min/max cell voltages and your battery can handle that, than you can change it in the settings.
+Should you require different settings like higher/lower currents or higher/lower min/max cell voltages and your battery can handle that, then you can change them in the settings.
 
 Here an example to set in the `config.ini`:
 
@@ -276,7 +276,7 @@ MAX_CELL_VOLTAGE   = 3.450
 FLOAT_CELL_VOLTAGE = 3.375
 ```
 
-For further informations see [Settings location/path](#settings-locationpath) and [How to edit the `config.ini`](#how-to-edit-the-configini).
+For more information see [Settings location/path](#settings-locationpath) and [How to edit the `config.ini`](#how-to-edit-the-configini).
 
 If you use the cell voltage limits, temperature limits and/or SoC limits you also need to adjust their values to match the new current, else CCL and DCL will not change. See also [Why is the charging/discharging current limit (CCL/DCL) smaller than the set one?](../faq/index.md#why-is-the-chargingdischarging-current-limit-ccldcl-smaller-than-the-set-one).
 

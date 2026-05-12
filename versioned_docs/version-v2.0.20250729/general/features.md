@@ -82,7 +82,7 @@ All listed data below depend on each [BMS capabilities](#bms-feature-comparison)
 - Time-to-go
 - Time to custom SoC (multiple points can be specified)
 
-For more details and other options, check the [`config.sample.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/tree/v2.0.20250729/dbus-serialbattery/config.default.ini).
+For more details and other options, check the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/tree/v2.0.20250729/dbus-serialbattery/config.default.ini).
 
 ### SoC reset voltage
 

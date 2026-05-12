@@ -331,7 +331,7 @@ If there is no log folder under `/data/log/dbus-serialbattery.*` then check:
 
 Check your cable connections, if the log file shows `ERROR: No reply - returning` from the battery.
 
-The RX/TX lights should both flash as data is transfered. If only one flashes then your RX/TX might be swapped.
+The RX/TX lights should both flash as data is transferred. If only one flashes then your RX/TX might be swapped.
 
 #### Driver runtime (stability check)
 
@@ -443,7 +443,7 @@ Check your Alarm Logs in your [VRM portal](https://vrm.victronenergy.com/install
 
 ## Advanced section (VRM Portal)
 
-Check your graphs in Advanced section in your [VRM Portal](https://vrm.victronenergy.com/installation-overview) after selectiong your device.
+Check your graphs in Advanced section in your [VRM Portal](https://vrm.victronenergy.com/installation-overview) after selecting your device.
 
 You can use the graphs to look at your values over time. This makes finding values that change much easier.
 

@@ -69,7 +69,7 @@ All listed data below depend on each [BMS capabilities](#bms-feature-comparison)
     - Discharge Current Limit (`DCL`)
 - Current average (last 5 minutes)
 - SoC reset voltage: Temporarily apply higher voltage to reset BMS SoC to 100% (optional)
-- SoC calculation: Calculate SoC based on coloumb-counting in the driver and apply current correction if needed (optional)
+- SoC calculation: Calculate SoC based on coulomb-counting in the driver and apply current correction if needed (optional)
 - SoC reset via driver on BMS: Reset BMS SoC to 100% when battery switches to float (optional, not available for all)
 - Choose BMS disconnect behavior
 - Linear/step calculation of `CVL`, `CCL`, and `DCL`
@@ -82,35 +82,31 @@ All listed data below depend on each [BMS capabilities](#bms-feature-comparison)
 - Time-to-go
 - Time to custom SoC (multiple points can be specified)
 
-For more details and other options, check the [`config.sample.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/dbus-serialbattery/config.default.ini).
+For more details and other options, check the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/dbus-serialbattery/config.default.ini).
 
 ### SoC reset voltage
 
-Some BMS need a higher voltage to trigger a reset to 100% SOC. `SOC_RESET_VOLTAGE` allows you to trigger this voltage once in a while. The driver will supress high voltage warnings from the driver
+Some BMS need a higher voltage to trigger a reset to 100% SOC. `SOC_RESET_CELL_VOLTAGE` allows you to trigger this voltage once in a while. The driver will suppress high voltage warnings from the driver when it switches to this voltage. It might be that other systems (like the MultiPlus or Solar Charger) trigger a high voltage warning in this case when not properly configured.
 
-when it switches to this voltage. It might be that other systems (like the MultiPlus or Solar Charger) trigger a high voltage warning in this case when not properly configured.
-
-See the `SOC reset voltage` section in the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/dbus-serialbattery/config.default.ini) for more informations.
+See the `SOC reset voltage` section in the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/dbus-serialbattery/config.default.ini) for more information.
 
 This has nothing to do with the `SOC calculation` or `SOC reset via driver on BMS`.
 
 ## SoC calculation
 
-Many BMS have problems to manage a SOC reset properly. To workaround this you can enable the SOC calculation of the driver.This ignores the SOC of the BMS and calculates it
-
-based on coloumb-counting (count the current flowing in and out).
+Many BMS have problems managing a SOC reset properly. To work around this, you can enable the SOC calculation of the driver. This ignores the SOC of the BMS and calculates it based on coulomb-counting (counting the current flowing in and out).
 
 It's also possible to create a map to correct wrong current measurements.
 
-See the `SOC calculation` section in the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/dbus-serialbattery/config.default.ini) for more informations.
+See the `SOC calculation` section in the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/dbus-serialbattery/config.default.ini) for more information.
 
 This has nothing to do with the `SOC reset voltage` or `SOC reset via driver on BMS`.
 
 ## SoC reset via driver on BMS
 
-Some BMS do not reset the SoC automatically, when the battery is full. This option allows the driver to reset the SoC of the BMS, when it swtiches the `CVL` from absorption to float.
+Some BMS do not reset the SoC automatically when the battery is full. This option allows the driver to reset the SoC of the BMS when it switches the `CVL` from absorption to float.
 
-See `AUTO_RESET_SOC` in the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/dbus-serialbattery/config.default.ini) for more informations.
+See `AUTO_RESET_SOC` in the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/dbus-serialbattery/config.default.ini) for more information.
 
 This has nothing to do with the `SOC calculation` or `SOC reset voltage`.
 
@@ -118,8 +114,8 @@ This has nothing to do with the `SOC calculation` or `SOC reset voltage`.
 
 The `CVL`, `CCL` and `DCL` limits can be applied in Step or Linear mode.
 
-- **Step** use hard boundaries that will apply recognisable step values and use less processing power (DEFAULT)
-- **Linear** will give a gradual change from one limit range to the next
+- **Linear** (mode 1, default) gives a gradual change from one limit range to the next, with smoother transitions
+- **Step** (mode 2) uses hard boundaries that apply fixed step values and uses less processing power
 
 ## Charge voltage control management
 
@@ -131,7 +127,7 @@ Detailed info can be found here: [CCL/DCL depending on cell-voltage does not tur
 
 ### Float voltage emulation
 
-If the `MAX_CELL_VOLTAGE` \* `cell count` is reached for `MAX_VOLTAGE_TIME_SEC` then the CVL changes to `FLOAT_CELL_VOLTAGE` \* `cell count`. Max voltage could be reached again if the SoC gets under `SOC_LEVEL_TO_RESET_VOLTAGE_LIMIT`.
+If the `MAX_CELL_VOLTAGE` \* `cell count` is reached for `SWITCH_TO_FLOAT_WAIT_FOR_SEC` seconds, the CVL changes to `FLOAT_CELL_VOLTAGE` \* `cell count`. Max voltage is used again if the SoC drops below `SWITCH_TO_BULK_SOC_THRESHOLD` or the cell voltage difference exceeds `SWITCH_TO_BULK_CELL_VOLTAGE_DIFF`.
 
 ## Charge/Discharge current control management
 
@@ -139,7 +135,7 @@ CCCM/DCCM limits the current when the battery is close to full or close to empty
 
 When your battery is full, the reduced charge current will give the balancers in your BMS time to work.
 
-When your battery is close to empty the reduced dicharge current will limit that a sudden large load will pull your battery cells below their protection values.
+When your battery is close to empty the reduced discharge current will prevent a sudden large load from pulling your battery cells below their protection values.
 
 ### CCCM/DCCM attributes
 
@@ -147,7 +143,7 @@ You can set CCCM/DCCM limits for 4 attributes which can be enabled / disabled an
 
 The smallest limit from all enabled will apply.
 
-Check the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/dbus-serialbattery/config.default.ini) for more informations.
+Check the [`config.default.ini`](https://github.com/mr-manuel/venus-os_dbus-serialbattery/blob/master/dbus-serialbattery/config.default.ini) for more information.
 
 ### Cell voltage
 
@@ -181,7 +177,7 @@ CCCM/DCCM limits the charge/discharge current depending on the SoC.
 
 All drivers are UART/TTL or RS485, except those with BLE or CAN in the name. BLE stands for Bluetooth connection, and CAN stands for CAN bus connection.
 
-Some BMS drivers support also BMS from other manifacturers. Check the [Supported BMS](./supported-bms.md) page for more info.
+Some BMS drivers support also BMS from other manufacturers. Check the [Supported BMS](./supported-bms.md) page for more info.
 
 Generic drivers can provide all features, but the actual features you get depend on what your BMS supports.
 
@@ -212,7 +208,7 @@ Generic drivers can provide all features, but the actual features you get depend
 | Disable discharging via driver on BMS | No  | Yes  | Yes      | No       | No                 | No            | No     | No             | Yes          | No            | No            | No               | No                       | No        | No                          | No             | No             | No      | No         | Yes     | Yes                        | No          | No                 | No                 | No       | No     | No       | No     | No        | No                        | No                | No                      |
 | Disable balancing via driver on BMS   | No  | Yes  | Yes      | No       | No                 | No            | No     | No             | Yes          | No            | No            | No               | No                       | No        | No                          | No             | No             | No      | No         | Yes     | Yes                        | No          | No                 | No                 | No       | No     | No       | No     | No        | No                        | No                | No                      |
 
-(1) Disabled by default. They can be enabled by uncommenting in `dbus-serialbattery.py`.
+(1) Disabled by default. They can be enabled by adding them to the `BMS_TYPE` setting in `config.ini`. See [How to enable a disabled BMS](../general/install.md#how-to-enable-a-disabled-bms).
 
 (2) No cells yet.
 

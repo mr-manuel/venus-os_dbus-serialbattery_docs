@@ -305,7 +305,7 @@ The JKBMS unfortunately has a wrong labeling. Here the correct pinout.
 
 See also [JK BMS JK-B2A8S20P RS-485 port / connector](https://github.com/Louisvdw/dbus-serialbattery/discussions/250) and [New JKBMS "JK_DZ11B1A24S" (balancer only)](https://github.com/Louisvdw/dbus-serialbattery/discussions/578).
 
-### JKBMS PB Model (also know as JK Inverter BMS)
+### JKBMS PB Model (also known as JK Inverter BMS)
 
 > 🌼🔗 Only if you want to connect multiple JKBMS PB BMS to the same RS485 adapter 👇
 

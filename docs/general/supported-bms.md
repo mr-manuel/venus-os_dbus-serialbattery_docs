@@ -11,7 +11,7 @@ toc_max_heading_level: 4
 
 ## Most used BMS
 
-This are the three most used BMS with this driver.
+These are the three most used BMS with this driver.
 
 🥇 JKBMS (68% of all systems)
 

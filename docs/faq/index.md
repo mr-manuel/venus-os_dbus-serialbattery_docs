@@ -64,19 +64,19 @@ Virtual battery that has to be fed over MQTT in case you want to merge your data
 
 ### Why do I need a BMS for lithium batteries?
 
-Lithuim cells are great at storing energy, but they can be dangerous. An overcharged cell can cause a fire. A Battery Management System (BMS) first priority is to protect the cells in your battery from any potential hazards.
+Lithium cells are great at storing energy, but they can be dangerous. An overcharged cell can cause a fire. A Battery Management System (BMS) first priority is to protect the cells in your battery from any potential hazards.
 
 The BMS will prevent your battery reaching an unsafe situation (it will disconnect the charge or discharge) and help with the state of each cell inside the battery so that your battery will last longer.
 
 ### Which BMS should I buy?
 
-Most of the BMS that the driver support will work fine and the driver does support most features for all the BMS brands. See the [comparison table](../general/features.md#bms-feature-comparison) for any small differenaces.
+Most of the BMS that the driver support will work fine and the driver does support most features for all the BMS brands. See the [comparison table](../general/features.md#bms-feature-comparison) for any small differences.
 
 Find the BMS that fits your budget with the features that you need.
 
 The balancers on Smart Daly BMS don't seem to work that well so many users have opted to add an external balancer to help with that.
 
-Also the way that Daly implemented their communication protocol gives for a much slower data retrial which means slower response to events by the driver.
+Also the way that Daly implemented their communication protocol results in a much slower data retrieval, which means slower response to events by the driver.
 
 If you own a Daly, then it will work just fine, but if you still need to buy your BMS then one of the other supported BMS would be a better choice.
 
@@ -84,7 +84,7 @@ If you own a Daly, then it will work just fine, but if you still need to buy you
 
 Most USB serial adapters and cables should work fine. You need to use the adapter for the UART type that your BMS use, which is normally TTL, RS232, RS485 or even SPI.
 
-Those adapters based on the **FDTI** or **CH340** chips are the easiest to use because the GX opperating system already include drivers for them.
+Those adapters based on the **FTDI** or **CH340** chips are the easiest to use because the GX operating system already includes drivers for them.
 
 Cable preferences:
 
@@ -232,7 +232,7 @@ So asuming you have set the max battery voltage for what the battery require, yo
 
 In your GX settings go to the DVCC menu and activate the "Limit managed battery charge voltage" feature and lower the "Maximum Charge Voltage".
 
-Drop your voltage to `0.2V` lees that normal and then increase it every day by `0.05V` if you did not get a high voltage alarm during the previous day. If you did get an alarm leave it unchanged for another day.
+Drop your voltage to `0.2 V` less than normal and then increase it every day by `0.05 V` if you did not get a high voltage alarm during the previous day. If you did get an alarm leave it unchanged for another day.
 
 Do this until you get to the original max charge voltage for your battery.
 
@@ -294,11 +294,11 @@ If you see high values, your system might have high CPU load. See the [CPU load]
 
 The easiest way to troubleshoot high CPU load is to use `htop`. Since `htop` is not available on Venus OS you have to install it first. See [here](https://github.com/mr-manuel/venus-os_helpful-scripts/tree/master/htop/armv7) or use `opkg` to install it (if you know what you do).
 
-Once installed open `htop` and sort by CPU time. To do this press `F6`, then select `Time`and hit `Enter`. Now the process that uses the most CPU time is at the top.
+Once installed open `htop` and sort by CPU time. To do this press `F6`, then select `Time` and hit `Enter`. Now the process that uses the most CPU time is at the top.
 
-Top exit `htop` press `q` or `CTRL + C`. After exiting you will see a few warnings, which you can ignore.
+To exit `htop` press `q` or `CTRL + C`. After exiting you will see a few warnings, which you can ignore.
 
-#### Unexpeted system reboot (watchdog)
+#### Unexpected system reboot (watchdog)
 
 If your system is rebooting multiple times a day, then it's very likely that the watchdog triggers a reboot.
 
